@@ -3,6 +3,8 @@ package com.shuiyang.ecps.service;
 import com.shuiyang.ecps.dao.CourseRepository;
 import com.shuiyang.ecps.domain.Course;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,6 +36,14 @@ public class CourseService {
      */
     public List<Course> listAllCourse() {
         return courseRepository.findAll();
+    }
+
+    /**
+     * 获取分页
+     * @return
+     */
+    public Page<Course> getPage(int page, int limit) {
+        return courseRepository.findAll(PageRequest.of(page, limit));
     }
 
     /**

@@ -1,7 +1,15 @@
 package com.shuiyang.ecps.controller;
 
+import com.shuiyang.ecps.domain.Course;
+import com.shuiyang.ecps.service.CourseService;
+import com.shuiyang.ecps.utils.AjaxReturn;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 /**
  * 课程控制类
@@ -11,6 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/course")
 public class CourseController {
+
+    @Autowired
+    private CourseService courseService;
 
     /**
      * 课程编辑页面
@@ -26,7 +37,25 @@ public class CourseController {
     @RequestMapping("/courseList")
     public String courseList() { return "/course/courseList"; }
 
+    /**
+     * 获取所有课程
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/getCourseList")
+    public AjaxReturn getCourseList() {
+        List<Course> courseList = courseService.listAllCourse();
+        return AjaxReturn.success(courseList, Long.parseLong(courseList.size() + ""));
+    }
 
-
-
+    /**
+     * 获取分页
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/getPage")
+    public AjaxReturn getPage(int page, int limit) {
+        Page<Course> coursePage = courseService.getPage(page - 1, limit);
+        return AjaxReturn.success(coursePage.getContent(), coursePage.getTotalElements());
+    }
 }

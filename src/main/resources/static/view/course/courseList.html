@@ -7,11 +7,32 @@
 </head>
 <body>
 
+<table class="layui-hide" id="tab" lay-filter="test"></table>
+
+<!--分页-->
+<div id="paging"></div>
 
 
+<script src="../../lib/jquery.js"></script>
 <script src="../../lib/layui/layui.js"></script>
 <script>
+    layui.use(['laypage', 'table'], function () {
+        var table = layui.table;
+        /*table.render({
 
+        })*/
+        var laypage = layui.laypage;
+        laypage.render({
+            elem: 'paging', //填你DIV的ID
+            theme: '#6699ff', //颜色
+            limit: 10, //一页的条数，默认为10
+            count: 100, //数据总数
+            //触发换页操作
+            jump: function (obj) {
+                console.log("code you code");
+            }
+        });
+    });
 </script>
 </body>
 </html>

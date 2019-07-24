@@ -1,7 +1,7 @@
 package com.shuiyang.ecps.controller;
 
 import com.shuiyang.ecps.domain.Course;
-import com.shuiyang.ecps.service.CourseService;
+import com.shuiyang.ecps.service.ICourseService;
 import com.shuiyang.ecps.utils.AjaxReturn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,7 +21,7 @@ import java.util.List;
 public class CourseController {
 
     @Autowired
-    private CourseService courseService;
+    private ICourseService courseService;
 
     /**
      * 课程编辑页面

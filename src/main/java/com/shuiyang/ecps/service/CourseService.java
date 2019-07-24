@@ -16,50 +16,34 @@ import java.util.List;
  * @Date: 2019-07-23 14:35
  */
 @Service
-public class CourseService {
+public class CourseService implements ICourseService {
 
     @Autowired
     private CourseRepository courseRepository;
 
-    /**
-     * 根据id获取课程
-     * @param courseId
-     * @return
-     */
+    @Override
     public Course getById(Long courseId) {
         return courseRepository.getOne(courseId);
     }
 
-    /**
-     * 获取全部课程
-     * @return
-     */
+    @Override
     public List<Course> listAllCourse() {
         return courseRepository.findAll();
     }
 
-    /**
-     * 获取分页
-     * @return
-     */
+    @Override
     public Page<Course> getPage(int page, int limit) {
         return courseRepository.findAll(PageRequest.of(page, limit));
     }
 
-    /**
-     * 保存课程
-     * @param course
-     */
     @Transactional
+    @Override
     public void saveCourse(Course course) {
         courseRepository.save(course);
     }
 
-    /**
-     * 删除课程
-     * @param course
-     */
     @Transactional
+    @Override
     public void deleteCourse(Course course) {
         courseRepository.delete(course);
     }

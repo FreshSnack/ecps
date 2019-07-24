@@ -1,0 +1,31 @@
+html { height: 100%; }
+
+body {
+    height: 98%;
+    margin: 0px;
+    background: url(../image/background.jpg) repeat;
+}
+
+.top {
+    margin-top: 10px;
+    height: 120px;
+    width: 100%;
+}
+
+.top p {
+    text-align: center;
+}
+
+.content {
+    height: 75%;
+    width: 100%;
+    background: url(../image/geomorphology.png) no-repeat;
+    background-size: 100%;
+    border-style: solid;
+    border-width: 5px 0px;
+    border-color: #9BBB59;
+}
+.main_content {
+    height: 75%;
+    width: 100%;
+}

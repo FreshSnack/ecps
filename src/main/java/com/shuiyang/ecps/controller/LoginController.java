@@ -34,6 +34,13 @@ public class LoginController {
     public String index() { return "index"; }
 
     /**
+     * 主页
+     * @return
+     */
+    @RequestMapping("/main")
+    public String main() { return "main"; }
+
+    /**
      * 无权限页面
      * @return
      */

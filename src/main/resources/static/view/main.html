@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <title>安徽师范大学精品课程</title>
     <link rel="stylesheet" href="../css/main.css"/>
+    <link rel="stylesheet" href="../../lib/layui/css/layui.css"/>
 </head>
 <body>
 <div class="top">
     <img src="../image/logo.png" style="margin-left: 10px; margin-right:10px; float: left"/>
-    <div style="float: left; margin-top: 10px;">
+    <div style="float: left; margin-top: 30px;">
         <p style="font-family: 幼圆; font-size: 32px; font-weight: bold">安徽师范大学省级精品课程</p>
     </div>
     <div style="float: right; margin-right: 100px;margin-top: 30px">
@@ -16,8 +17,40 @@
         <p style="font-family: 'Arial Black'; font-size: 20px;margin: 0px; color: #FF5722">Geomorphology</p>
     </div>
 </div>
-<div class="main_content">
-
+<div class="menu">
+    <ul class="layui-nav" lay-filter="menu">
+        <li class="layui-nav-item layui-this"><a href="#none" onclick=clickMenu("home")>首页</a></li>
+        <li class="layui-nav-item"><a href="#none" onclick=clickMenu("sbs")>申报书</a></li>
+        <li class="layui-nav-item"><a href="#none" onclick=clickMenu("jxtd")>教学团队</a></li>
+        <li class="layui-nav-item"><a href="#none" onclick=clickMenu("jxdg")>教学大纲</a></li>
+        <li class="layui-nav-item"><a href="#none" onclick=clickMenu("skja")>授课教案</a></li>
+        <li class="layui-nav-item"><a href="#none" onclick=clickMenu("jxkj")>教学课件</a></li>
+        <li class="layui-nav-item"><a href="#none" onclick=clickMenu("jxsp")>教学视频</a></li>
+        <li class="layui-nav-item"><a href="#none" onclick=clickMenu("stk")>试题库</a></li>
+        <li class="layui-nav-item"><a href="#none" onclick=clickMenu("jxfk")>教学反馈</a></li>
+    </ul>
 </div>
+<div class="main_content">
+    <iframe style="height: 100%; width: 100%" id="content-frame"></iframe>
+</div>
+<div class="footer">
+    <p class="address">地址：安徽省芜湖市九华南路189号  邮编：241002  版权所有：安徽师范大学地理与旅游学院</p>
+    <p class="copyright">Copyright Anhui Normal University. All Rights Reserved</p>
+</div>
+<script src="../lib/layui/layui.js"></script>
+<script src="../lib/jquery.js"></script>
+<script>
+    // 渲染tab hover
+    layui.use('element', function(){});
+
+    /**
+     * 点击菜单
+     * @param code
+     */
+    function clickMenu(code) {
+        alert(code)
+        // lay.msg(code);
+    }
+</script>
 </body>
 </html>

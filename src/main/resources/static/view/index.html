@@ -23,9 +23,25 @@
     <p style="font-family: 宋体; font-size: 28px; color: white;">安徽师范大学地理与旅游学院</p>
 
     <div style="position: absolute; right: 30px; bottom: 30px">
-        <a href="/main" style="font-family: 宋体; font-size: 30px; color: yellow">进入课程</a>
+        <a href="/main" style="font-family: 宋体; font-size: 30px; color: yellow" onclick=addVisitCount()>进入课程</a>
     </div>
 </div>
-
+<script src="../lib/jquery.js"></script>
+<script>
+    /**
+     * 增加访问量
+     */
+    function addVisitCount() {
+        $.get({
+            url: '/addVisitCount',
+            data: {code: 'main'},
+            success: function (ar) {
+                if (ar.code != '0') {
+                    alert(ar.msg);
+                }
+            }
+        });
+    }
+</script>
 </body>
 </html>

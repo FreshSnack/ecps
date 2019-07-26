@@ -1,0 +1,50 @@
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    /*background: url(../image/background.jpg) repeat;*/
+}
+
+* { margin: 0px; padding: 0px; }
+
+.header {
+    width: 100%;
+}
+
+.header_line {
+    width: 100%;
+    height: 36px;
+    background-color: #03b2b5;
+}
+
+.header_line ul {
+    width: 400px;
+    padding-left: 580px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: right;
+    font-size: 12px;
+    height: 14px;
+    line-height: 14px;
+    padding-top: 10px;
+    display: block;
+}
+
+.header_line ul li {
+    float: left;
+    display: block;
+    height: 14px;
+    width: 75px;
+    text-align: center;
+    list-style: none;
+    border-right: 1px solid #ffffff;
+}
+
+.header_line a {
+    text-decoration: none;
+    color: white;
+}
+
+.header_logo {}

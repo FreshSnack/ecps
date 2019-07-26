@@ -1,0 +1,43 @@
+html { height: 100%; }
+
+body {
+    height: 98%;
+    margin: 0px;
+    background: url(../image/background.jpg) repeat;
+}
+
+.top {
+    margin-top: 10px;
+    height: 120px;
+    width: 100%;
+}
+
+.top p {
+    text-align: center;
+}
+
+.content {
+    height: 75%;
+    width: 100%;
+    background: url(../image/login.png) no-repeat;
+    background-size: 100%;
+    border-style: solid;
+    border-width: 5px 0px;
+    border-color: #9BBB59;
+}
+
+.menu { width: 100%; }
+
+.main_content {
+    height: 72%;
+    width: 100%;
+    border: #0C0C0C 1px solid;
+}
+
+.footer {
+    /*border: #0C0C0C 2px solid;*/
+}
+
+.footer p { text-align: center; }
+.footer p.address { font-family: 宋体; font-size: 14px; }
+.footer p.copyright { font-family: Calibri; font-size: 14px;}

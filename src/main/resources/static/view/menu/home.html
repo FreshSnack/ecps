@@ -1,122 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <title>首页</title>
-    <link rel="stylesheet" href="../../lib/layui/css/layui.css"/>
+    <link rel="stylesheet" href="../../css/main.css"/>
     <link rel="stylesheet" href="../../lib/lunbo/Lunbo.css"/>
-    <style type="text/css">
-        .layui-card {
-            /*background: rgba(0,0,0,0.0);*/
-        }
-
-        .layui-card-body {
-            /*border: #0C0C0C 1px solid;*/
-        }
-
-        .layui-card-header {
-            font-weight: bold;
-            font-size: 16px
-        }
-
-        .layui-card-body > a {
-            margin-right: 20px
-        }
-    </style>
 </head>
 <body>
-<div style="padding: 20px;">
-    <div class="layui-row layui-col-space15">
-        <div class="layui-col-md4">
-            <div class="layui-card">
-                <div class="layui-card-header">课程简介</div>
-                <div class="layui-card-body" style="height: 200px">
-                    <p>
-                        &nbsp;&nbsp;《地理学》课程是我校地理科学专业的专业基础课程，已经在地理科学专业开设了半个多世纪，并且...
-                    </p>
-                </div>
+    <div class="info">
+        <div class="panel course_introduction">
+            <div class="caption">
+                <p>课程简介</p>
+                <a class="more" href="/admin" target="_blank">More&nbsp;>></a>
+            </div>
+            <div class="content">
+                <p>
+                    &nbsp;&nbsp;《地理学》课程是我校地理科学专业的专业基础课程，已经在地理科学专业开设了半个多世纪，并且...
+                </p>
             </div>
         </div>
-        <div class="layui-col-md4">
-            <div class="layui-card">
-                <div class="layui-card-header">教学活动</div>
-                <div class="layui-card-body" style="height: 200px">
+        <div class="panel teaching_action">
+            <div class="caption">
+                <p>教学活动</p>
+                <a class="more" href="/admin" target="_blank">More&nbsp;>></a>
+            </div>
+            <div class="content">
+                <ul>
+                    <li>[2019.6.13]: 某某活动</li>
+                    <li>[2019.6.13]: 某某活动</li>
+                    <li>[2019.6.13]: 某某活动</li>
+                    <li>[2019.6.13]: 某某活动</li>
+                    <li>[2019.6.13]: 某某活动</li>
+                    <li>[2019.6.13]: 某某活动</li>
+                    <li>[2019.6.13]: 某某活动</li>
+                </ul>
+            </div>
+        </div>
+        <div class="panel science_knowledge">
+            <div class="caption">
+                <p>科学园地</p>
+                <a class="more" href="/admin" target="_blank">More&nbsp;>></a>
+            </div>
+            <div class="content">
+                .....
+            </div>
+        </div>
+        <div class="panel guest_book">
+            <div class="caption">
+                <p>访客留言</p>
+                <a class="more" href="/admin" target="_blank">More&nbsp;>></a>
+            </div>
+            <div class="content">
+                .....
+            </div>
+        </div>
+    </div>
+    <div class="pic_show">
+        <div class="Box">
+            <div class="Box_con clearfix" style="width: 1500px">
+                <span class="btnl btn" id="btnl"></span>
+                <span class="btnr btn" id="btnr"></span>
+                <div class="conbox" id="BoxUl">
                     <ul>
-                        <li>[2019.6.13]: 某某活动</li>
-                        <li>[2019.6.13]: 某某活动</li>
-                        <li>[2019.6.13]: 某某活动</li>
-                        <li>[2019.6.13]: 某某活动</li>
-                        <li>[2019.6.13]: 某某活动</li>
-                        <li>[2019.6.13]: 某某活动</li>
-                        <li>[2019.6.13]: 某某活动</li>
+                        <li class="cur"><img src="../../image/g_1.jpg" alt=""/></li>
+                        <li class="cur"><img src="../../image/g_2.jpg" alt=""/></li>
+                        <li class="cur"><img src="../../image/g_3.jpg" alt=""/></li>
+                        <li class="cur"><img src="../../image/g_4.jpg" alt=""/></li>
+                        <li class="cur"><img src="../../image/g_5.jpg" alt=""/></li>
+                        <li class="cur"><img src="../../image/g_6.jpg" alt=""/></li>
                     </ul>
                 </div>
-            </div>
-        </div>
-        <div class="layui-col-md4">
-            <div class="layui-card">
-                <div class="layui-card-header">科普园地</div>
-                <div class="layui-card-body" style="height: 61px">
-                    .....
-                </div>
-            </div>
-        </div>
-        <div class="layui-col-md4">
-            <div class="layui-card">
-                <div class="layui-card-header">访客留言</div>
-                <div class="layui-card-body" style="height: 61px">
-                    .......
-                </div>
+                <p class="BoxSwitch" id="BoxSwitch">
+                    <span class="cur"></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </p>
             </div>
         </div>
     </div>
-    <div class="layui-row layui-col-space15">
-        <div class="layui-col-md12">
-            <div class="layui-card">
-                <div class="layui-card-header">地貌类型图片</div>
-                <div class="layui-card-body Box">
-                    <div class="Box_con clearfix" style="width: 1500px">
-                        <span class="btnl btn" id="btnl"></span>
-                        <span class="btnr btn" id="btnr"></span>
-                        <div class="conbox" id="BoxUl">
-                            <ul>
-                                <li class="cur"><img src="../../image/g_1.jpg" alt=""/></li>
-                                <li class="cur"><img src="../../image/g_2.jpg" alt=""/></li>
-                                <li class="cur"><img src="../../image/g_3.jpg" alt=""/></li>
-                                <li class="cur"><img src="../../image/g_4.jpg" alt=""/></li>
-                                <li class="cur"><img src="../../image/g_5.jpg" alt=""/></li>
-                                <li class="cur"><img src="../../image/g_6.jpg" alt=""/></li>
-                            </ul>
-                        </div>
-                        <p class="BoxSwitch" id="BoxSwitch">
-                            <span class="cur"></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="layui-row layui-col-space15">
-        <div class="layui-col-md12">
-            <div class="layui-card">
-                <div class="layui-card-header">友情链接</div>
-                <div class="layui-card-body">
-                    <a href="http://www.baidu.com">安徽师范大学地理与旅游学院</a>
-                    <a href="http://www.baidu.com">兰州大学资源环境学院</a>
-                    <a href="http://www.baidu.com">南京大学地理与海洋科学学院</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 </body>
 
 <script src="../../lib/jquery.js"></script>
 <script src="../../lib/lunbo/Lunbo.js"></script>
 <script>
-    LbMove('BoxUl', 'btnl', 'btnr', 'BoxSwitch', true, 'left', true, 305, 1000, 5000, 5);
+    LbMove('BoxUl', 'btnl', 'btnr', 'BoxSwitch', true, 'left', true, 305, 1000, 5000, 3);
 </script>
 </html>

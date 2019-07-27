@@ -33,4 +33,6 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     // shiro
     compile 'org.apache.shiro:shiro-spring-boot-web-starter:1.4.0'
+    // thymeleaf
+    compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
 }

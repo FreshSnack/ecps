@@ -1,7 +1,6 @@
-* {padding: 0;margin: 0;}
-body {background: #f3f3f3;}
+.Box * {margin: 0px; padding: 0px}
 .Box {position: relative;}
-.Box .content {width: 1200px;margin: 0 auto;}
+.Box .content {width: 1000px;margin: 0 auto;}
 .Box h2 {text-align: center;margin-bottom: 35px;padding-top: 250px;}
 .Box .Box_con {position: relative;}
 .Box .Box_con .btnl {position: absolute;}
@@ -12,7 +11,7 @@ body {background: #f3f3f3;}
 .Box .Box_con .btnr:hover {background: url(jtr03.png) no-repeat center;}
 .Box .Box_con .conbox {position: relative;overflow: hidden;}
 .Box .Box_con .conbox ul {position: relative;list-style: none;}
-.Box .Box_con .conbox ul li {float: left;width: 285px;height: 200px;margin-left: 20px;overflow: hidden;}
+.Box .Box_con .conbox ul li {float: left;width: 235px;height: 200px;margin-left: 20px;overflow: hidden;}
 .Box .Box_con .conbox ul li:first-child {margin-left: 0;}
 .Box .Box_con .conbox ul li img {display: block;width: 285px;height: 200px;transition: all 0.5s;}
 .Box .Box_con .conbox ul li:hover img {transform: scale(1.1);}

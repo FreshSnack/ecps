@@ -129,7 +129,7 @@ body {
     position: relative;
     float: left;
     color: black;
-
+    font-family: "Microsoft Yahei";
 }
 
 .menu .nav a:hover {

@@ -1,5 +1,6 @@
 html, body { margin: 0px; }
-.info { height: 260px; width: 100%;}
+
+.info { height: 300px; width: 100%;}
 
 .panel {
     margin-top: 10px;
@@ -7,7 +8,7 @@ html, body { margin: 0px; }
 }
 
 .course_introduction {
-    width: 300px;
+    width: 310px;
     height: 250px;
     float: left;
 }
@@ -46,7 +47,7 @@ html, body { margin: 0px; }
 
 
 .teaching_action {
-    width: 300px;
+    width: 310px;
     height: 250px;
     margin-left: 30px;
     float: left;
@@ -61,21 +62,62 @@ html, body { margin: 0px; }
 }
 
 .science_knowledge {
-    width: 300px;
-    height: 100px;
+    width: 310px;
+    height: 105px;
     margin-left: 30px;
     float: left;
 }
 
 .guest_book {
-    width: 300px;
+    width: 310px;
     margin-top: 40px;
-    height: 100px;
+    height: 105px;
     margin-left: 30px;
     float: left;
 }
 
 .pic_show {
+    position: relative;
+    margin-top: 20px;
+    height: 330px;
+}
+
+.pic_show * {
+    margin: 0px;
+}
+
+.pic_show .title {
+    height: 45px;
+    color: #000000;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: left;
+    line-height: 45px;
+    padding-left: 6px;
+}
+
+.p_title {
+    height: 45px;
+    color: #000000;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: left;
+    line-height: 45px;
+    margin-bottom: 20px;
+}
+
+.p_title span {
+    border-bottom: 4px solid #f38f05;
+    padding: 4px;
+}
+
+.link {
     clear: both;
-    /*position: relative;*/
+    margin-top: 20px;
+    height: 130px;
+}
+
+.link img {
+    width: 300px;
+    height: 45px;
 }

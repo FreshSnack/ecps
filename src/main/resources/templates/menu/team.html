@@ -10,7 +10,40 @@
         <div th:replace="/common/header::header"></div>
         <div th:replace="/common/menu::menu"></div>
         <div class="content">
-            <h1>教学团队</h1>
+            <div class="position">
+                当前位置：
+                <a href="/">首页</a>
+                <span>></span>
+                <a href="/team">教学团队</a>
+            </div>
+            <div class="team">
+                <div class="bt">教学团队</div>
+                <div class="bar">
+                    浏览次数：<span th:text="${team_count}"/>
+                </div>
+                <div class="nr">
+                    <div class="card">
+                        <a href="https://m.weibo.cn/u/1223178222" target="_blank">
+                            <img src="/image/team/hg1.jpg"/>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="https://m.weibo.cn/u/1223178222" target="_blank">
+                            <img src="/image/team/hg2.jpg"/>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="https://m.weibo.cn/u/1223178222" target="_blank">
+                            <img src="/image/team/hg3.jpg"/>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="https://m.weibo.cn/u/1223178222" target="_blank">
+                            <img src="/image/team/hg4.jpg"/>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
         <div th:replace="/common/footer::footer"></div>
         <script src="/lib/jquery.js"></script>

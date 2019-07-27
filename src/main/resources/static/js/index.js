@@ -21,7 +21,7 @@ $(function () {
      * @returns {number}
      */
     function getContentMinHeight() {
-        return $(window).height() - $(".header").outerHeight() - $(".menu").outerHeight() - $(".footer").outerHeight() - 90;
+        return $(window).height() - $(".header").outerHeight() - $(".menu").outerHeight() - $(".footer").outerHeight() - 70;
     }
 });
 

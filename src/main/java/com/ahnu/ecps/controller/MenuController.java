@@ -51,6 +51,7 @@ public class MenuController {
     @RequestMapping("/apply")
     public String apply(Model model) {
         model.addAttribute("menu_code", "apply");
+        model.addAttribute("apply_count", pvService.getVisitCount("apply"));
         return "/menu/apply";
     }
 
@@ -60,6 +61,7 @@ public class MenuController {
     @RequestMapping("/team")
     public String team(Model model) {
         model.addAttribute("menu_code", "team");
+        model.addAttribute("team_count", pvService.getVisitCount("team"));
         return "/menu/team";
     }
 

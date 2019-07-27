@@ -2,7 +2,7 @@
 <html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
     <head>
         <meta charset="UTF-8">
-        <title>申请书-安徽师范大学精品课程</title>
+        <title>申报书-安徽师范大学精品课程</title>
         <link rel="stylesheet" href="/css/index.css"/>
         <link rel="stylesheet" href="/css/main.css"/>
     </head>
@@ -10,7 +10,27 @@
         <div th:replace="/common/header::header"></div>
         <div th:replace="/common/menu::menu"></div>
         <div class="content">
-            <h1>申报书</h1>
+            <div class="position">
+                当前位置：
+                <a href="/">首页</a>
+                <span>></span>
+                <a href="/apply">申报书</a>
+            </div>
+            <div class="apply">
+                <div class="bt">申报书</div>
+                <div class="bar">
+                    发布人：程春云&nbsp;&nbsp;&nbsp;&nbsp;
+                    发布日期：2019-07-27&nbsp;&nbsp;&nbsp;&nbsp;
+                    浏览次数：<span th:text="${apply_count}"/>
+                </div>
+                <div class="nr">
+                    <p>　　教师教育是教育事业的工作母机，是提升教育质量的动力源泉。为深入认真贯彻习近平新时代中国特色社会主义思想和党的十九大精神，推动教师教育改革发展，全面提升教师素质能力，努力建设一支高素质专业化创新型教师队伍，特制定教师教育振兴行动计划。</p>
+                    <p>　　一、指导思想&nbsp;</p>
+                    <p>　　以习近平新时代中国特色社会主义思想为指导，全面学习贯彻党的十九大精神，紧紧围绕统筹推进“五位一体”总体布局和协调推进“四个全面”战略布局，坚持和加强党的全面领导，坚持以人民为中心的发展思想，坚持全面深化改革，牢固树立新发展理念，着眼长远，立足当前，以提升教师教育质量为核心，以加强教师教育体系建设为支撑，以教师教育供给侧结构性改革为动力，推进教师教育创新、协调、绿色、开放、共享发展，着力培养造就党和人民满意的师德高尚、业务精湛、结构合理、充满活力的教师队伍。</p>
+                    <p>　　二、目标任务&nbsp;</p>
+                    <p>　　经过5年左右努力，办好一批高水平、有特色的教师教育院校和师范类专业，教师培养培训体系基本健全，为我国教师教育的长期可持续发展奠定坚实基础。师德教育显著加强，教师培养培训的内容方式不断优化，教师综合素质、专业化水平和创新能力显著提升，为发展更高质量更加公平的教育提供强有力的师资保障和人才支撑。</p>
+                </div>
+            </div>
         </div>
         <div th:replace="/common/footer::footer"></div>
         <script src="/lib/jquery.js"></script>

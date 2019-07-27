@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>安徽师范大学精品课程</title>
+        <link rel="stylesheet" href="/css/index.css"/>
+        <link rel="stylesheet" href="/css/main.css"/>
+        <link rel="stylesheet" href="/lib/lunbo/Lunbo.css"/>
+        <link rel="stylesheet" href="/lib/layui/css/layui.css"/>
+    </head>
+    <body>
+        <div th:replace="/common/header::header"></div>
+        <div th:replace="/common/menu::menu"></div>
+        <div class="content">
+            <div class="info">
+                <div class="panel course_introduction">
+                    <div class="caption">
+                        <p>课程简介</p>
+                        <a class="more" href="/admin" target="_blank">More&nbsp;>></a>
+                    </div>
+                    <div class="content">
+                        <p>
+                            &nbsp;&nbsp;《地理学》课程是我校地理科学专业的专业基础课程，已经在地理科学专业开设了半个多世纪，并且...
+                        </p>
+                    </div>
+                </div>
+                <div class="panel teaching_action">
+                    <div class="caption">
+                        <p>教学活动</p>
+                        <a class="more" href="/admin" target="_blank">More&nbsp;>></a>
+                    </div>
+                    <div class="content">
+                        <ul>
+                            <li>[2019.6.13]: 某某活动</li>
+                            <li>[2019.6.13]: 某某活动</li>
+                            <li>[2019.6.13]: 某某活动</li>
+                            <li>[2019.6.13]: 某某活动</li>
+                            <li>[2019.6.13]: 某某活动</li>
+                            <li>[2019.6.13]: 某某活动</li>
+                            <li>[2019.6.13]: 某某活动</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="panel science_knowledge">
+                    <div class="caption">
+                        <p>科学园地</p>
+                        <a class="more" href="/admin" target="_blank">More&nbsp;>></a>
+                    </div>
+                    <div class="content">
+                        .....
+                    </div>
+                </div>
+                <div class="panel guest_book">
+                    <div class="caption">
+                        <p>访客留言</p>
+                        <a class="more" href="/admin" target="_blank">More&nbsp;>></a>
+                    </div>
+                    <div class="content">
+                        .....
+                    </div>
+                </div>
+            </div>
+            <div class="pic_show">
+                <div class="p_title">
+                    <span>地貌图片</span>
+                </div>
+                <div class="Box">
+                    <div class="Box_con clearfix">
+                        <!--<span class="btnl btn" id="btnl"></span>
+                        <span class="btnr btn" id="btnr"></span>-->
+                        <div class="conbox" id="BoxUl">
+                            <ul>
+                                <li class="cur"><img src="../../image/home/pic_01.jpg"/></li>
+                                <li><img src="../../image/home/pic_02.jpg"/></li>
+                                <li><img src="../../image/home/pic_03.jpg"/></li>
+                                <li><img src="../../image/home/pic_04.jpg"/></li>
+                                <li><img src="../../image/home/pic_05.jpg"/></li>
+                                <li><img src="../../image/home/pic_06.jpg"/></li>
+                            </ul>
+                        </div>
+                        <p class="BoxSwitch" id="BoxSwitch">
+                            <span class="cur"></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="link">
+                <div class="p_title">
+                    <span>友情链接</span>
+                </div>
+                <div class="image">
+                    <a href="http://tourism.ahnu.edu.cn/" target="_blank"><img src="../../image/home/link_asd.jpg"/></a>
+                    <a href="http://geoscience.lzu.edu.cn/" target="_blank" style="margin-right: 30px"><img src="../../image/home/link_ld.png"/></a>
+                    <a href="http://sgos.nju.edu.cn/" target="_blank"><img src="../../image/home/link_nd.png"/></a>
+                </div>
+            </div>
+        </div>
+        <div th:replace="/common/footer::footer"></div>
+        <script src="/lib/jquery.js"></script>
+        <script src="/js/index.js"></script>
+        <script src="/lib/lunbo/Lunbo.js"></script>
+        <script src="/lib/layui/layui.js"></script>
+        <script>
+            LbMove('BoxUl', 'btnl', 'btnr', 'BoxSwitch', true, 'left', true, 255, 1000, 5000, 4);
+            layui.use('layer', function () {
+                layui.layer.photos({
+                    photos: '#BoxUl',
+                    anim: 5
+                });
+            });
+            addVisitCount('home');
+        </script>
+    </body>
+</html>

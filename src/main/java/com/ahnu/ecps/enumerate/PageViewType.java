@@ -9,8 +9,15 @@ import lombok.AllArgsConstructor;
  */
 @AllArgsConstructor
 public enum PageViewType {
-    MAIN("main", "主页"),
-    APPLY("apply", "申请书");
+    HOME("home", "主页"),
+    APPLY("apply", "申报书"),
+    TEAM("team", "教学团队"),
+    OUTLINE("outline", "教学大纲"),
+    PLAN("plan", "授课教案"),
+    WARE("ware", "教学课件"),
+    VIDEO("video", "教学视频"),
+    LIBRARY("library", "试题库"),
+    FEEDBACK("feedback", "教学反馈");
 
     /**
      * 代码

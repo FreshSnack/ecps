@@ -1,6 +1,6 @@
 html, body { margin: 0px; }
 
-.info { height: 300px; width: 100%;}
+.content .info { height: 300px; width: 100%;}
 
 .panel {
     margin-top: 10px;

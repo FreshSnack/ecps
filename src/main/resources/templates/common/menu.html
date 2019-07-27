@@ -1,0 +1,31 @@
+<div class="menu" th:fragment="menu" xmlns:th="http://www.w3.org/1999/xhtml">
+    <ul class="nav">
+        <li class="menu_item" th:classappend="${menu_code == 'home'}?'one_link'">
+            <a href="/home" name="home">首页</a>
+        </li>
+        <li class="menu_item" th:classappend="${menu_code == 'apply'}?'one_link'">
+            <a href="/apply" name="apply">申报书</a>
+        </li>
+        <li class="menu_item" th:classappend="${menu_code == 'team'}?'one_link'">
+            <a href="/team" name="team">教学团队</a>
+        </li>
+        <li class="menu_item" th:classappend="${menu_code == 'outline'}?'one_link'">
+            <a href="/outline" name="outline">教学大纲</a>
+        </li>
+        <li class="menu_item" th:classappend="${menu_code == 'plan'}?'one_link'">
+            <a href="/plan" name="plan">授课教案</a>
+        </li>
+        <li class="menu_item" th:classappend="${menu_code == 'ware'}?'one_link'">
+            <a href="/ware" name="ware">教学课件</a>
+        </li>
+        <li class="menu_item" th:classappend="${menu_code == 'video'}?'one_link'">
+            <a href="/video" name="video">教学视频</a>
+        </li>
+        <li class="menu_item" th:classappend="${menu_code == 'library'}?'one_link'">
+            <a href="/library" name="library">试题库</a>
+        </li>
+        <li class="menu_item" th:classappend="${menu_code == 'feedback'}?'one_link'">
+            <a href="/feedback" name="feedback">教学反馈</a>
+        </li>
+    </ul>
+</div>

@@ -71,15 +71,17 @@ public class MenuController {
     @RequestMapping("/outline")
     public String outline(Model model) {
         model.addAttribute("menu_code", "outline");
+        model.addAttribute("outline_count", pvService.getVisitCount("outline"));
         return "/menu/outline";
     }
 
     /**
      * 授课教案
      */
-    @RequestMapping("/plan")
+    @RequestMapping("/attach/plan")
     public String plan(Model model) {
         model.addAttribute("menu_code", "plan");
+        model.addAttribute("plan_count", pvService.getVisitCount("plan"));
         return "/menu/plan";
     }
 
@@ -87,9 +89,10 @@ public class MenuController {
     /**
      * 教学课件
      */
-    @RequestMapping("/ware")
+    @RequestMapping("/attach/ware")
     public String ware(Model model) {
         model.addAttribute("menu_code", "ware");
+        model.addAttribute("ware_count", pvService.getVisitCount("ware"));
         return "/menu/ware";
     }
 

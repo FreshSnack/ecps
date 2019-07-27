@@ -132,7 +132,8 @@ body {
     z-index: 35;
     position: relative;
     float: left;
-    color: black;
+    color: #2E2D3C;
+    font-size: 14px;
     font-family: "Microsoft Yahei";
 }
 

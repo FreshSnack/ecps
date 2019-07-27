@@ -10,7 +10,30 @@
         <div th:replace="/common/header::header"></div>
         <div th:replace="/common/menu::menu"></div>
         <div class="content">
-            <h1>教学课件</h1>
+            <div class="position">
+                当前位置：
+                <a href="/">首页</a>
+                <span>></span>
+                <a href="/attach/ware">教学课件</a>
+            </div>
+            <div class="ware">
+                <div class="bt">教学课件</div>
+                <div class="bar">
+                    浏览次数：<span th:text="${ware_count}"/>
+                </div>
+                <div class="nr">
+                    <a href="/download?id=1">1.绪论.ppt</a><br/>
+                    <a href="/download?id=2">2.构造地貌.ppt</a><br/>
+                    <a href="/download?id=3">3.重力地貌.ppt</a><br/>
+                    <a href="/download?id=4">4.流水地貌.ppt</a><br/>
+                    <a href="/download?id=5">5.喀斯特地貌.ppt</a><br/>
+                    <a href="/download?id=6">6.冰川地貌.ppt</a><br/>
+                    <a href="/download?id=7">7.风沙地貌.ppt</a><br/>
+                    <a href="/download?id=8">8.黄土地貌.ppt</a><br/>
+                    <a href="/download?id=9">9.海岸地貌.ppt</a><br/>
+                    <a href="/download?id=10">10.地貌发育理论.ppt</a><br/>
+                </div>
+            </div>
         </div>
         <div th:replace="/common/footer::footer"></div>
         <script src="/lib/jquery.js"></script>

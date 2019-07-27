@@ -13,8 +13,8 @@ public enum PageViewType {
     APPLY("apply", "申报书"),
     TEAM("team", "教学团队"),
     OUTLINE("outline", "教学大纲"),
-    PLAN("plan", "授课教案"),
-    WARE("ware", "教学课件"),
+    PLAN("attach/plan", "授课教案"),
+    WARE("attach/ware", "教学课件"),
     VIDEO("video", "教学视频"),
     LIBRARY("library", "试题库"),
     FEEDBACK("feedback", "教学反馈");

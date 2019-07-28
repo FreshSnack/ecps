@@ -1,6 +1,9 @@
 package com.ahnu.ecps.aop;
 
+import com.ahnu.ecps.exception.BusinessException;
 import com.ahnu.ecps.utils.AjaxReturn;
+import org.apache.shiro.authc.AccountException;
+import org.apache.shiro.authc.AuthenticationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +20,7 @@ public class ExceptionAdvice {
      * @param e
      * @return
      */
-    @ExceptionHandler(Exception.class)
+    @ExceptionHandler({BusinessException.class, AccountException.class, AuthenticationException.class})
     @ResponseStatus(HttpStatus.OK)
     public AjaxReturn bizExHandler(Exception e) {
         return AjaxReturn.failure(e.getMessage());

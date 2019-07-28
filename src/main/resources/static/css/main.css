@@ -7,6 +7,10 @@ html, body { margin: 0px; }
     position: relative;
 }
 
+.panel li, .panel p {
+    text-overflow: ellipsis;
+}
+
 .course_introduction {
     width: 310px;
     height: 250px;
@@ -40,9 +44,11 @@ html, body { margin: 0px; }
 }
 
 .panel .content p {
-    margin-top: 20px;
+    margin-top: 15px;
     margin-left: 10px;
     margin-right: 10px;
+    line-height: 25px;
+    font-family: 宋体;
 }
 
 
@@ -51,14 +57,17 @@ html, body { margin: 0px; }
     height: 250px;
     margin-left: 30px;
     float: left;
+    line-height: 25px;
+    font-size: 15px;
 }
 
 .teaching_action ul {
     list-style: none;
     padding: 0px;
-    margin-top: 20px;
+    margin-top: 10px;
     margin-left: 10px;
     margin-right: 10px;
+    font-family: "Microsoft Yahei";
 }
 
 .science_knowledge {
@@ -68,12 +77,33 @@ html, body { margin: 0px; }
     float: left;
 }
 
+
+.science_knowledge ul {
+    list-style: none;
+    padding: 0px;
+    margin-top: 2px;
+    margin-left: 10px;
+    margin-right: 10px;
+    line-height: 25px;
+    font-family: "Microsoft Yahei";
+}
+
 .guest_book {
     width: 310px;
     margin-top: 40px;
     height: 105px;
     margin-left: 30px;
     float: left;
+    line-height: 25px;
+    font-family: "Microsoft Yahei";
+}
+
+.guest_book .content ul {
+    margin-top: 1px;
+}
+
+.guest_book .content li {
+    margin-left: 10px;
 }
 
 .pic_show {
@@ -126,7 +156,7 @@ html, body { margin: 0px; }
 .content .position {
     margin-top: 10px;
     padding-left: 15px;
-    font-family: "微软雅黑";
+    font-family: "Microsoft Yahei";
     font-size: 14px;
     font-weight: normal;
     color: #888;
@@ -177,13 +207,61 @@ html, body { margin: 0px; }
     height: 200px;
 }
 
-.apply .bar a,.outline .bar a,.plan .bar a {
+.apply .bar a,.outline .bar a,.plan .bar a,.feedback .bar a {
     /*text-decoration: none;*/
     color: #888;
+    text-decoration: underline;
 }
 
 .ware .nr {
     margin-left: 450px;
     margin-right: auto;
     /*text-align: center;*/
+}
+
+.video .nr {
+    text-align: center;
+}
+
+/*.video .play {
+    margin-left: auto;
+    margin-right: auto;
+    width: 1000px;
+}*/
+
+.video video {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.video .nr {
+    padding-top: 20px;
+    background-color: #b2b2b2;
+}
+
+.video .nr video {
+    margin-bottom: 20px;
+}
+
+.library .nr .layui-row .layui-card {
+    margin-bottom: 20px;
+    background-color: #EFEFEF;
+    border-radius: 5px;
+}
+
+.message .layui-input-block {
+    margin:10px;
+}
+
+.message textarea {
+    height: 160px;
+}
+
+.message .btn {
+    text-align: center;
+}
+
+.ware .nr a {
+    text-decoration: underline;
+    color: blue;
 }

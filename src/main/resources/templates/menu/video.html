@@ -5,16 +5,42 @@
         <title>教学视频-安徽师范大学精品课程</title>
         <link rel="stylesheet" href="/css/index.css"/>
         <link rel="stylesheet" href="/css/main.css"/>
+        <link rel="stylesheet" href="/lib/layui/css/layui.css"/>
     </head>
     <body>
-        <div th:replace="/common/header::header"></div>
-        <div th:replace="/common/menu::menu"></div>
+        <div th:replace="common/header::header"></div>
+        <div th:replace="common/menu::menu"></div>
         <div class="content">
-            <h1>教学视频</h1>
+            <div class="position">
+                当前位置：
+                <a href="/">首页</a>
+                <span>></span>
+                <a href="/video">教学视频</a>
+            </div>
+            <div class="video">
+                <div class="bt">教学视频</div>
+                <div class="bar">
+                    浏览次数：<span th:text="${video_count}"/>
+                </div>
+                <div class="nr">
+                    <div class="play">
+                        <video src="/download?id=15" type="video/mp4" controls width="600px" >
+                            抱歉，你的浏览器不支持video标签。。
+                        </video>
+                        <video src="/download?id=16" type="video/mp4" controls width="600px" >
+                            抱歉，你的浏览器不支持video标签。。
+                        </video>
+                        <video src="/download?id=17" type="video/mp4" controls width="600px" >
+                            抱歉，你的浏览器不支持video标签。。
+                        </video>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div th:replace="/common/footer::footer"></div>
+        <div th:replace="common/footer::footer"></div>
         <script src="/lib/jquery.js"></script>
         <script src="/js/index.js"></script>
+        <script src="/lib/layui/layui.js"></script>
         <script>
             addVisitCount('video');
         </script>

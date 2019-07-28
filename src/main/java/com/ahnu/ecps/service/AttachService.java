@@ -19,7 +19,7 @@ public class AttachService implements IAttachService {
     @Override
     @Transactional
     public void saveAttach(Attach attach) {
-
+        attachRepository.save(attach);
     }
 
     @Override

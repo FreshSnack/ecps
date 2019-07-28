@@ -1,0 +1,118 @@
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background: url(../image/login.png) no-repeat;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+.login {
+    width: 100%;
+    height: 100%;
+}
+
+.main {
+    width: 375px;
+    /*background-color: #00FFFF;*/
+    margin: 120px auto 0px;
+}
+
+.header {
+    text-align: center;
+    line-height: 24px;
+    font: 18px "Microsoft Yahei";
+    padding: 20px;
+}
+
+.header h2 {
+    margin-bottom: 10px;
+}
+
+.header p {
+    font-weight: 300;
+    /*color: #999;*/
+}
+
+.body {
+    padding: 20px;
+}
+
+.body .item {
+    margin-bottom: 15px;
+
+}
+
+/*.icon {
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    width: 38px;
+    line-height: 36px;
+    text-align: center;
+}*/
+
+.item input.in {
+    width: 335px;
+    height: 38px;
+    border: 0px;
+    padding-left: 10px;
+}
+
+.item input[type='checkbox'] {
+    right: auto;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    border: 1px solid #d2d2d2;
+    font-size: 12px;
+    border-radius: 2px;
+    background-color: #fff;
+    -webkit-transition: .1s linear;
+    transition: .1s linear;
+    vertical-align: middle;
+}
+
+.rem {
+    vertical-align: middle;
+    line-height: 20px;
+}
+
+.rem span {
+    padding-left: 0;
+    padding-right: 15px;
+    line-height: 18px;
+    background: 0 0;
+    font-size: 14px;
+}
+
+.login_btn {
+    display: inline-block;
+    height: 38px;
+    line-height: 38px;
+    background-color: #009688;
+    color: #fff;
+    white-space: nowrap;
+    text-align: center;
+    font-size: 14px;
+    border: none;
+    /*border-radius: 2px;*/
+    cursor: pointer;
+    width: 345px;
+    color: #fff;
+}
+
+.username label {
+    width: 38px;
+    background: url(../image/username.png) no-repeat;
+}
+
+.password label {
+    background: url(../image/password.png) no-repeat;
+}

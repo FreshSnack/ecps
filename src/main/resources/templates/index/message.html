@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>访客留言</title>
+    <link rel="stylesheet" href="/css/main.css"/>
+    <link rel="stylesheet" href="/lib/layui/css/layui.css"/>
+</head>
+<body>
+<div class="message">
+    <form class="layui-form">
+        <div class="layui-form-item layui-form-text">
+            <div class="layui-input-block content">
+                <textarea placeholder="请输入内容" class="layui-textarea" lay-verify="required" name="message"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block btn">
+                <button class="layui-btn" lay-submit>提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="/lib/jquery.js"></script>
+<script src="lib/layui/layui.js"></script>
+<script>
+    layui.use(['layer', 'form'], function () {
+        var form = layui.form;
+        var layer = layui.layer;
+        //监听提交
+        form.on('submit', function (data) {
+            $.post({
+                url: '/addMessage',
+                data: data.field,
+                success: function (ar) {
+                    if (ar.code == '0') {
+                        parent.closeMessage();
+                    } else {
+                        layer.alert(ar.msg);
+                    }
+                }
+            });
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

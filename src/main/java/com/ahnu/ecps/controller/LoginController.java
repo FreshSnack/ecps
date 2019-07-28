@@ -26,6 +26,16 @@ public class LoginController {
         return "login";
     }
 
+
+    /**
+     * 后台管理首页
+     * @return
+     */
+    @RequestMapping(value = "/admin")
+    public String index() {
+        return "admin/index";
+    }
+
     /**
      * 无权限页面
      * @return
@@ -58,7 +68,7 @@ public class LoginController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/logout")
+    @RequestMapping(value = "/admin/logout")
     public AjaxReturn logoutAction() {
         // 从SecurityUtils里边创建一个 subject
         Subject subject = SecurityUtils.getSubject();

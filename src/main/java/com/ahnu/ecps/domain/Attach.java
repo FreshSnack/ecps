@@ -35,4 +35,10 @@ public class Attach {
      */
     @Column(name = "PATH")
     private String path;
+
+    /**
+     * 文件下载次数
+     */
+    @Column(name = "DOWNS")
+    private Long downs;
 }

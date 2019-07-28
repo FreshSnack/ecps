@@ -2,6 +2,7 @@ package com.ahnu.ecps.service;
 
 import com.ahnu.ecps.dao.PageViewRepository;
 import com.ahnu.ecps.domain.PageView;
+import com.ahnu.ecps.exception.BusinessException;
 import com.ahnu.ecps.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -25,7 +26,7 @@ public class PageViewService implements IPageViewService {
     @Transactional
     public void addVisitCount(String code) {
         if(StringUtils.isNullString(code)) {
-            throw new RuntimeException("访问量统计代码为空");
+            throw new BusinessException("访问量统计代码为空");
         }
         PageView pageView = pageViewRepository.findByCode(code);
         if(pageView == null) {
@@ -38,7 +39,7 @@ public class PageViewService implements IPageViewService {
     @Override
     public Long getVisitCount(String code) {
         if(StringUtils.isNullString(code)) {
-            throw new RuntimeException("访问量统计代码为空");
+            throw new BusinessException("访问量统计代码为空");
         }
         PageView pageView = pageViewRepository.findByCode(code);
         if(pageView == null) {

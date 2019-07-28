@@ -42,3 +42,31 @@ function addVisitCount(code) {
         }
     });
 }
+
+/**
+ * 访客留言
+ */
+function message() {
+    layui.use('layer', function () {
+        var layer = layui.layer;
+        layer.open({
+            type: 2,
+            title: '访客留言',
+            /*skin: 'layui-layer-rim', //加上边框*/
+            area: ['480px', '282px'], //宽高
+            content: '/message'
+        });
+    });
+}
+
+/**
+ * 关闭访客留言
+ */
+function closeMessage() {
+    layui.use('layer', function () {
+        var layer = layui.layer;
+        layer.closeAll('iframe');
+        layer.msg('留言成功');
+        window.location.reload();
+    });
+}

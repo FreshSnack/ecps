@@ -5,10 +5,11 @@
         <title>教学团队-安徽师范大学精品课程</title>
         <link rel="stylesheet" href="/css/index.css"/>
         <link rel="stylesheet" href="/css/main.css"/>
+        <link rel="stylesheet" href="/lib/layui/css/layui.css"/>
     </head>
     <body>
-        <div th:replace="/common/header::header"></div>
-        <div th:replace="/common/menu::menu"></div>
+        <div th:replace="common/header::header"></div>
+        <div th:replace="common/menu::menu"></div>
         <div class="content">
             <div class="position">
                 当前位置：
@@ -45,9 +46,10 @@
                 </div>
             </div>
         </div>
-        <div th:replace="/common/footer::footer"></div>
+        <div th:replace="common/footer::footer"></div>
         <script src="/lib/jquery.js"></script>
         <script src="/js/index.js"></script>
+        <script src="/lib/layui/layui.js"></script>
         <script>
             addVisitCount('team');
         </script>

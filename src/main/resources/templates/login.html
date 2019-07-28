@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>登录-安徽师范大学精品课程</title>
+    <link rel="stylesheet" href="/css/login.css"/>
+    <link rel="stylesheet" href="/lib/layui/css/layui.css"/>
+</head>
+<body>
+<div class="login">
+    <div class="main">
+        <div class="header">
+            <h2>ECPS</h2>
+            <p>安徽师范大学精品课程后台管理</p>
+        </div>
+        <div class="body">
+            <div class="item username">
+                <label class="icon"></label>
+                <input type="text" class="in" name="username" placeholder="用户名">
+            </div>
+            <div class="item password">
+                <label class="icon"></label>
+                <input type="password" class="in" name="password" placeholder="密码">
+            </div>
+            <div class="item rem">
+                <input type="checkbox" name="remember" title="记住密码"/>
+                <span>记住密码</span>
+            </div>
+            <button class="login_btn" onclick=login()>登 入</button>
+        </div>
+    </div>
+</div>
+<script src="/lib/jquery.js"></script>
+<script src="/lib/layui/layui.js"></script>
+<script>
+    $(document).keypress(function (e) {
+        if ((e.keyCode || e.which) == 13) {
+            $(".login_btn").click();  //login_btn登录按钮的id
+        }
+    });
+
+    /**
+     * 登陆
+     */
+    function login() {
+        var username = $("input[name='username']").val();
+        var password = $("input[name='password']").val();
+        layui.use("layer", function () {
+            var layer = layui.layer;
+            if (!username) {
+                layer.msg("用户名不能为空");
+                return;
+            }
+            if (!password) {
+                layer.msg("密码不能为空");
+                return;
+            }
+            $.post({
+                url: '/loginAction',
+                data: {username: username, password: password},
+                success: function (ar) {
+                    if (ar.code != '0') {
+                        layer.msg(ar.msg);
+                    } else {
+                        window.location.href = "/admin";
+                    }
+                }
+            });
+        });
+    }
+</script>
+</body>
+</html>

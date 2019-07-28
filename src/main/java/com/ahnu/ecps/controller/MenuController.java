@@ -1,5 +1,6 @@
 package com.ahnu.ecps.controller;
 
+import com.ahnu.ecps.service.IMessageService;
 import com.ahnu.ecps.service.IPageViewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,9 @@ public class MenuController {
     @Autowired
     private IPageViewService pvService;
 
+    @Autowired
+    private IMessageService messageService;
+
     @ModelAttribute
     public void model(Model model) {
         model.addAttribute("pv_count", pvService.getVisitCount("home"));
@@ -31,7 +35,8 @@ public class MenuController {
     @RequestMapping("/")
     public String index(Model model) {
         model.addAttribute("menu_code", "home");
-        return "/menu/home";
+        model.addAttribute("msg_list", messageService.getTopMessageList(4));
+        return "menu/home";
     }
 
     /**
@@ -42,7 +47,8 @@ public class MenuController {
     @RequestMapping("/home")
     public String home(Model model) {
         model.addAttribute("menu_code", "home");
-        return "/menu/home";
+        model.addAttribute("msg_list", messageService.getTopMessageList(4));
+        return "menu/home";
     }
 
     /**
@@ -52,7 +58,7 @@ public class MenuController {
     public String apply(Model model) {
         model.addAttribute("menu_code", "apply");
         model.addAttribute("apply_count", pvService.getVisitCount("apply"));
-        return "/menu/apply";
+        return "menu/apply";
     }
 
     /**
@@ -62,7 +68,7 @@ public class MenuController {
     public String team(Model model) {
         model.addAttribute("menu_code", "team");
         model.addAttribute("team_count", pvService.getVisitCount("team"));
-        return "/menu/team";
+        return "menu/team";
     }
 
     /**
@@ -72,28 +78,28 @@ public class MenuController {
     public String outline(Model model) {
         model.addAttribute("menu_code", "outline");
         model.addAttribute("outline_count", pvService.getVisitCount("outline"));
-        return "/menu/outline";
+        return "menu/outline";
     }
 
     /**
      * 授课教案
      */
-    @RequestMapping("/attach/plan")
+    @RequestMapping("/plan")
     public String plan(Model model) {
         model.addAttribute("menu_code", "plan");
         model.addAttribute("plan_count", pvService.getVisitCount("plan"));
-        return "/menu/plan";
+        return "menu/plan";
     }
 
 
     /**
      * 教学课件
      */
-    @RequestMapping("/attach/ware")
+    @RequestMapping("/ware")
     public String ware(Model model) {
         model.addAttribute("menu_code", "ware");
         model.addAttribute("ware_count", pvService.getVisitCount("ware"));
-        return "/menu/ware";
+        return "menu/ware";
     }
 
 
@@ -103,7 +109,8 @@ public class MenuController {
     @RequestMapping("/video")
     public String video(Model model) {
         model.addAttribute("menu_code", "video");
-        return "/menu/video";
+        model.addAttribute("video_count", pvService.getVisitCount("video"));
+        return "menu/video";
     }
 
 
@@ -113,7 +120,8 @@ public class MenuController {
     @RequestMapping("/library")
     public String library(Model model) {
         model.addAttribute("menu_code", "library");
-        return "/menu/library";
+        model.addAttribute("library_count", pvService.getVisitCount("library"));
+        return "menu/library";
     }
 
     /**
@@ -122,6 +130,7 @@ public class MenuController {
     @RequestMapping("/feedback")
     public String feedback(Model model) {
         model.addAttribute("menu_code", "feedback");
-        return "/menu/feedback";
+        model.addAttribute("feedback_count", pvService.getVisitCount("feedback"));
+        return "menu/feedback";
     }
 }

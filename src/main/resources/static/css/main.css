@@ -213,12 +213,6 @@ html, body { margin: 0px; }
     text-decoration: underline;
 }
 
-.ware .nr {
-    margin-left: 450px;
-    margin-right: auto;
-    /*text-align: center;*/
-}
-
 .video .nr {
     text-align: center;
 }
@@ -261,7 +255,19 @@ html, body { margin: 0px; }
     text-align: center;
 }
 
+.ware .nr {
+    /*margin-left: 450px;
+    margin-right: auto;*/
+    /*text-align: center;*/
+}
+
 .ware .nr a {
     text-decoration: underline;
     color: blue;
+}
+
+.ware iframe {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
 }

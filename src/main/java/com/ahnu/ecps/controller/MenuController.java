@@ -52,6 +52,17 @@ public class MenuController {
     }
 
     /**
+     * 异步获取消息
+     * @param model
+     * @return
+     */
+    @RequestMapping("/async/getMessage")
+    public String getMessage(Model model) {
+        model.addAttribute("msg_list", messageService.getTopMessageList(4));
+        return "menu/home::message";
+    }
+
+    /**
      * 申报书
      */
     @RequestMapping("/apply")

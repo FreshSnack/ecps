@@ -59,10 +59,10 @@ body {
 }*/
 
 .item input.in {
-    width: 335px;
+    width: 315px;
     height: 38px;
     border: 0px;
-    padding-left: 10px;
+    padding-left: 30px;
 }
 
 .item input[type='checkbox'] {
@@ -116,4 +116,21 @@ body {
 
 .password label {
     background: url(../image/password.png) no-repeat;
+}
+
+.item {
+    position: relative;
+}
+
+.item i {
+    line-height: 38px;
+    position: absolute;
+    left: 7px;
+    top: -1px;
+}
+
+.rem span {
+    position: absolute;
+    left: 20px;
+    top: 3px;
 }

@@ -68,7 +68,6 @@ function closeMessage() {
         layer.closeAll('iframe');
         layer.msg('留言成功');
         if(refreshMsg) {
-            debugger
             refreshMsg();
         }
     });

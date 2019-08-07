@@ -1,0 +1,32 @@
+.layui-header {
+    background-color: #23262E;
+}
+.layui-header .layui-nav {
+    float: right;
+    background-color: #23262E!important;
+}
+
+.logo {
+    float: left;
+    line-height: 60px;
+    padding-left: 20px;
+    color: white;
+}
+
+.layui-side {
+    top: 60px!important;
+    width: auto!important;
+}
+
+.layui-side ul {
+    margin: 0px!important;
+}
+
+.content {
+    width: 100%;
+    height: 100%;
+    background-color: #00FF00;
+    position: fixed;
+    top: 60px;
+    left: 200px;
+}

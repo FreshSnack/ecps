@@ -43,7 +43,7 @@
                 </div>
                 <div class="panel science_knowledge">
                     <div class="caption">
-                        <p>科学园地</p>
+                        <p>科普园地</p>
                         <a class="more" href="/admin" target="_blank">More&nbsp;>></a>
                     </div>
                     <div class="content">
@@ -61,9 +61,11 @@
                         <a class="more" href="/admin" target="_blank">More&nbsp;>></a>
                     </div>
                     <div class="content">
-                        <ul th:each="msg:${msg_list}">
-                            <li>[<span th:text="${#dates.format(msg.createTime,'yyyy-MM-dd')}"/>] <span th:text="${msg.content}"/></li>
-                        </ul>
+                        <div id="msg" th:fragment="message">
+                            <ul th:each="msg:${msg_list}">
+                                <li>[<span th:text="${#dates.format(msg.createTime,'yyyy-MM-dd')}"/>] <span th:text="${msg.content}"/></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -121,6 +123,13 @@
                 });
             });
             addVisitCount('home');
+
+            /**
+             *  异步刷新消息
+             */
+            function refreshMsg() {
+                $("#msg").load("/async/getMessage");
+            }
         </script>
     </body>
 </html>

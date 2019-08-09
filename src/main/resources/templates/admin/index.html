@@ -3,28 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <title>后台首页</title>
+    <link rel="stylesheet" href="/css/admin.css"/>
+    <link rel="stylesheet" href="/lib/layui/css/layui.css"/>
+    <script src="/lib/jquery.js"></script>
+    <script src="/lib/layui/layui.js"></script>
+    <script src="/js/admin.js"></script>
 </head>
 <body>
-<h1>待开发....</h1>
-<a href="/admin/h2">后台数据库管理</a>
-<a href="#none" onclick=logout()>登出</a>
-<script src="/lib/jquery.js"></script>
-<script>
-    /**
-     * 登出
-     */
-    function logout() {
-        $.post({
-            url: '/admin/logout',
-            success: function (ar) {
-                if (ar.code != '0') {
-                    alert(ar.msg);
-                } else {
-                    window.location.href = "/";
-                }
-            }
-        });
-    }
-</script>
+
+<div class="layui-header">
+    <div class="logo"><span>ECPS</span></div>
+    <ul class="layui-nav">
+        <li class="layui-nav-item">
+            <a href="/">网站首页<span class="layui-badge-dot"></span></a>
+        </li>
+        <li class="layui-nav-item">
+            <a href="/admin/h2" target="_blank">数据库管理<span class="layui-badge-dot"></span></a>
+        </li>
+        <li class="layui-nav-item" lay-unselect="">
+            <a href="#none"><img src="//t.cn/RCzsdCq" class="layui-nav-img">后台管理员</a>
+            <dl class="layui-nav-child">
+                <dd><a href="#none" onclick=modifyPassword()>修改密码</a></dd>
+                <dd><a href="#none" onclick=logout()>安全退出</a></dd>
+            </dl>
+        </li>
+    </ul>
+</div>
+
+<div class="layui-side layui-bg-black">
+    <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo" style="margin-right: 10px;">
+        <li class="layui-nav-item layui-nav-itemed">
+            <a href="javascript:;">默认展开</a>
+            <dl class="layui-nav-child">
+                <dd><a href="javascript:;">选项一</a></dd>
+                <dd><a href="javascript:;">选项二</a></dd>
+                <dd><a href="javascript:;">选项三</a></dd>
+                <dd><a href="">跳转项</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item">
+            <a href="javascript:;">解决方案</a>
+            <dl class="layui-nav-child">
+                <dd><a href="">移动模块</a></dd>
+                <dd><a href="">后台模版</a></dd>
+                <dd><a href="">电商平台</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item"><a href="">云市场</a></li>
+        <li class="layui-nav-item"><a href="">社区</a></li>
+    </ul>
+</div>
+
+<div class="content">
+    <!--    <iframe src="/login" width="100%" height="100%" frameborder="0px"></iframe>-->
+</div>
+
 </body>
 </html>

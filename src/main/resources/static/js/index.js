@@ -67,6 +67,8 @@ function closeMessage() {
         var layer = layui.layer;
         layer.closeAll('iframe');
         layer.msg('留言成功');
-        window.location.reload();
+        if(refreshMsg) {
+            refreshMsg();
+        }
     });
 }

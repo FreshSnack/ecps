@@ -1,6 +1,12 @@
 
 $(function () {
     layui.use("element");
+    $(".layui-side a").on('click', function (event) {
+        var name = event.target.name;
+        if(name) {
+            $(".frame iframe").attr("src", "/admin/" + name);
+        }
+    });
 });
 
 

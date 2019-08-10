@@ -1,9 +1,12 @@
+
 .layui-header {
     background-color: #23262E;
+    min-width: 600px;
 }
+
 .layui-header .layui-nav {
     float: right;
-    background-color: #23262E!important;
+    background-color: #23262E !important;
 }
 
 .logo {
@@ -15,18 +18,253 @@
 }
 
 .layui-side {
-    top: 60px!important;
-    width: auto!important;
+    top: 60px !important;
 }
 
 .layui-side ul {
-    margin: 0px!important;
+    margin: 0px !important;
 }
 
-.content {
-    width: 100%;
-    height: 100%;
+.frame {
+    width: auto;
     position: fixed;
     top: 60px;
     left: 200px;
+    right: 0px;
+    bottom: 0px;
+    margin: 0px;
+    padding: 0px;
+    overflow: auto;
+}
+
+.frame iframe {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: none;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+.content {
+    margin: 10px;
+    position: relative;
+    /*background-color: #00FFFF;*/
+}
+
+.content .table {
+    border: none;
+    margin: 10px 0 20px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    display: table;
+    text-align: left;
+    line-height: 22px;
+    color: #666;
+    table-layout: fixed;
+    width: 100%;
+}
+
+.content .table th, .content .table td {
+    position: relative;
+    padding: 12px 15px;
+    min-height: 20px;
+    font-size: 14px;
+}
+
+.content .table th {
+    background-color: #f2f2f2;
+}
+
+.content .table tbody tr {
+    border-bottom: rgba(102, 102, 102, 0.3) 1px solid;
+    height: 40px;
+}
+
+.content .table tbody tr:hover {
+    background-color: #f2f2f2;
+}
+
+.content .table td {
+    overflow: hidden;
+    /*text-overflow: ellipsis;
+    white-space: nowrap;*/
+}
+
+.content .table td i {
+    line-height: 22px;
+    font-size: 21px;
+    color: #888;
+    cursor: pointer;
+    margin-left: 5px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.content .table td i:hover {
+    color: #2E2D3C;
+}
+
+ul.pictures {
+    padding: 0px;
+}
+
+ul.pictures li,ul.video li {
+    display: inline-block;
+    margin: 15px;
+}
+
+ul.pictures a,ul.video a {
+    text-decoration: none;
+    color: #333;
+}
+
+ul.pictures li img {
+    width: 320px;
+}
+
+.operation_box {
+    background: #fff;
+    width: 100%;
+    height: auto;
+    padding: 10px 0;
+    border-bottom: 1px solid #e6e6e6;
+    position: relative;
+}
+
+ul.action_button {
+    margin: 0 0 0 10px;
+    padding: 0px;
+    list-style: none;
+}
+
+ul.action_button li {
+    display: inline-block;
+    margin: 0 0 0 6px;
+}
+
+ul.action_button li a {
+    width: auto;
+    padding: 0 15px;
+    font-size: 14px;
+    display: block;
+    height: 34px;
+    line-height: 34px;
+    overflow: hidden;
+    text-align: center;
+    color: #fff;
+    border: 0px solid #bbbbbb;
+    background: #0e9aef;
+    border-radius: 2px;
+    position: relative;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+ul.action_button li a i {
+    margin-right: 3px;
+}
+
+a.clear {
+    background-color: #e89b5b !important;
+}
+
+.mask {
+    margin: 10px auto 5px;
+    position: relative;
+}
+
+ul.doc li {
+    margin: 25px;
+}
+
+ul.pictures p {
+    font-size: 14px;
+    text-align: center;
+    margin: 0px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    /*word-wrap: break-word;
+    word-break: break-all;
+    overflow: hidden;*/
+    width: 100px;
+}
+
+.mask .operation {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0);
+}
+
+.mask .operation i {
+    font-size: 30px;
+    color: #cecece;
+    margin: 0 3px;
+}
+
+.mask .operation i:hover {
+    color: #ffffff;
+}
+
+.doc .mask .operation i:hover {
+    color: #2E2D3C;
+}
+
+ul.pictures li:hover .operation {
+    display: inline;
+}
+
+.icon {
+    width: 100px;
+    height: 120px;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+}
+
+ul.video {
+    padding: 0px;
+}
+
+ul.video li video {
+    width: 300px;
+}
+
+ul.video .title {
+    margin-top: 5px;
+    width: 300px;
+    font-weight: 700;
+    line-height: 18px;
+    font-size: 15px;
+    position: relative;
+}
+
+ul.video .title input {
+    margin: 0px;
+    width: 15px;
+    height: 15px;
+}
+
+ul.video .title p {
+    position: absolute;
+    left: 22px;
+    top: -2px;
+    margin: 0px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 278px;
 }

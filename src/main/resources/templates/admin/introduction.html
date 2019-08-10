@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>课程简介</title>
+    <link rel="stylesheet" href="/css/admin.css"/>
+    <link rel="stylesheet" href="/css/iconfont/iconfont.css"/>
+    <link rel="stylesheet" href="/lib/rich/ui/trumbowyg.css"/>
+    <style type="text/css">
+        .content_box {
+            position: absolute;
+            left: 16px;
+            right: 16px;
+            top: 59px;
+            bottom: 0px;
+        }
+        .editor_box {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .trumbowyg-box {
+            position:absolute!important;
+            top: 0px;
+            bottom: 0px;
+            right: 0px;
+            left: 0px;
+        }
+    </style>
+</head>
+<body>
+<div class="operation_box">
+    <ul class="action_button">
+        <li>
+            <a href="#none"><i class="iconfont">&#xe667;</i>发布</a>
+        </li>
+        <li>
+            <a href="#none"><i class="iconfont">&#xe710;</i>预览</a>
+        </li>
+        <li>
+            <a href="#none"><i class="iconfont">&#xe710;</i>重置</a>
+        </li>
+        <li>
+            <a href="#none" class="clear"><i class="iconfont">&#xe710;</i>置空</a>
+        </li>
+    </ul>
+</div>
+<div class="content_box">
+    <div class="editor_box">
+        <div id="editor" style="height: auto"></div>
+    </div>
+</div>
+<script src="/lib/jquery.js"></script>
+<script src="/lib/rich/trumbowyg.js"></script>
+<script>
+    $('#editor').trumbowyg({
+        fullscreenable: false,
+        closable: true,
+        btns: [
+            ['viewHTML'],
+            ['strong', 'em'],
+            ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
+            ['unorderedList', 'orderedList'],
+            ['fullscreen']
+        ]
+    });
+    $("#editor").outerHeight($(".trumbowyg-box").innerHeight() - $(".trumbowyg-button-pane").outerHeight() - $(".trumbowyg-textarea").outerHeight());
+    $(window).resize(function () {
+        $("#editor").outerHeight($(".trumbowyg-box").innerHeight() - $(".trumbowyg-button-pane").outerHeight() - $(".trumbowyg-textarea").outerHeight());
+    })
+</script>
+</body>
+</html>

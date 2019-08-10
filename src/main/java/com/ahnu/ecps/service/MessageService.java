@@ -34,7 +34,13 @@ public class MessageService implements IMessageService {
 
     @Override
     public List<Message> getMessageList() {
-        return messageRepository.findAll();
+        return messageRepository.findAll(new Sort(Sort.Direction.DESC, "createTime"));
+    }
+
+    @Override
+    @Transactional
+    public void deleteMessage(Long id) {
+        messageRepository.deleteById(id);
     }
 
     @Override

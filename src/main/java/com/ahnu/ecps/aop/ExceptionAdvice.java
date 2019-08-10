@@ -20,7 +20,7 @@ public class ExceptionAdvice {
      * @param e
      * @return
      */
-    @ExceptionHandler({BusinessException.class, AccountException.class, AuthenticationException.class})
+    @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.OK)
     public AjaxReturn bizExHandler(Exception e) {
         return AjaxReturn.failure(e.getMessage());

@@ -28,7 +28,7 @@ public class Message {
     /**
      * 留言内容
      */
-    @Column(name = "content", nullable = false)
+    @Column(name = "CONTENT", nullable = false)
     private String content;
 
     /**

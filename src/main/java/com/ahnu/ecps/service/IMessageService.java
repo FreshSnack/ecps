@@ -24,6 +24,12 @@ public interface IMessageService {
     List<Message> getMessageList();
 
     /**
+     * 删除消息
+     * @param id
+     */
+    void deleteMessage(Long id);
+
+    /**
      * 获取前几个消息
      * @param top
      * @return

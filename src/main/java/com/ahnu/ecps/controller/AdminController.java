@@ -1,6 +1,9 @@
 package com.ahnu.ecps.controller;
 
+import com.ahnu.ecps.service.IMessageService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -11,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
+
+    @Autowired
+    private IMessageService messageService;
 
     /**
      * 课程介绍
@@ -43,7 +49,8 @@ public class AdminController {
      * @return
      */
     @RequestMapping(value = "/guest")
-    public String guest() {
+    public String guest(Model model) {
+        model.addAttribute("msg_list", messageService.getMessageList());
         return "admin/guest";
     }
 

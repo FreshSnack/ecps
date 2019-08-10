@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>访客留言</title>
     <link rel="stylesheet" href="/css/admin.css"/>
     <link rel="stylesheet" href="/css/iconfont/iconfont.css"/>
+    <link rel="stylesheet" href="/lib/layui/css/layui.css"/>
 </head>
 <body>
 <div class="content">
@@ -21,24 +22,45 @@
             <th style="text-align: center">操作</th>
         </tr>
         </thead>
-        <tbody>
-        <tr>
-            <td title="网站做的不错啊">网站做的不错啊</td>
-            <td>2019-08-03 17:30:15</td>
+        <tbody th:each="msg:${msg_list}">
+        <tr th:attr="data-id=${msg.id}">
+            <td th:attr="title=${msg.content}" th:text="${msg.content}"></td>
+            <td th:text="${#dates.format(msg.createTime,'yyyy-MM-dd HH:mm:ss')}"></td>
             <td align="center">
-                <i class="iconfont" title="删除">&#xe62f;</i>
-            </td>
-        </tr>
-        <tr>
-            <td>这个地貌内容有点不懂</td>
-            <td>2019-08-04 17:35:15</td>
-            <td align="center">
-                <i class="iconfont" title="删除">&#xe62f;</i>
+                <i class="iconfont" title="删除" onclick=deleteMsg(this)>&#xe62f;</i>
             </td>
         </tr>
         </tbody>
     </table>
 </div>
+<script src="/lib/jquery.js"></script>
+<script src="/lib/layui/layui.js"></script>
+<script>
+    function deleteMsg(target, event) {
+        var dataId = $(target).parents("tr").attr("data-id");
+        if(dataId) {
+            layui.use('layer', function () {
+                var layer = layui.layer;
+                layer.confirm('您确定要删除所选吗？', {
+                    btn: ['确定','取消'] //按钮
+                }, function(){
+                    $.post({
+                        url: '/admin/deleteMessage',
+                        data: {id: dataId},
+                        success: function (ar) {
+                            if (ar.code != '0') {
+                                layer.alert(ar.msg);
+                            } else {
+                                layer.msg("删除成功");
+                                //window.location.reload();
+                            }
+                        }
+                    });
+                });
+            });
+        }
+    }
+</script>
 
 </body>
 </html>

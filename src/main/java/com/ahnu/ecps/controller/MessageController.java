@@ -38,4 +38,17 @@ public class MessageController {
         messageService.addMessage(message);
         return AjaxReturn.success("success");
     }
+
+    /**
+     * 删除留言
+     * @param id
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/admin/deleteMessage")
+    public AjaxReturn deleteMessage(Long id) {
+        messageService.deleteMessage(id);
+        return AjaxReturn.success("success");
+    }
+
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>地貌图片</title>
@@ -20,66 +20,11 @@
 </div>
 
 <div class="content">
-    <ul class="pictures">
+    <ul class="pictures" th:each="pic:${pic_list}">
         <li>
             <a href="#">
                 <div class="mask">
-                    <img src="/image/home/pic_01.jpg">
-                    <span class="operation">
-                        <i class="iconfont" title="下载">&#xe623;</i>
-                        <i class="iconfont" title="删除">&#xe62f;</i>
-                    </span>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <div class="mask">
-                    <img src="/image/home/pic_02.jpg">
-                    <span class="operation">
-                        <i class="iconfont" title="下载">&#xe623;</i>
-                        <i class="iconfont" title="删除">&#xe62f;</i>
-                    </span>
-                </div>
-            </a>
-        </li><!-- more list items -->
-        <li>
-            <a href="#">
-                <div class="mask">
-                    <img src="/image/home/pic_03.jpg">
-                    <span class="operation">
-                        <i class="iconfont" title="下载">&#xe623;</i>
-                        <i class="iconfont" title="删除">&#xe62f;</i>
-                    </span>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <div class="mask">
-                    <img src="/image/home/pic_04.jpg">
-                    <span class="operation">
-                        <i class="iconfont" title="下载">&#xe623;</i>
-                        <i class="iconfont" title="删除">&#xe62f;</i>
-                    </span>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <div class="mask">
-                    <img src="/image/home/pic_05.jpg">
-                    <span class="operation">
-                        <i class="iconfont" title="下载">&#xe623;</i>
-                        <i class="iconfont" title="删除">&#xe62f;</i>
-                    </span>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <div class="mask">
-                    <img src="/image/home/pic_06.jpg">
+                    <img th:src="${pic.attach.path}">
                     <span class="operation">
                         <i class="iconfont" title="下载">&#xe623;</i>
                         <i class="iconfont" title="删除">&#xe62f;</i>

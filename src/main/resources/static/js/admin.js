@@ -1,6 +1,10 @@
 
 $(function () {
-    layui.use("element");
+    layui.use(["layer", "element"], function () {
+        // 开放layer属性
+        window.layer = layui.layer;
+    });
+
     $(".layui-side a").on('click', function (event) {
         var name = event.target.name;
         if(name) {

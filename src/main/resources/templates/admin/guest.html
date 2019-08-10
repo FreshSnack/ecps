@@ -5,7 +5,6 @@
     <title>访客留言</title>
     <link rel="stylesheet" href="/css/admin.css"/>
     <link rel="stylesheet" href="/css/iconfont/iconfont.css"/>
-    <link rel="stylesheet" href="/lib/layui/css/layui.css"/>
 </head>
 <body>
 <div class="content">
@@ -34,28 +33,24 @@
     </table>
 </div>
 <script src="/lib/jquery.js"></script>
-<script src="/lib/layui/layui.js"></script>
 <script>
-    function deleteMsg(target, event) {
+    function deleteMsg(target) {
         var dataId = $(target).parents("tr").attr("data-id");
         if(dataId) {
-            layui.use('layer', function () {
-                var layer = layui.layer;
-                layer.confirm('您确定要删除所选吗？', {
-                    btn: ['确定','取消'] //按钮
-                }, function(){
-                    $.post({
-                        url: '/admin/deleteMessage',
-                        data: {id: dataId},
-                        success: function (ar) {
-                            if (ar.code != '0') {
-                                layer.alert(ar.msg);
-                            } else {
-                                layer.msg("删除成功");
-                                //window.location.reload();
-                            }
+            parent.layer.confirm('您确定要删除所选吗？', {
+                btn: ['确定','取消'] //按钮
+            }, function(){
+                $.post({
+                    url: '/admin/deleteMessage',
+                    data: {id: dataId},
+                    success: function (ar) {
+                        if (ar.code != '0') {
+                            parent.layer.alert(ar.msg);
+                        } else {
+                            parent.layer.msg("删除成功");
+                            window.location.reload();
                         }
-                    });
+                    }
                 });
             });
         }

@@ -1,5 +1,6 @@
 package com.ahnu.ecps.controller;
 
+import com.ahnu.ecps.service.IGeoPictureService;
 import com.ahnu.ecps.service.IMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,9 @@ public class AdminController {
 
     @Autowired
     private IMessageService messageService;
+
+    @Autowired
+    private IGeoPictureService geoPictureService;
 
     /**
      * 课程介绍
@@ -59,7 +63,8 @@ public class AdminController {
      * @return
      */
     @RequestMapping(value = "/picture")
-    public String picture() {
+    public String picture(Model model) {
+        model.addAttribute("pic_list", geoPictureService.listGeoPicture());
         return "admin/picture";
     }
 

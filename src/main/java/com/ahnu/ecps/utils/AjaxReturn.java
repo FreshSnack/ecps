@@ -30,6 +30,11 @@ public class AjaxReturn {
      */
     private Object data;
 
+    /**
+     * 成功默认消息
+     */
+    public static final String SUCCESS = "success";
+
     public AjaxReturn(int code, Object data) {
         this.code = code;
         this.data = data;
@@ -38,6 +43,10 @@ public class AjaxReturn {
     public AjaxReturn(int code, String msg) {
         this.code = code;
         this.msg = msg;
+    }
+
+    public static AjaxReturn success() {
+        return new AjaxReturn(0, SUCCESS);
     }
 
     public static AjaxReturn success(Object o) {

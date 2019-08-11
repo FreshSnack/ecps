@@ -19,9 +19,6 @@ public class AdminController {
     @Autowired
     private IMessageService messageService;
 
-    @Autowired
-    private IGeoPictureService geoPictureService;
-
     /**
      * 课程介绍
      * @return
@@ -59,31 +56,12 @@ public class AdminController {
     }
 
     /**
-     * 地貌图片
-     * @return
-     */
-    @RequestMapping(value = "/picture")
-    public String picture(Model model) {
-        model.addAttribute("pic_list", geoPictureService.listGeoPicture());
-        return "admin/picture";
-    }
-
-    /**
      * 友情链接
      * @return
      */
     @RequestMapping(value = "/link")
     public String link() {
         return "admin/link";
-    }
-
-    /**
-     * 申报书
-     * @return
-     */
-    @RequestMapping(value = "/apply")
-    public String apply() {
-        return "admin/apply";
     }
 
     /**

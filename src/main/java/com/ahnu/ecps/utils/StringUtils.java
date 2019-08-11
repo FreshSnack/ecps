@@ -1,5 +1,8 @@
 package com.ahnu.ecps.utils;
 
+import java.io.File;
+import java.util.UUID;
+
 /**
  * 字符串工具类
  * @Author: mxding
@@ -19,4 +22,37 @@ public class StringUtils {
         }
         return false;
     }
+
+    /**
+     * 生成唯一值
+     * @return
+     */
+    public static String getUUID() {
+        return UUID.randomUUID().toString();
+    }
+
+    /**
+     * 获取存储附件的默认路径
+     * @return
+     */
+    public static String getAttachRootPath() {
+        return getProjectRootPath() + getAttachRelativeRootPath();
+    }
+
+    /**
+     * 获取项目根路径
+     * @return
+     */
+    public static String getProjectRootPath() {
+        return System.getProperty("user.dir");
+    }
+
+    /**
+     * 获取附件相对根目录
+     * @return
+     */
+    public static String getAttachRelativeRootPath() {
+        return File.separator + "etc" + File.separator + "attach" + File.separator;
+    }
+
 }

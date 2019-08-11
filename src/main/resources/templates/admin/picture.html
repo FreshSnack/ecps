@@ -11,29 +11,81 @@
 <div class="operation_box">
     <ul class="action_button">
         <li>
-            <a href="#none"><i class="iconfont">&#xe667;</i>上传图片</a>
-        </li>
-        <li>
-            <a href="#none"><i class="iconfont">&#xe710;</i>预览图片</a>
+            <a href="#none" id="upload"><i class="iconfont">&#xe667;</i>上传图片</a>
         </li>
     </ul>
 </div>
 
 <div class="content">
-    <ul class="pictures" th:each="pic:${pic_list}">
-        <li>
+    <ul class="pictures">
+        <li th:each="pic:${pic_list}">
             <a href="#">
                 <div class="mask">
-                    <img th:src="${pic.attach.path}">
+                    <img th:src="@{/download?id={id}(id=${pic.attach.id})}">
                     <span class="operation">
-                        <i class="iconfont" title="下载">&#xe623;</i>
-                        <i class="iconfont" title="删除">&#xe62f;</i>
+                        <i class="iconfont" title="下载" th:onclick="download([[${pic.attach.id}]])">&#xe623;</i>
+                        <i class="iconfont" title="删除" th:onclick="deletePic([[${pic.id}]], [[${pic.attach.fileName}]])">&#xe62f;</i>
                     </span>
                 </div>
             </a>
         </li>
     </ul>
 </div>
+<script src="/lib/jquery.js"></script>
+<script>
+    parent.upload.render({
+        elem: $("#upload") //绑定元素
+        ,url: '/admin/picture/upload/' //上传接口
+        ,done: function(ar){
+            //上传完毕回调
+            if(ar.code != 0) {
+                parent.layer.alert(ar.msg);
+            } else {
+                parent.layer.msg("上传成功");
+                window.location.reload();
+            }
+        }
+    });
+
+    /**
+     * 删除图片
+     * @param id
+     */
+    function deletePic(id, filename) {
+        parent.layer.confirm('您确定要删除图片' + filename + '吗？', {
+            btn: ['确定','取消'] //按钮
+        }, function() {
+            $.post({
+                url: "/admin/picture/delete",
+                data: {id: id},
+                success: function (ar) {
+                    if(ar.code != 0) {
+                        parent.layer.alert(ar.msg);
+                    } else {
+                        parent.layer.msg("删除成功");
+                        window.location.reload();
+                    }
+                }
+            })
+        });
+    }
+
+    /**
+     * 浏览图片
+     */
+    parent.layer.photos({
+        photos: $(".pictures"),
+        anim: 5
+    });
+
+    /**
+     * 下载图片
+     * @param id
+     */
+    function download(id) {
+        window.location.href = "/download?id=" + id;
+    }
+</script>
 
 </body>
 </html>

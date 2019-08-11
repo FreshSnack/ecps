@@ -1,6 +1,7 @@
 package com.ahnu.ecps.service;
 
 import com.ahnu.ecps.domain.Attach;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * 附件服务接口
@@ -19,4 +20,16 @@ public interface IAttachService {
      * 获取附件
      */
     Attach getAttachById(Long id);
+
+    /**
+     * 上传文件
+     * @param file
+     */
+    Attach uploadFile(MultipartFile file);
+
+    /**
+     * 删除附件
+     * @param id
+     */
+    void deleteAttach(Long id);
 }

@@ -18,12 +18,17 @@ import java.util.List;
 public class GeoPictureService implements IGeoPictureService {
 
     @Autowired
+    private IAttachService attachService;
+
+    @Autowired
     private GeoPictureRepository geoPictureRepository;
 
     @Override
     @Transactional
     public void deleteGeoPicture(Long id) {
+        GeoPicture geoPicture = geoPictureRepository.getOne(id);
         geoPictureRepository.deleteById(id);
+        attachService.deleteAttach(geoPicture.getAttach().getId());
     }
 
     @Override

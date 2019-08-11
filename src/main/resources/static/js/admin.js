@@ -1,8 +1,10 @@
 
 $(function () {
-    layui.use(["layer", "element"], function () {
-        // 开放layer属性
+    layui.use(["layer", "element", "upload"], function () {
+        // 开放layer功能
         window.layer = layui.layer;
+        // 开放upload功能
+        window.upload = layui.upload;
     });
 
     $(".layui-side a").on('click', function (event) {

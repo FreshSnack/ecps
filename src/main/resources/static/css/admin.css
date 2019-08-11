@@ -219,11 +219,15 @@ ul.pictures p {
     color: #ffffff;
 }
 
-.doc .mask .operation i:hover {
-    color: #2E2D3C;
+/*.doc .mask .operation i:hover {*/
+/*    color: #2E2D3C;*/
+/*}*/
+
+.doc .mask .operation {
+    /*height: 28px;*/
 }
 
-ul.pictures li:hover .operation {
+ul.pictures .mask:hover .operation {
     display: inline;
 }
 
@@ -267,4 +271,14 @@ ul.video .title p {
     text-overflow: ellipsis;
     white-space: nowrap;
     width: 278px;
+    text-align: center;
+}
+
+.layui-upload-file { display: none; }
+
+.doc .mask .operation {
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background: rgba(0,0,0,0.4);
 }

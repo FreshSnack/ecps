@@ -8,18 +8,17 @@ import org.hibernate.annotations.DynamicUpdate;
 import javax.persistence.*;
 
 /**
- * 地貌图片
- * @author mxding
- * @date 2019-08-10
+ * 申报书
+ * @author dingmx
+ * @date 2019/7/27 23:47
  */
 @Getter
 @Setter
 @Entity
-@Table(name = "GEO_PICTURE")
+@Table(name = "APPLY")
 @DynamicInsert
 @DynamicUpdate
-public class GeoPicture {
-
+public class Apply {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

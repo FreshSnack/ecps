@@ -37,8 +37,14 @@ public class Attach {
     private String path;
 
     /**
+     * 文件后缀
+     */
+    @Column(name = "SUFFIX")
+    private String suffix;
+
+    /**
      * 文件下载次数
      */
-    @Column(name = "DOWNS")
+    @Column(name = "DOWNS", columnDefinition = "integer default 0")
     private Long downs;
 }

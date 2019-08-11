@@ -118,13 +118,4 @@ public class AdminController {
     public String video() {
         return "admin/video";
     }
-
-    /**
-     * 教学课件
-     * @return
-     */
-    @RequestMapping(value = "/ware")
-    public String ware() {
-        return "admin/ware";
-    }
 }

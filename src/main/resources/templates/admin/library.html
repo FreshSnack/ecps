@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>试题库</title>
@@ -11,41 +11,90 @@
 <div class="operation_box">
     <ul class="action_button">
         <li>
-            <a href="#none"><i class="iconfont">&#xe667;</i>上传附件</a>
+            <a href="#none" id="upload"><i class="iconfont">&#xe667;</i>上传附件</a>
         </li>
     </ul>
 </div>
 <div class="content">
     <ul class="pictures doc">
-        <li>
+        <li th:each="doc:${doc_list}">
             <a href="#">
                 <div class="mask">
-                    <svg class="icon" aria-hidden="true">
+                    <svg class="icon" aria-hidden="true" th:onclick="preview([[${doc.attach.id}]], [[${doc.attach.fileName}]])">
                         <use xlink:href="#icon-PDF"></use>
                     </svg>
                     <span class="operation doc">
-                        <i class="iconfont" title="预览">&#xe69a;</i>
-                        <i class="iconfont" title="删除">&#xe62f;</i>
+                        <i class="iconfont" title="下载" th:onclick="download([[${doc.attach.id}]])">&#xe623;</i>
+                        <i class="iconfont" title="删除" th:onclick="deleteDoc([[${doc.id}]], [[${doc.attach.fileName}]])">&#xe62f;</i>
                     </span>
                 </div>
-                <p>试题1.pdf</p>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <div class="mask">
-                    <svg class="icon" aria-hidden="true">
-                        <use xlink:href="#icon-PDF"></use>
-                    </svg>
-                    <span class="operation doc">
-                        <i class="iconfont" title="预览">&#xe69a;</i>
-                        <i class="iconfont" title="删除">&#xe62f;</i>
-                    </span>
-                </div>
-                <p>试题2.pdf</p>
+                <p th:text="${doc.attach.fileName}" th:title="${doc.attach.fileName}"></p>
             </a>
         </li>
     </ul>
 </div>
+
+<script src="/lib/jquery.js"></script>
+<script>
+    parent.upload.render({
+        elem: $("#upload"), //绑定元素
+        accept: "file",
+        acceptMime: "application/pdf",
+        url: '/admin/library/upload/', //上传接口
+        done: function(ar){
+            //上传完毕回调
+            if(ar.code != 0) {
+                parent.layer.alert(ar.msg);
+            } else {
+                parent.layer.msg("上传成功");
+                window.location.reload();
+            }
+        }
+    });
+
+    /**
+     * 删除文件
+     * @param id
+     */
+    function deleteDoc(id, filename) {
+        parent.layer.confirm('您确定要删除文件' + filename + '吗？', {
+            btn: ['确定','取消'] //按钮
+        }, function() {
+            $.post({
+                url: "/admin/library/delete",
+                data: {id: id},
+                success: function (ar) {
+                    if(ar.code != 0) {
+                        parent.layer.alert(ar.msg);
+                    } else {
+                        parent.layer.msg("删除成功");
+                        window.location.reload();
+                    }
+                }
+            })
+        });
+    }
+
+    /**
+     * 下载文件
+     * @param id
+     */
+    function download(id) {
+        window.location.href = "/download?id=" + id;
+    }
+
+    /**
+     * 预览文件
+     */
+    function preview(id, filename) {
+        parent.layer.open({
+            title: filename,
+            type: 1,
+            skin: 'layui-layer-rim', //加上边框
+            area: [$(parent.document).width()*0.8 + 'px', ($(parent.document).height() - 100) + 'px'], //宽高
+            content: '<iframe src="pdfjs/web/viewer.html?file=/download?id%3D' + id + '" width=100% height=100% frameborder="0"></iframe>'
+        });
+    }
+</script>
 </body>
 </html>

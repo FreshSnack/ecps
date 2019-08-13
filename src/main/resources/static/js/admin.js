@@ -38,3 +38,10 @@ function logout() {
 function modifyPassword() {
     alert("sss");
 }
+
+/**
+ * 刷新frame内容
+ */
+function refreshFrame() {
+    $("#frame").attr("src", $("#frame").attr("src"));
+}

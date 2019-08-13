@@ -20,15 +20,6 @@ public class AdminController {
     private IMessageService messageService;
 
     /**
-     * 课程介绍
-     * @return
-     */
-    @RequestMapping(value = "/introduction")
-    public String introduction() {
-        return "admin/introduction";
-    }
-
-    /**
      * 教学活动
      * @return
      */
@@ -62,52 +53,6 @@ public class AdminController {
     @RequestMapping(value = "/link")
     public String link() {
         return "admin/link";
-    }
-
-    /**
-     * 教学反馈
-     * @return
-     */
-    @RequestMapping(value = "/feedback")
-    public String feedback() {
-        return "admin/feedback";
-    }
-
-
-    /**
-     * 试题库
-     * @return
-     */
-    @RequestMapping(value = "/library")
-    public String library() {
-        return "admin/library";
-    }
-
-    /**
-     * 教学大纲
-     * @return
-     */
-    @RequestMapping(value = "/outline")
-    public String outline() {
-        return "admin/outline";
-    }
-
-    /**
-     * 授课教案
-     * @return
-     */
-    @RequestMapping(value = "/plan")
-    public String plan() {
-        return "admin/plan";
-    }
-
-    /**
-     * 教学团队
-     * @return
-     */
-    @RequestMapping(value = "/team")
-    public String team() {
-        return "admin/team";
     }
 
     /**

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>教师团队编辑页面</title>
+    <link rel="stylesheet" href="/lib/layui/css/layui.css"/>
+    <style type="text/css">
+        .layui-form-label {width: 40px;}
+        .layui-input-block {width: 320px;margin-left: 80px}
+        .layui-form {margin-top: 30px;}
+    </style>
+</head>
+<body>
+<form class="layui-form" action="" lay-filter="example">
+    <input type="hidden" class="layui-form" th:value="${team.id}" name="id">
+    <input type="hidden" class="layui-form" th:value="${team.attach.id}" name="attach">
+    <div class="layui-form-item">
+        <label class="layui-form-label">姓名</label>
+        <div class="layui-input-block">
+            <input type="text" name="name" autocomplete="off" lay-verify="required" placeholder="请输入显示姓名" class="layui-input" th:value="${team.name}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">链接</label>
+        <div class="layui-input-block">
+            <input type="text" name="link" lay-verify="url" autocomplete="off" placeholder="请输入图片链接" class="layui-input" th:value="${team.link}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit="" lay-filter="demo1">保存</button>
+        </div>
+    </div>
+</form>
+<script src="/lib/jquery.js"></script>
+<script src="/lib/layui/layui.js"></script>
+<script>
+    layui.use(['layer', 'form'], function () {
+        var form = layui.form;
+        var layer = layui.layer;
+        //监听提交
+        form.on('submit', function (data) {
+            $.post({
+                url: '/admin/team/save',
+                data: data.field,
+                success: function (ar) {
+                    if (ar.code == '0') {
+                        parent.layer.msg("保存成功");
+                        parent.refreshFrame();
+                        parent.layer.closeAll('iframe');
+                    } else {
+                        layer.alert(ar.msg);
+                    }
+                }
+            });
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>教学课件</title>
@@ -11,153 +11,83 @@
 <div class="operation_box">
     <ul class="action_button">
         <li>
-            <a href="#none"><i class="iconfont">&#xe667;</i>上传附件</a>
+            <a href="#none" id="upload"><i class="iconfont">&#xe667;</i>上传附件</a>
         </li>
     </ul>
 </div>
 <div class="content">
     <ul class="pictures doc">
-        <li>
+        <li th:each="doc:${doc_list}">
             <a href="#">
                 <div class="mask">
-                    <svg class="icon" aria-hidden="true">
+                    <svg class="icon" aria-hidden="true" th:onclick="preview([[${doc.attach.id}]], [[${doc.attach.fileName}]])">
                         <use xlink:href="#icon-PPT"></use>
                     </svg>
                     <span class="operation doc">
-                        <i class="iconfont" title="预览">&#xe69a;</i>
-                        <i class="iconfont" title="删除">&#xe62f;</i>
+                        <i class="iconfont" title="下载" th:onclick="download([[${doc.attach.id}]])">&#xe623;</i>
+                        <i class="iconfont" title="删除" th:onclick="deleteDoc([[${doc.id}]], [[${doc.attach.fileName}]])">&#xe62f;</i>
                     </span>
                 </div>
-                <p>教学课件1.ppt</p>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <div class="mask">
-                    <svg class="icon" aria-hidden="true">
-                        <use xlink:href="#icon-PPT"></use>
-                    </svg>
-                    <span class="operation doc">
-                        <i class="iconfont" title="预览">&#xe69a;</i>
-                        <i class="iconfont" title="删除">&#xe62f;</i>
-                    </span>
-                </div>
-                <p>教学课件2.ppt</p>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <div class="mask">
-                    <svg class="icon" aria-hidden="true">
-                        <use xlink:href="#icon-PPT"></use>
-                    </svg>
-                    <span class="operation doc">
-                        <i class="iconfont" title="预览">&#xe69a;</i>
-                        <i class="iconfont" title="删除">&#xe62f;</i>
-                    </span>
-                </div>
-                <p>教学课件3.ppt</p>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <div class="mask">
-                    <svg class="icon" aria-hidden="true">
-                        <use xlink:href="#icon-PPT"></use>
-                    </svg>
-                    <span class="operation doc">
-                        <i class="iconfont" title="预览">&#xe69a;</i>
-                        <i class="iconfont" title="删除">&#xe62f;</i>
-                    </span>
-                </div>
-                <p>教学课件4.ppt</p>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <div class="mask">
-                    <svg class="icon" aria-hidden="true">
-                        <use xlink:href="#icon-PPT"></use>
-                    </svg>
-                    <span class="operation doc">
-                        <i class="iconfont" title="预览">&#xe69a;</i>
-                        <i class="iconfont" title="删除">&#xe62f;</i>
-                    </span>
-                </div>
-                <p>教学课件5.ppt</p>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <div class="mask">
-                    <svg class="icon" aria-hidden="true">
-                        <use xlink:href="#icon-PPT"></use>
-                    </svg>
-                    <span class="operation doc">
-                        <i class="iconfont" title="预览">&#xe69a;</i>
-                        <i class="iconfont" title="删除">&#xe62f;</i>
-                    </span>
-                </div>
-                <p>教学课件6.ppt</p>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <div class="mask">
-                    <svg class="icon" aria-hidden="true">
-                        <use xlink:href="#icon-PPT"></use>
-                    </svg>
-                    <span class="operation doc">
-                        <i class="iconfont" title="预览">&#xe69a;</i>
-                        <i class="iconfont" title="删除">&#xe62f;</i>
-                    </span>
-                </div>
-                <p>教学课件7.ppt</p>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <div class="mask">
-                    <svg class="icon" aria-hidden="true">
-                        <use xlink:href="#icon-PPT"></use>
-                    </svg>
-                    <span class="operation doc">
-                        <i class="iconfont" title="预览">&#xe69a;</i>
-                        <i class="iconfont" title="删除">&#xe62f;</i>
-                    </span>
-                </div>
-                <p>教学课件8.ppt</p>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <div class="mask">
-                    <svg class="icon" aria-hidden="true">
-                        <use xlink:href="#icon-PPT"></use>
-                    </svg>
-                    <span class="operation doc">
-                        <i class="iconfont" title="预览">&#xe69a;</i>
-                        <i class="iconfont" title="删除">&#xe62f;</i>
-                    </span>
-                </div>
-                <p>教学课件9.ppt</p>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <div class="mask">
-                    <svg class="icon" aria-hidden="true">
-                        <use xlink:href="#icon-PPT"></use>
-                    </svg>
-                    <span class="operation doc">
-                        <i class="iconfont" title="预览">&#xe69a;</i>
-                        <i class="iconfont" title="删除">&#xe62f;</i>
-                    </span>
-                </div>
-                <p>教学课件10.ppt</p>
+                <p th:text="${doc.attach.fileName}" th:title="${doc.attach.fileName}"></p>
             </a>
         </li>
     </ul>
 </div>
+
+<script src="/lib/jquery.js"></script>
+<script>
+    parent.upload.render({
+        elem: $("#upload"), //绑定元素
+        accept: "file",
+        acceptMime: "application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation",
+        url: '/admin/ware/upload/', //上传接口
+        done: function(ar){
+            //上传完毕回调
+            if(ar.code != 0) {
+                parent.layer.alert(ar.msg);
+            } else {
+                parent.layer.msg("上传成功");
+                window.location.reload();
+            }
+        }
+    });
+
+    /**
+     * 删除文件
+     * @param id
+     */
+    function deleteDoc(id, filename) {
+        parent.layer.confirm('您确定要删除文件' + filename + '吗？', {
+            btn: ['确定','取消'] //按钮
+        }, function() {
+            $.post({
+                url: "/admin/ware/delete",
+                data: {id: id},
+                success: function (ar) {
+                    if(ar.code != 0) {
+                        parent.layer.alert(ar.msg);
+                    } else {
+                        parent.layer.msg("删除成功");
+                        window.location.reload();
+                    }
+                }
+            })
+        });
+    }
+
+    /**
+     * 下载文件
+     * @param id
+     */
+    function download(id) {
+        window.location.href = "/download?id=" + id;
+    }
+
+    /**
+     * 预览文件
+     */
+    function preview(id, filename) {
+    }
+</script>
 </body>
 </html>

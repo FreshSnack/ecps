@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>教学团队</title>
@@ -20,49 +20,101 @@
 <div class="operation_box">
     <ul class="action_button">
         <li>
-            <a href="#none"><i class="iconfont">&#xe667;</i>上传照片</a>
+            <a href="#none" id="upload"><i class="iconfont">&#xe667;</i>上传照片</a>
         </li>
     </ul>
 </div>
 <div class="content">
     <ul class="pictures">
-        <li>
+        <li th:each="pic:${pic_list}">
             <a href="#">
                 <div class="mask">
-                    <img src="/image/team/hg1.jpg"/>
+                    <img th:src="@{/download?id={id}(id=${pic.attach.id})}" th:onclick="link([[${pic.link}]])">
                     <span class="operation doc">
-                        <i class="iconfont" title="编辑">&#xe608;</i>
-                        <i class="iconfont" title="删除">&#xe62f;</i>
+                        <i class="iconfont" title="编辑" th:onclick="edit([[${pic.id}]])">&#xe608;</i>
+                        <i class="iconfont" title="下载" th:onclick="download([[${pic.attach.id}]])">&#xe623;</i>
+                        <i class="iconfont" title="删除" th:onclick="deletePic([[${pic.id}]], [[${pic.attach.fileName}]])">&#xe62f;</i>
                     </span>
                 </div>
-                <p>胡歌</p>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <div class="mask">
-                    <img src="/image/team/hg2.jpg"/>
-                    <span class="operation">
-                        <i class="iconfont" title="编辑">&#xe608;</i>
-                        <i class="iconfont" title="删除">&#xe62f;</i>
-                    </span>
-                </div>
-                <p>胡歌</p>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <div class="mask">
-                    <img src="/image/team/hg3.jpg"/>
-                    <span class="operation">
-                        <i class="iconfont" title="编辑">&#xe608;</i>
-                        <i class="iconfont" title="删除">&#xe62f;</i>
-                    </span>
-                </div>
-                <p>胡歌</p>
+                <p th:text="${pic.name}==null?${pic.attach.fileName}:${pic.name}"></p>
             </a>
         </li>
     </ul>
 </div>
+
+<script src="/lib/jquery.js"></script>
+<script>
+    parent.upload.render({
+        elem: $("#upload"), //绑定元素
+        accept: "images",
+        acceptMime: "image/jpg, image/png",
+        url: '/admin/team/upload/', //上传接口
+        done: function(ar){
+            //上传完毕回调
+            if(ar.code != 0) {
+                parent.layer.alert(ar.msg);
+            } else {
+                parent.layer.msg("上传成功");
+                window.location.reload();
+            }
+        }
+    });
+
+    /**
+     * 删除文件
+     * @param id
+     */
+    function deletePic(id, filename) {
+        parent.layer.confirm('您确定要删除图片' + filename + '吗？', {
+            btn: ['确定','取消'] //按钮
+        }, function() {
+            $.post({
+                url: "/admin/team/delete",
+                data: {id: id},
+                success: function (ar) {
+                    if(ar.code != 0) {
+                        parent.layer.alert(ar.msg);
+                    } else {
+                        parent.layer.msg("删除成功");
+                        window.location.reload();
+                    }
+                }
+            })
+        });
+    }
+
+    /**
+     * 编辑教师团队
+     * @param id
+     */
+    function edit(id) {
+        parent.layer.open({
+            type: 2,
+            title: '教学团队编辑',
+            /*skin: 'layui-layer-rim', //加上边框*/
+            area: ['440px', '250px'], //宽高
+            content: '/admin/teamEdit?id='+id
+        });
+    }
+
+    /**
+     * 下载文件
+     * @param id
+     */
+    function download(id) {
+        window.location.href = "/download?id=" + id;
+    }
+
+    /**
+     * 链接
+     */
+    function link(link) {
+        if(link) {
+            window.open(link, "_blank")
+        }
+    }
+
+
+</script>
 </body>
 </html>

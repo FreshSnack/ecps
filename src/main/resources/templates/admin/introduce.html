@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>课程简介</title>
@@ -32,16 +32,13 @@
 <div class="operation_box">
     <ul class="action_button">
         <li>
-            <a href="#none"><i class="iconfont">&#xe667;</i>发布</a>
+            <a href="#none" onclick=save()><i class="iconfont">&#xe667;</i>发布</a>
         </li>
         <li>
-            <a href="#none"><i class="iconfont">&#xe710;</i>预览</a>
+            <a href="#none" onclick=reset()><i class="iconfont">&#xe710;</i>重置</a>
         </li>
         <li>
-            <a href="#none"><i class="iconfont">&#xe710;</i>重置</a>
-        </li>
-        <li>
-            <a href="#none" class="clear"><i class="iconfont">&#xe710;</i>置空</a>
+            <a href="#none" class="clear" onclick=empty()><i class="iconfont">&#xe710;</i>置空</a>
         </li>
     </ul>
 </div>
@@ -52,8 +49,8 @@
 </div>
 <script src="/lib/jquery.js"></script>
 <script src="/lib/rich/trumbowyg.js"></script>
-<script>
-    $('#editor').trumbowyg({
+<script th:inline="javascript">
+    var editor = $('#editor').trumbowyg({
         fullscreenable: false,
         closable: true,
         btns: [
@@ -64,10 +61,44 @@
             ['fullscreen']
         ]
     });
+    editor.html([[${introduce.content}]]);
     $("#editor").outerHeight($(".trumbowyg-box").innerHeight() - $(".trumbowyg-button-pane").outerHeight() - $(".trumbowyg-textarea").outerHeight());
     $(window).resize(function () {
         $("#editor").outerHeight($(".trumbowyg-box").innerHeight() - $(".trumbowyg-button-pane").outerHeight() - $(".trumbowyg-textarea").outerHeight());
-    })
+    });
+
+    /**
+     * 保存课程简介
+     */
+    function save() {
+        $.post({
+            async: false,
+            url: '/admin/introduce/save',
+            data: {content: editor.html()},
+            success: function (ar) {
+                if (ar.code == '0') {
+                    parent.layer.msg("发布成功");
+                    parent.refreshFrame();
+                } else {
+                    layer.alert(ar.msg);
+                }
+            }
+        });
+    }
+
+    /**
+     * 重置
+     */
+    function reset() {
+        editor.html([[${introduce.content}]]);
+    }
+
+    /**
+     * 置空
+     */
+    function empty() {
+        editor.empty();
+    }
 </script>
 </body>
 </html>

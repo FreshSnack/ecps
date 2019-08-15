@@ -55,4 +55,13 @@ public class StringUtils {
         return File.separator + "etc" + File.separator + "attach" + File.separator;
     }
 
+    /**
+     * 纠正mac和window路径不一致
+     * @param filePath
+     * @return
+     */
+    public static String getFilePath(String filePath) {
+        return filePath.replaceAll("\\\\|/", File.separator);
+    }
+
 }

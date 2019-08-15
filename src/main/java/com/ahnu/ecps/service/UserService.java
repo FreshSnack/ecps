@@ -4,6 +4,7 @@ import com.ahnu.ecps.domain.User;
 import com.ahnu.ecps.dao.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 用户服务类
@@ -24,5 +25,11 @@ public class UserService implements IUserService {
     @Override
     public User getByUserName(String username) {
         return userRepository.getByUsername(username);
+    }
+
+    @Override
+    @Transactional
+    public void saveUser(User user) {
+        userRepository.save(user);
     }
 }

@@ -2,6 +2,7 @@ package com.ahnu.ecps.controller;
 
 import com.ahnu.ecps.domain.Attach;
 import com.ahnu.ecps.service.IAttachService;
+import com.ahnu.ecps.utils.StringUtils;
 import lombok.Cleanup;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class AttachController {
         }
         // 目前是相对路径
         String path = attach.getPath();
-        File file = new File(System.getProperty("user.dir") + "/" + path);
+        File file = new File(StringUtils.getFilePath(StringUtils.getProjectRootPath() + path));
         if(file == null || !file.exists()) {
             throw new RuntimeException("附件不存在[path=" + path + "]");
         }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>科普园地</title>
@@ -10,7 +10,7 @@
 <div class="operation_box">
     <ul class="action_button">
         <li>
-            <a href="#none"><i class="iconfont">&#xe667;</i>新增</a>
+            <a href="#none" onclick=addKnowledge()><i class="iconfont">&#xe667;</i>新增</a>
         </li>
     </ul>
 </div>
@@ -19,43 +19,82 @@
         <colgroup>
             <col/>
             <col width="150px"/>
-            <col width="150px"/>
+            <col width="200px"/>
             <col width="150px"/>
         </colgroup>
         <thead>
         <tr>
             <th>标题</th>
             <th>发布人</th>
-            <th>发布时间</th>
+            <th align="center">发布时间</th>
             <th style="text-align: center">操作</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td title="贤心安师大安师大仍无法RETTTBFDGSGFGSD DFGDSGSDGFDGEWQREWRWQRQWVSDVSDVSDVSDAVASFxcvx
-                DFGDSGSDGFDGEWQREWRWQRQWVSDVSDVSDVSDAVAS">贤心安师大安师大仍无法RETTTBFDGSGFGSD
-                DFGDSGSDGFDGEWQREWRWQRQWVSDVSDVSDVSDAVASFxcvx
-                DFGDSGSDGFDGEWQREWRWQRQWVSDVSDVSDVSDAVAS
-            </td>
-            <td>胡歌</td>
-            <td>2019-08-03</td>
+        <tr th:each="knowledge:${knowledge_list}">
+            <td th:title="${knowledge.title}" th:text="${knowledge.title}"></td>
+            <td th:text="${knowledge.publishUsername}"></td>
+            <td align="center" th:text="${#dates.format(knowledge.publishTime,'yyyy-MM-dd HH:mm:ss')}"></td>
             <td align="center">
-                <i class="iconfont" title="编辑">&#xe608;</i>
-                <i class="iconfont" title="删除">&#xe62f;</i>
-            </td>
-        </tr>
-        <tr>
-            <td>张爱玲</td>
-            <td>刘亦菲</td>
-            <td>2019-08-03</td>
-            <td align="center">
-                <i class="iconfont" title="编辑">&#xe608;</i>
-                <i class="iconfont" title="删除">&#xe62f;</i>
+                <i class="iconfont" title="编辑" th:onclick="editKnowledge([[${knowledge.id}]])">&#xe608;</i>
+                <i class="iconfont" title="删除" th:onclick="deleteKnowledge([[${knowledge.id}]])">&#xe62f;</i>
             </td>
         </tr>
         </tbody>
     </table>
 </div>
+<script src="/lib/jquery.js"></script>
+<script>
+    var height = ($(window).height() - 40)<580?($(window).height() - 40):580;
+    /**
+     * 添加科普园地
+     */
+    function addKnowledge() {
+        parent.layer.open({
+            type: 2,
+            title: '科普园地新增',
+            /*skin: 'layui-layer-rim', //加上边框*/
+            area: ['740px', height + 'px'], //宽高
+            content: '/admin/knowledgeEdit'
+        });
+    }
 
+    /**
+     * 编辑科普园地
+     * @param id
+     */
+    function editKnowledge(id) {
+        parent.layer.open({
+            type: 2,
+            title: '科普园地编辑',
+            /*skin: 'layui-layer-rim', //加上边框*/
+            area: ['740px', height + 'px'], //宽高
+            content: '/admin/knowledgeEdit?id=' + id
+        });
+    }
+
+    /**
+     * 删除科普园地
+     * @param id
+     */
+    function deleteKnowledge(id) {
+        parent.layer.confirm('您确定要删除此科普园地吗？', {
+            btn: ['确定','取消'] //按钮
+        }, function() {
+            $.post({
+                url: "/admin/knowledge/delete",
+                data: {id: id},
+                success: function (ar) {
+                    if(ar.code != 0) {
+                        parent.layer.alert(ar.msg);
+                    } else {
+                        parent.layer.msg("删除成功");
+                        window.location.reload();
+                    }
+                }
+            })
+        });
+    }
+</script>
 </body>
 </html>

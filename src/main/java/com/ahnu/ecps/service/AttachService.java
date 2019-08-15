@@ -78,7 +78,7 @@ public class AttachService implements IAttachService {
         } else {
             Attach attach = optional.get();
             attachRepository.delete(attach);
-            File file = new File(StringUtils.getProjectRootPath() + attach.getPath());
+            File file = new File(StringUtils.getFilePath(StringUtils.getProjectRootPath() + attach.getPath()));
             if(!file.exists()) {
                 log.warn("文件{}不存在", attach.getPath());
             } else {

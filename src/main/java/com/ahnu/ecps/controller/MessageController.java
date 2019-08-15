@@ -4,6 +4,7 @@ import com.ahnu.ecps.service.IMessageService;
 import com.ahnu.ecps.utils.AjaxReturn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -25,6 +26,16 @@ public class MessageController {
     @RequestMapping("/message")
     public String message() {
         return "index/message";
+    }
+
+    /**
+     * 访客留言
+     * @return
+     */
+    @RequestMapping(value = "/admin/guest")
+    public String guest(Model model) {
+        model.addAttribute("msg_list", messageService.getMessageList());
+        return "admin/guest";
     }
 
     /**

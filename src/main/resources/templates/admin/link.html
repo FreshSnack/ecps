@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>友情链接</title>
@@ -18,47 +18,102 @@
 <div class="operation_box">
     <ul class="action_button">
         <li>
-            <a href="#none"><i class="iconfont">&#xe667;</i>上传链接图片</a>
+            <a href="#none" id="upload"><i class="iconfont">&#xe667;</i>上传链接图片</a>
         </li>
     </ul>
 </div>
 <div class="content">
     <ul class="pictures">
-        <li>
+        <li th:each="link:${link_list}">
             <a href="#">
                 <div class="mask">
-                    <img src="/image/home/link_asd.jpg">
+                    <img th:src="@{/download?id={id}(id=${link.attach.id})}"/>
                     <span class="operation">
-                        <i class="iconfont" title="编辑">&#xe608;</i>
-                        <i class="iconfont" title="删除">&#xe62f;</i>
-                    </span>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <div class="mask">
-                    <img src="/image/home/link_ld.png">
-                    <span class="operation">
-                        <i class="iconfont" title="编辑">&#xe608;</i>
-                        <i class="iconfont" title="删除">&#xe62f;</i>
-                    </span>
-                </div>
-            </a>
-        </li><!-- more list items -->
-        <li>
-            <a href="#">
-                <div class="mask">
-                    <img src="/image/home/link_nd.png">
-                    <span class="operation">
-                        <i class="iconfont" title="编辑">&#xe608;</i>
-                        <i class="iconfont" title="删除">&#xe62f;</i>
+                        <i class="iconfont" title="链接" th:onclick="link([[${link.url}]])">&#xe626;</i>
+                        <i class="iconfont" title="编辑" th:onclick="editLink([[${link.id}]])">&#xe608;</i>
+                        <i class="iconfont" title="下载" th:onclick="download([[${link.attach.id}]])">&#xe623;</i>
+                        <i class="iconfont" title="删除" th:onclick="deleteLink([[${link.id}]])">&#xe62f;</i>
                     </span>
                 </div>
             </a>
         </li>
     </ul>
 </div>
+<script src="/lib/jquery.js"></script>
+<script>
+    parent.upload.render({
+        elem: $("#upload"), //绑定元素
+        url: '/admin/link/upload/', //上传接口
+        before: function () {
+            parent.layer.load(2);
+        },
+        done: function(ar){
+            //上传完毕回调
+            if(ar.code != 0) {
+                parent.layer.alert(ar.msg);
+            } else {
+                parent.layer.closeAll('loading');
+                parent.layer.msg("上传成功");
+                window.location.reload();
+            }
+        }
+    });
+
+    /**
+     * 删除链接
+     * @param id
+     */
+    function deleteLink(id) {
+        parent.layer.confirm('您确定要删除此链接吗？', {
+            btn: ['确定','取消'] //按钮
+        }, function() {
+            $.post({
+                url: "/admin/link/delete",
+                data: {id: id},
+                success: function (ar) {
+                    if(ar.code != 0) {
+                        parent.layer.alert(ar.msg);
+                    } else {
+                        parent.layer.msg("删除成功");
+                        window.location.reload();
+                    }
+                }
+            })
+        });
+    }
+    /**
+     * 下载图片
+     * @param id
+     */
+    function download(id) {
+        window.location.href = "/download?id=" + id;
+    }
+
+    /**
+     * 编辑链接
+     * @param id
+     */
+    function editLink(id) {
+        parent.layer.open({
+            type: 2,
+            title: '友情链接编辑页面',
+            /*skin: 'layui-layer-rim', //加上边框*/
+            area: ['440px', '200px'], //宽高
+            content: '/admin/linkEdit?id='+id
+        });
+    }
+
+    /**
+     * 链接
+     */
+    function link(link) {
+        if(link) {
+            window.open(link, "_blank")
+        }
+    }
+
+</script>
+
 
 </body>
 </html>

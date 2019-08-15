@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>教学视频编辑页面</title>
+    <link rel="stylesheet" href="/lib/layui/css/layui.css"/>
+    <style type="text/css">
+        .layui-form-label {width: 40px;}
+        .layui-input-block {width: 320px;margin-left: 80px}
+        .layui-form {margin-top: 20px;}
+    </style>
+</head>
+<body>
+<form class="layui-form" action="" lay-filter="example">
+    <input type="hidden" class="layui-form" th:value="${video.id}" name="id">
+    <input type="hidden" class="layui-form" th:value="${video.attach.id}" name="attach">
+    <div class="layui-form-item">
+        <label class="layui-form-label">标题</label>
+        <div class="layui-input-block">
+            <input type="text" name="title" autocomplete="off" lay-verify="required" placeholder="请输入标题" class="layui-input" th:value="${video}==null?'':${video.title}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit="" lay-filter="demo1">保存</button>
+        </div>
+    </div>
+</form>
+<script src="/lib/jquery.js"></script>
+<script src="/lib/layui/layui.js"></script>
+<script>
+    layui.use(['form'], function () {
+        var form = layui.form;
+        //监听提交
+        form.on('submit', function (data) {
+            $.post({
+                url: '/admin/video/save',
+                data: data.field,
+                success: function (ar) {
+                    if (ar.code == '0') {
+                        parent.layer.msg("保存成功");
+                        parent.refreshFrame();
+                        parent.layer.closeAll('iframe');
+                    } else {
+                        layer.alert(ar.msg);
+                    }
+                }
+            });
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

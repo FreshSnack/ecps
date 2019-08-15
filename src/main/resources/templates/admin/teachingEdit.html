@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>教师活动编辑页面</title>
+    <link rel="stylesheet" href="/lib/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/lib/rich/ui/trumbowyg.css"/>
+    <style type="text/css">
+        .layui-form-label {width: 60px;}
+        .layui-input-block {width: 600px;margin-left: 100px}
+        .layui-form {margin-top: 20px;}
+    </style>
+</head>
+<body>
+<form class="layui-form" action="" lay-filter="example">
+    <input type="hidden" class="layui-form" th:value="${teaching}==null?'':${teaching.id}" name="id">
+    <div class="layui-form-item">
+        <label class="layui-form-label">标题</label>
+        <div class="layui-input-block">
+            <input type="text" name="title" autocomplete="off" lay-verify="required" placeholder="请输入标题" class="layui-input" th:value="${teaching}==null?'':${teaching.title}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">发布人</label>
+        <div class="layui-input-block">
+            <input type="text" name="publishUsername" autocomplete="off" lay-verify="required" placeholder="请输入发布人" class="layui-input" th:value="${teaching}==null?'':${teaching.publishUsername}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">发布时间</label>
+        <div class="layui-input-block">
+            <input type="text" id="publishTime" name="publishTime" autocomplete="off" lay-verify="required" placeholder="请选择发布时间" class="layui-input" th:value="${teaching}==null?'':${#dates.format(teaching.publishTime,'yyyy-MM-dd HH:mm:ss')}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">发布内容</label>
+        <div class="layui-input-block">
+            <div id="content"></div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit="" lay-filter="demo1">保存</button>
+        </div>
+    </div>
+</form>
+<script src="/lib/jquery.js"></script>
+<script src="/lib/layui/layui.js"></script>
+<script src="/lib/rich/trumbowyg.js"></script>
+<script th:inline="javascript">
+    var editor = $('#content').trumbowyg({
+        fullscreenable: false,
+        closable: true,
+        btns: [
+            ['viewHTML'],
+            ['strong', 'em'],
+            ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
+            ['unorderedList', 'orderedList'],
+            ['fullscreen']
+        ]
+    });
+    editor.html([[${teaching==null?'':teaching.content}]]);
+    layui.use(['form', 'laydate'], function () {
+        var form = layui.form;
+        var laydate = layui.laydate;
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#publishTime', //指定元素
+            type: 'datetime'
+        });
+        //监听提交
+        form.on('submit', function (data) {
+            $.post({
+                url: '/admin/teaching/save',
+                data: data.field,
+                success: function (ar) {
+                    if (ar.code == '0') {
+                        parent.layer.msg("保存成功");
+                        parent.refreshFrame();
+                        parent.layer.closeAll('iframe');
+                    } else {
+                        parent.layer.alert(ar.msg);
+                    }
+                }
+            });
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

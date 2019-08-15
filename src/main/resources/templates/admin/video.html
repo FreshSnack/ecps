@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>教学视频</title>
@@ -10,43 +10,106 @@
 <div class="operation_box">
     <ul class="action_button">
         <li>
-            <a href="#none"><i class="iconfont">&#xe667;</i>上传视频</a>
+            <a href="#none" id="upload"><i class="iconfont">&#xe667;</i>上传视频</a>
         </li>
         <li>
-            <a href="#none" class="clear"><i class="iconfont">&#xe710;</i>删除</a>
+            <a href="#none" onclick=edit()><i class="iconfont">&#xe710;</i>编辑</a>
+        </li>
+        <li>
+            <a href="#none" class="clear" onclick=deleteVideo()><i class="iconfont">&#xe710;</i>删除</a>
         </li>
     </ul>
 </div>
 <div class="content">
     <ul class="video">
-        <li>
-            <video src="/download?id=15" type="video/mp4" controls>
+        <li th:each="video:${video_list}">
+            <video th:src="@{/download?id={id}(id=${video.attach.id})}" controls>
                 抱歉，你的浏览器不支持video标签。。
             </video>
             <div class="title">
-                <input type="checkbox" />
-                <p title="教学视频1">教学视频阿诗丹顿啥打法撒旦萨达是对方啥打法撒旦1</p>
-            </div>
-        </li>
-        <li>
-            <video src="/download?id=16" type="video/mp4" controls>
-                抱歉，你的浏览器不支持video标签。。
-            </video>
-            <div class="title">
-                <input type="checkbox" />
-                <p title="教学视频2">教学视频阿诗丹顿啥打法撒旦萨达是对方啥打法撒旦1</p>
-            </div>
-        </li>
-        <li>
-            <video src="/download?id=17" type="video/mp4" controls>
-                抱歉，你的浏览器不支持video标签。。
-            </video>
-            <div class="title">
-                <input type="checkbox" />
-                <p title="教学视频3">教学视频3</p>
+                <input type="checkbox" th:attr="data-id=${video.id}"/>
+                <p th:text="${video.title}==null?${video.attach.fileName}:${video.title}" th:title="${video.title}==null?${video.attach.fileName}:${video.title}"></p>
             </div>
         </li>
     </ul>
 </div>
+<script src="/lib/jquery.js"></script>
+<script>
+    parent.upload.render({
+        elem: $("#upload"), //绑定元素
+        accept: "video",
+        url: '/admin/video/upload/', //上传接口
+        before: function () {
+            parent.layer.load(2);
+        },
+        done: function(ar){
+            //上传完毕回调
+            if(ar.code != 0) {
+                parent.layer.alert(ar.msg);
+            } else {
+                parent.layer.closeAll('loading');
+                parent.layer.msg("上传成功");
+                window.location.reload();
+            }
+        }
+    });
+
+    /**
+     * 删除视频
+     */
+    function deleteVideo() {
+        var length = $('input:checked').length;
+        var videoIds = [];
+        if(length == 0) {
+            parent.layer.msg("请选择要删除的视频");
+            return;
+        } else {
+            $('input:checked').each(function () {
+                videoIds.push($(this).attr("data-id"));
+            });
+        }
+        parent.layer.confirm('您确定要删除选中视频吗？', {
+            btn: ['确定','取消'] //按钮
+        }, function() {
+            $.post({
+                url: "/admin/video/delete",
+                data: {ids: videoIds.join(',')},
+                success: function (ar) {
+                    if(ar.code != 0) {
+                        parent.layer.alert(ar.msg);
+                    } else {
+                        parent.layer.msg("删除成功");
+                        window.location.reload();
+                    }
+                }
+            })
+        });
+    }
+
+    /**
+     * 编辑教师团队
+     * @param id
+     */
+    function edit() {
+        var length = $('input:checked').length;
+        if(length == 0) {
+            parent.layer.msg("请选择一条进行编辑");
+            return;
+        } else if (length > 1) {
+            parent.layer.msg("只能选择一条进行编辑");
+            return;
+        }
+        var id = $('input:checked').attr("data-id");
+        parent.layer.open({
+            type: 2,
+            title: '教学视频编辑',
+            /*skin: 'layui-layer-rim', //加上边框*/
+            area: ['440px', '200px'], //宽高
+            content: '/admin/videoEdit?id='+id
+        });
+    }
+
+</script>
+
 </body>
 </html>

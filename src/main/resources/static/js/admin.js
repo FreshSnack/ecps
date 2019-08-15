@@ -35,8 +35,14 @@ function logout() {
 /**
  * 修改密码
  */
-function modifyPassword() {
-    alert("sss");
+function modifyPassword(username) {
+    parent.layer.open({
+        type: 2,
+        title: '修改密码',
+        /*skin: 'layui-layer-rim', //加上边框*/
+        area: ['440px', '250px'], //宽高
+        content: '/admin/modifyPassword?username='+username
+    });
 }
 
 /**

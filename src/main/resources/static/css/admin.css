@@ -265,13 +265,13 @@ ul.video .title input {
 ul.video .title p {
     position: absolute;
     left: 22px;
-    top: -2px;
+    top: 0px;
     margin: 0px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     width: 278px;
-    text-align: center;
+    /*text-align: center;*/
 }
 
 .layui-upload-file { display: none; }

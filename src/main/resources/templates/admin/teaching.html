@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>教学活动</title>
@@ -10,7 +10,7 @@
 <div class="operation_box">
     <ul class="action_button">
         <li>
-            <a href="#none"><i class="iconfont">&#xe667;</i>新增</a>
+            <a href="#none" onclick=addTeaching()><i class="iconfont">&#xe667;</i>新增</a>
         </li>
     </ul>
 </div>
@@ -19,345 +19,25 @@
         <colgroup>
             <col/>
             <col width="150px"/>
-            <col width="150px"/>
+            <col width="200px"/>
             <col width="150px"/>
         </colgroup>
         <thead>
         <tr>
             <th>标题</th>
             <th>发布人</th>
-            <th>发布时间</th>
+            <th align="center">发布时间</th>
             <th style="text-align: center">操作</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td title="贤心安师大安师大仍无法RETTTBFDGSGFGSD DFGDSGSDGFDGEWQREWRWQRQWVSDVSDVSDVSDAVASFxcvx
-                DFGDSGSDGFDGEWQREWRWQRQWVSDVSDVSDVSDAVAS">贤心安师大安师大仍无法RETTTBFDGSGFGSD DFGDSGSDGFDGEWQREWRWQRQWVSDVSDVSDVSDAVASFxcvx
-                DFGDSGSDGFDGEWQREWRWQRQWVSDVSDVSDVSDAVAS</td>
-            <td>胡歌</td>
-            <td>2019-08-03</td>
+        <tr th:each="teaching:${teaching_list}">
+            <td th:title="${teaching.title}" th:text="${teaching.title}"></td>
+            <td th:text="${teaching.publishUsername}"></td>
+            <td align="center" th:text="${#dates.format(teaching.publishTime,'yyyy-MM-dd HH:mm:ss')}"></td>
             <td align="center">
-                <i class="iconfont" title="编辑">&#xe608;</i>
-                <i class="iconfont" title="删除">&#xe62f;</i>
-            </td>
-        </tr>
-        <tr>
-            <td>张爱玲</td>
-            <td>刘亦菲</td>
-            <td>2019-08-03</td>
-            <td align="center">
-                <i class="iconfont" title="编辑">&#xe608;</i>
-                <i class="iconfont" title="删除">&#xe62f;</i>
-            </td>
-        </tr>
-        <tr>
-            <td>Helen Keller</td>
-            <td>赵薇</td>
-            <td>2019-08-04</td>
-            <td align="center">
-                <i class="iconfont" title="编辑">&#xe608;</i>
-                <i class="iconfont" title="删除">&#xe62f;</i>
-            </td>
-        </tr>
-        <tr>
-            <td>岳飞</td>
-            <td>沙溢</td>
-            <td>2019-08-03</td>
-            <td align="center">
-                <i class="iconfont" title="编辑">&#xe608;</i>
-                <i class="iconfont" title="删除">&#xe62f;</i>
-            </td>
-        </tr>
-        <tr>
-            <td>孟子</td>
-            <td>海清</td>
-            <td>2019-08-07</td>
-            <td align="center">
-                <i class="iconfont" title="编辑">&#xe608;</i>
-                <i class="iconfont" title="删除">&#xe62f;</i>
-            </td>
-        </tr>
-        <tr>
-            <td title="贤心安师大安师大仍无法RETTTBFDGSGFGSD DFGDSGSDGFDGEWQREWRWQRQWVSDVSDVSDVSDAVASFxcvx
-                DFGDSGSDGFDGEWQREWRWQRQWVSDVSDVSDVSDAVAS">贤心安师大安师大仍无法RETTTBFDGSGFGSD DFGDSGSDGFDGEWQREWRWQRQWVSDVSDVSDVSDAVASFxcvx
-                DFGDSGSDGFDGEWQREWRWQRQWVSDVSDVSDVSDAVAS</td>
-            <td>胡歌</td>
-            <td>2019-08-03</td>
-            <td align="center">
-                <i class="iconfont" title="编辑">&#xe608;</i>
-                <i class="iconfont" title="删除">&#xe62f;</i>
-            </td>
-        </tr>
-        <tr>
-            <td>张爱玲</td>
-            <td>刘亦菲</td>
-            <td>2019-08-03</td>
-            <td align="center">
-                <i class="iconfont" title="编辑">&#xe608;</i>
-                <i class="iconfont" title="删除">&#xe62f;</i>
-            </td>
-        </tr>
-        <tr>
-            <td>Helen Keller</td>
-            <td>赵薇</td>
-            <td>2019-08-04</td>
-            <td align="center">
-                <i class="iconfont" title="编辑">&#xe608;</i>
-                <i class="iconfont" title="删除">&#xe62f;</i>
-            </td>
-        </tr>
-        <tr>
-            <td>岳飞</td>
-            <td>沙溢</td>
-            <td>2019-08-03</td>
-            <td align="center">
-                <i class="iconfont" title="编辑">&#xe608;</i>
-                <i class="iconfont" title="删除">&#xe62f;</i>
-            </td>
-        </tr>
-        <tr>
-            <td>孟子</td>
-            <td>海清</td>
-            <td>2019-08-07</td>
-            <td align="center">
-                <i class="iconfont" title="编辑">&#xe608;</i>
-                <i class="iconfont" title="删除">&#xe62f;</i>
-            </td>
-        </tr>
-        <tr>
-            <td title="贤心安师大安师大仍无法RETTTBFDGSGFGSD DFGDSGSDGFDGEWQREWRWQRQWVSDVSDVSDVSDAVASFxcvx
-                DFGDSGSDGFDGEWQREWRWQRQWVSDVSDVSDVSDAVAS">贤心安师大安师大仍无法RETTTBFDGSGFGSD DFGDSGSDGFDGEWQREWRWQRQWVSDVSDVSDVSDAVASFxcvx
-                DFGDSGSDGFDGEWQREWRWQRQWVSDVSDVSDVSDAVAS</td>
-            <td>胡歌</td>
-            <td>2019-08-03</td>
-            <td align="center">
-                <i class="iconfont" title="编辑">&#xe608;</i>
-                <i class="iconfont" title="删除">&#xe62f;</i>
-            </td>
-        </tr>
-        <tr>
-            <td>张爱玲</td>
-            <td>刘亦菲</td>
-            <td>2019-08-03</td>
-            <td align="center">
-                <i class="iconfont" title="编辑">&#xe608;</i>
-                <i class="iconfont" title="删除">&#xe62f;</i>
-            </td>
-        </tr>
-        <tr>
-            <td>Helen Keller</td>
-            <td>赵薇</td>
-            <td>2019-08-04</td>
-            <td align="center">
-                <i class="iconfont" title="编辑">&#xe608;</i>
-                <i class="iconfont" title="删除">&#xe62f;</i>
-            </td>
-        </tr>
-        <tr>
-            <td>岳飞</td>
-            <td>沙溢</td>
-            <td>2019-08-03</td>
-            <td align="center">
-                <i class="iconfont" title="编辑">&#xe608;</i>
-                <i class="iconfont" title="删除">&#xe62f;</i>
-            </td>
-        </tr>
-        <tr>
-            <td>孟子</td>
-            <td>海清</td>
-            <td>2019-08-07</td>
-            <td align="center">
-                <i class="iconfont" title="编辑">&#xe608;</i>
-                <i class="iconfont" title="删除">&#xe62f;</i>
-            </td>
-        </tr>
-        <tr>
-            <td title="贤心安师大安师大仍无法RETTTBFDGSGFGSD DFGDSGSDGFDGEWQREWRWQRQWVSDVSDVSDVSDAVASFxcvx
-                DFGDSGSDGFDGEWQREWRWQRQWVSDVSDVSDVSDAVAS">贤心安师大安师大仍无法RETTTBFDGSGFGSD DFGDSGSDGFDGEWQREWRWQRQWVSDVSDVSDVSDAVASFxcvx
-                DFGDSGSDGFDGEWQREWRWQRQWVSDVSDVSDVSDAVAS</td>
-            <td>胡歌</td>
-            <td>2019-08-03</td>
-            <td align="center">
-                <i class="iconfont" title="编辑">&#xe608;</i>
-                <i class="iconfont" title="删除">&#xe62f;</i>
-            </td>
-        </tr>
-        <tr>
-            <td>张爱玲</td>
-            <td>刘亦菲</td>
-            <td>2019-08-03</td>
-            <td align="center">
-                <i class="iconfont" title="编辑">&#xe608;</i>
-                <i class="iconfont" title="删除">&#xe62f;</i>
-            </td>
-        </tr>
-        <tr>
-            <td>Helen Keller</td>
-            <td>赵薇</td>
-            <td>2019-08-04</td>
-            <td align="center">
-                <i class="iconfont" title="编辑">&#xe608;</i>
-                <i class="iconfont" title="删除">&#xe62f;</i>
-            </td>
-        </tr>
-        <tr>
-            <td>岳飞</td>
-            <td>沙溢</td>
-            <td>2019-08-03</td>
-            <td align="center">
-                <i class="iconfont" title="编辑">&#xe608;</i>
-                <i class="iconfont" title="删除">&#xe62f;</i>
-            </td>
-        </tr>
-        <tr>
-            <td>孟子</td>
-            <td>海清</td>
-            <td>2019-08-07</td>
-            <td align="center">
-                <i class="iconfont" title="编辑">&#xe608;</i>
-                <i class="iconfont" title="删除">&#xe62f;</i>
-            </td>
-        </tr>
-        <tr>
-            <td title="贤心安师大安师大仍无法RETTTBFDGSGFGSD DFGDSGSDGFDGEWQREWRWQRQWVSDVSDVSDVSDAVASFxcvx
-                DFGDSGSDGFDGEWQREWRWQRQWVSDVSDVSDVSDAVAS">贤心安师大安师大仍无法RETTTBFDGSGFGSD DFGDSGSDGFDGEWQREWRWQRQWVSDVSDVSDVSDAVASFxcvx
-                DFGDSGSDGFDGEWQREWRWQRQWVSDVSDVSDVSDAVAS</td>
-            <td>胡歌</td>
-            <td>2019-08-03</td>
-            <td align="center">
-                <i class="iconfont" title="编辑">&#xe608;</i>
-                <i class="iconfont" title="删除">&#xe62f;</i>
-            </td>
-        </tr>
-        <tr>
-            <td>张爱玲</td>
-            <td>刘亦菲</td>
-            <td>2019-08-03</td>
-            <td align="center">
-                <i class="iconfont" title="编辑">&#xe608;</i>
-                <i class="iconfont" title="删除">&#xe62f;</i>
-            </td>
-        </tr>
-        <tr>
-            <td>Helen Keller</td>
-            <td>赵薇</td>
-            <td>2019-08-04</td>
-            <td align="center">
-                <i class="iconfont" title="编辑">&#xe608;</i>
-                <i class="iconfont" title="删除">&#xe62f;</i>
-            </td>
-        </tr>
-        <tr>
-            <td>岳飞</td>
-            <td>沙溢</td>
-            <td>2019-08-03</td>
-            <td align="center">
-                <i class="iconfont" title="编辑">&#xe608;</i>
-                <i class="iconfont" title="删除">&#xe62f;</i>
-            </td>
-        </tr>
-        <tr>
-            <td>孟子</td>
-            <td>海清</td>
-            <td>2019-08-07</td>
-            <td align="center">
-                <i class="iconfont" title="编辑">&#xe608;</i>
-                <i class="iconfont" title="删除">&#xe62f;</i>
-            </td>
-        </tr>
-        <tr>
-            <td title="贤心安师大安师大仍无法RETTTBFDGSGFGSD DFGDSGSDGFDGEWQREWRWQRQWVSDVSDVSDVSDAVASFxcvx
-                DFGDSGSDGFDGEWQREWRWQRQWVSDVSDVSDVSDAVAS">贤心安师大安师大仍无法RETTTBFDGSGFGSD DFGDSGSDGFDGEWQREWRWQRQWVSDVSDVSDVSDAVASFxcvx
-                DFGDSGSDGFDGEWQREWRWQRQWVSDVSDVSDVSDAVAS</td>
-            <td>胡歌</td>
-            <td>2019-08-03</td>
-            <td align="center">
-                <i class="iconfont" title="编辑">&#xe608;</i>
-                <i class="iconfont" title="删除">&#xe62f;</i>
-            </td>
-        </tr>
-        <tr>
-            <td>张爱玲</td>
-            <td>刘亦菲</td>
-            <td>2019-08-03</td>
-            <td align="center">
-                <i class="iconfont" title="编辑">&#xe608;</i>
-                <i class="iconfont" title="删除">&#xe62f;</i>
-            </td>
-        </tr>
-        <tr>
-            <td>Helen Keller</td>
-            <td>赵薇</td>
-            <td>2019-08-04</td>
-            <td align="center">
-                <i class="iconfont" title="编辑">&#xe608;</i>
-                <i class="iconfont" title="删除">&#xe62f;</i>
-            </td>
-        </tr>
-        <tr>
-            <td>岳飞</td>
-            <td>沙溢</td>
-            <td>2019-08-03</td>
-            <td align="center">
-                <i class="iconfont" title="编辑">&#xe608;</i>
-                <i class="iconfont" title="删除">&#xe62f;</i>
-            </td>
-        </tr>
-        <tr>
-            <td>孟子</td>
-            <td>海清</td>
-            <td>2019-08-07</td>
-            <td align="center">
-                <i class="iconfont" title="编辑">&#xe608;</i>
-                <i class="iconfont" title="删除">&#xe62f;</i>
-            </td>
-        </tr>
-        <tr>
-            <td title="贤心安师大安师大仍无法RETTTBFDGSGFGSD DFGDSGSDGFDGEWQREWRWQRQWVSDVSDVSDVSDAVASFxcvx
-                DFGDSGSDGFDGEWQREWRWQRQWVSDVSDVSDVSDAVAS">贤心安师大安师大仍无法RETTTBFDGSGFGSD DFGDSGSDGFDGEWQREWRWQRQWVSDVSDVSDVSDAVASFxcvx
-                DFGDSGSDGFDGEWQREWRWQRQWVSDVSDVSDVSDAVAS</td>
-            <td>胡歌</td>
-            <td>2019-08-03</td>
-            <td align="center">
-                <i class="iconfont" title="编辑">&#xe608;</i>
-                <i class="iconfont" title="删除">&#xe62f;</i>
-            </td>
-        </tr>
-        <tr>
-            <td>张爱玲</td>
-            <td>刘亦菲</td>
-            <td>2019-08-03</td>
-            <td align="center">
-                <i class="iconfont" title="编辑">&#xe608;</i>
-                <i class="iconfont" title="删除">&#xe62f;</i>
-            </td>
-        </tr>
-        <tr>
-            <td>Helen Keller</td>
-            <td>赵薇</td>
-            <td>2019-08-04</td>
-            <td align="center">
-                <i class="iconfont" title="编辑">&#xe608;</i>
-                <i class="iconfont" title="删除">&#xe62f;</i>
-            </td>
-        </tr>
-        <tr>
-            <td>岳飞</td>
-            <td>沙溢</td>
-            <td>2019-08-03</td>
-            <td align="center">
-                <i class="iconfont" title="编辑">&#xe608;</i>
-                <i class="iconfont" title="删除">&#xe62f;</i>
-            </td>
-        </tr>
-        <tr>
-            <td>孟子</td>
-            <td>海清</td>
-            <td>2019-08-07</td>
-            <td align="center">
-                <i class="iconfont" title="编辑">&#xe608;</i>
-                <i class="iconfont" title="删除">&#xe62f;</i>
+                <i class="iconfont" title="编辑" th:onclick="editTeaching([[${teaching.id}]])">&#xe608;</i>
+                <i class="iconfont" title="删除" th:onclick="deleteTeaching([[${teaching.id}]])">&#xe62f;</i>
             </td>
         </tr>
         </tbody>
@@ -365,7 +45,56 @@
 </div>
 <script src="/lib/jquery.js"></script>
 <script>
-    /*$(".table").width($(window).width() - 36);*/
+    var height = ($(window).height() - 40)<580?($(window).height() - 40):580;
+    /**
+     * 添加教学活动
+     */
+    function addTeaching() {
+        parent.layer.open({
+            type: 2,
+            title: '教学活动新增',
+            /*skin: 'layui-layer-rim', //加上边框*/
+            area: ['740px', height + 'px'], //宽高
+            content: '/admin/teachingEdit'
+        });
+    }
+
+    /**
+     * 编辑教学活动
+     * @param id
+     */
+    function editTeaching(id) {
+        parent.layer.open({
+            type: 2,
+            title: '教学活动编辑',
+            /*skin: 'layui-layer-rim', //加上边框*/
+            area: ['740px', height + 'px'], //宽高
+            content: '/admin/teachingEdit?id=' + id
+        });
+    }
+
+    /**
+     * 删除教学活动
+     * @param id
+     */
+    function deleteTeaching(id) {
+        parent.layer.confirm('您确定要删除此教学活动吗？', {
+            btn: ['确定','取消'] //按钮
+        }, function() {
+            $.post({
+                url: "/admin/teaching/delete",
+                data: {id: id},
+                success: function (ar) {
+                    if(ar.code != 0) {
+                        parent.layer.alert(ar.msg);
+                    } else {
+                        parent.layer.msg("删除成功");
+                        window.location.reload();
+                    }
+                }
+            })
+        });
+    }
 </script>
 </body>
 </html>

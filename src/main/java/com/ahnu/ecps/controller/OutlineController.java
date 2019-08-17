@@ -4,6 +4,7 @@ import com.ahnu.ecps.domain.Attach;
 import com.ahnu.ecps.domain.Outline;
 import com.ahnu.ecps.service.IAttachService;
 import com.ahnu.ecps.service.IOutlineService;
+import com.ahnu.ecps.service.IPageViewService;
 import com.ahnu.ecps.utils.AjaxReturn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +21,6 @@ import org.springframework.web.multipart.MultipartFile;
  * @date 2019-08-11
  */
 @Controller
-@RequestMapping("/admin/outline")
 public class OutlineController {
 
     @Autowired
@@ -29,12 +29,25 @@ public class OutlineController {
     @Autowired
     private IOutlineService outlineService;
 
+    @Autowired
+    private IPageViewService pageViewService;
+    /**
+     * 教学大纲
+     */
+    @RequestMapping("/outline")
+    public String outline(Model model) {
+        model.addAttribute("menu_code", "outline");
+        model.addAttribute("outline_count", pageViewService.getVisitCount("outline"));
+        model.addAttribute("outline_list", outlineService.listOutline());
+        return "menu/outline";
+    }
+
     /**
      * 教学大纲
      * @return
      */
-    @RequestMapping
-    public String outline(Model model) {
+    @RequestMapping("/admin/outline")
+    public String adminOutline(Model model) {
         model.addAttribute("doc_list", outlineService.listOutline());
         return "admin/outline";
     }
@@ -45,7 +58,7 @@ public class OutlineController {
      * @return
      */
     @ResponseBody
-    @RequestMapping("/delete")
+    @RequestMapping("/admin/outline/delete")
     public AjaxReturn delete(Long id) {
         outlineService.deleteOutline(id);
         return AjaxReturn.success();
@@ -56,7 +69,7 @@ public class OutlineController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/upload", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/outline/upload", method = RequestMethod.POST)
     public AjaxReturn upload(@RequestParam("file")MultipartFile file) {
         Attach attach = attachService.uploadFile(file);
         Outline outline = new Outline();

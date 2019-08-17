@@ -3,9 +3,12 @@
     <head>
         <meta charset="UTF-8">
         <title>教学视频-安徽师范大学精品课程</title>
+        <link rel="stylesheet" href="/css/admin.css"/>
         <link rel="stylesheet" href="/css/index.css"/>
         <link rel="stylesheet" href="/css/main.css"/>
         <link rel="stylesheet" href="/lib/layui/css/layui.css"/>
+        <link rel="stylesheet" href="/css/iconfont/iconfont.css"/>
+        <script src="/css/iconfont/iconfont.js"></script>
     </head>
     <body>
         <div th:replace="common/header::header"></div>
@@ -23,17 +26,16 @@
                     浏览次数：<span th:text="${video_count}"/>
                 </div>
                 <div class="nr">
-                    <div class="play">
-                        <video src="/download?id=15" type="video/mp4" controls width="600px" >
-                            抱歉，你的浏览器不支持video标签。。
-                        </video>
-                        <video src="/download?id=16" type="video/mp4" controls width="600px" >
-                            抱歉，你的浏览器不支持video标签。。
-                        </video>
-                        <video src="/download?id=17" type="video/mp4" controls width="600px" >
-                            抱歉，你的浏览器不支持video标签。。
-                        </video>
-                    </div>
+                    <ul class="video">
+                        <li th:each="video:${video_list}">
+                            <video th:src="@{/download?id={id}(id=${video.attach.id})}" controls>
+                                抱歉，你的浏览器不支持video标签。。
+                            </video>
+                            <div class="title">
+                                <p th:text="${video.title}==null?${video.attach.fileName}:${video.title}" th:title="${video.title}==null?${video.attach.fileName}:${video.title}"></p>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

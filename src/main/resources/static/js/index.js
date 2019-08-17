@@ -23,6 +23,8 @@ $(function () {
     function getContentMinHeight() {
         return $(window).height() - $(".header").outerHeight() - $(".menu").outerHeight() - $(".footer").outerHeight() - 70;
     }
+
+    layui.use('layer', function () { window.layer = layui.layer; });
 });
 
 
@@ -47,15 +49,12 @@ function addVisitCount(code) {
  * 访客留言
  */
 function message() {
-    layui.use('layer', function () {
-        var layer = layui.layer;
-        layer.open({
-            type: 2,
-            title: '访客留言',
-            /*skin: 'layui-layer-rim', //加上边框*/
-            area: ['480px', '282px'], //宽高
-            content: '/message'
-        });
+    layer.open({
+        type: 2,
+        title: '访客留言',
+        /*skin: 'layui-layer-rim', //加上边框*/
+        area: ['480px', '282px'], //宽高
+        content: '/message'
     });
 }
 
@@ -63,12 +62,30 @@ function message() {
  * 关闭访客留言
  */
 function closeMessage() {
-    layui.use('layer', function () {
-        var layer = layui.layer;
-        layer.closeAll('iframe');
-        layer.msg('留言成功');
-        if(refreshMsg) {
-            refreshMsg();
-        }
+    layer.closeAll('iframe');
+    layer.msg('留言成功');
+    if(refreshMsg) {
+        refreshMsg();
+    }
+}
+
+/**
+ * 下载文件
+ * @param id
+ */
+function download(id) {
+    window.location.href = "/download?id=" + id;
+}
+
+/**
+ * 预览文件
+ */
+function preview(id, filename) {
+    parent.layer.open({
+        title: filename,
+        type: 1,
+        skin: 'layui-layer-rim', //加上边框
+        area: [$(parent.document).width()*0.8 + 'px', ($(parent.document).height() - 100) + 'px'], //宽高
+        content: '<iframe src="pdfjs/web/viewer.html?file=/download?id%3D' + id + '" width=100% height=100% frameborder="0"></iframe>'
     });
 }

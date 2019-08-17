@@ -4,6 +4,7 @@ import com.ahnu.ecps.domain.Attach;
 import com.ahnu.ecps.domain.Feedback;
 import com.ahnu.ecps.service.IAttachService;
 import com.ahnu.ecps.service.IFeedbackService;
+import com.ahnu.ecps.service.IPageViewService;
 import com.ahnu.ecps.utils.AjaxReturn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +21,6 @@ import org.springframework.web.multipart.MultipartFile;
  * @date 2019-08-11
  */
 @Controller
-@RequestMapping("/admin/feedback")
 public class FeedbackController {
 
     @Autowired
@@ -29,12 +29,26 @@ public class FeedbackController {
     @Autowired
     private IFeedbackService feedbackService;
 
+    @Autowired
+    private IPageViewService pageViewService;
+
+    /**
+     * 教学反馈
+     */
+    @RequestMapping("/feedback")
+    public String feedback(Model model) {
+        model.addAttribute("menu_code", "feedback");
+        model.addAttribute("feedback_count", pageViewService.getVisitCount("feedback"));
+        model.addAttribute("doc_list", feedbackService.listFeedback());
+        return "menu/feedback";
+    }
+
     /**
      * 授课教案
      * @return
      */
-    @RequestMapping
-    public String feedback(Model model) {
+    @RequestMapping("/admin/feedback")
+    public String adminFeedback(Model model) {
         model.addAttribute("doc_list", feedbackService.listFeedback());
         return "admin/feedback";
     }
@@ -45,7 +59,7 @@ public class FeedbackController {
      * @return
      */
     @ResponseBody
-    @RequestMapping("/delete")
+    @RequestMapping("/admin/feedback/delete")
     public AjaxReturn delete(Long id) {
         feedbackService.deleteFeedback(id);
         return AjaxReturn.success();
@@ -56,7 +70,7 @@ public class FeedbackController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/upload", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/feedback/upload", method = RequestMethod.POST)
     public AjaxReturn upload(@RequestParam("file")MultipartFile file) {
         Attach attach = attachService.uploadFile(file);
         Feedback feedback = new Feedback();

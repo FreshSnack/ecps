@@ -3,6 +3,7 @@ package com.ahnu.ecps.controller;
 import com.ahnu.ecps.domain.Attach;
 import com.ahnu.ecps.domain.Video;
 import com.ahnu.ecps.service.IAttachService;
+import com.ahnu.ecps.service.IPageViewService;
 import com.ahnu.ecps.service.IVideoService;
 import com.ahnu.ecps.utils.AjaxReturn;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +29,27 @@ public class VideoController {
     @Autowired
     private IVideoService videoService;
 
+    @Autowired
+    private IPageViewService pageViewService;
+
+
+    /**
+     * 教学视频
+     */
+    @RequestMapping("/video")
+    public String video(Model model) {
+        model.addAttribute("menu_code", "video");
+        model.addAttribute("video_count", pageViewService.getVisitCount("video"));
+        model.addAttribute("video_list", videoService.listVideo());
+        return "menu/video";
+    }
+
     /**
      * 教学视频
      * @return
      */
     @RequestMapping("/admin/video")
-    public String video(Model model) {
+    public String adminVideo(Model model) {
         model.addAttribute("video_list", videoService.listVideo());
         return "admin/video";
     }

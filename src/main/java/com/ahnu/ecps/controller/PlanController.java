@@ -3,6 +3,7 @@ package com.ahnu.ecps.controller;
 import com.ahnu.ecps.domain.Attach;
 import com.ahnu.ecps.domain.Plan;
 import com.ahnu.ecps.service.IAttachService;
+import com.ahnu.ecps.service.IPageViewService;
 import com.ahnu.ecps.service.IPlanService;
 import com.ahnu.ecps.utils.AjaxReturn;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,6 @@ import org.springframework.web.multipart.MultipartFile;
  * @date 2019-08-11
  */
 @Controller
-@RequestMapping("/admin/plan")
 public class PlanController {
 
     @Autowired
@@ -29,15 +29,30 @@ public class PlanController {
     @Autowired
     private IPlanService planService;
 
+    @Autowired
+    private IPageViewService pageViewService;
+
     /**
      * 授课教案
      * @return
      */
-    @RequestMapping
-    public String plan(Model model) {
+    @RequestMapping("/admin/plan")
+    public String adminPlan(Model model) {
         model.addAttribute("doc_list", planService.listPlan());
         return "admin/plan";
     }
+
+    /**
+     * 授课教案
+     */
+    @RequestMapping("/plan")
+    public String plan(Model model) {
+        model.addAttribute("menu_code", "plan");
+        model.addAttribute("plan_count", pageViewService.getVisitCount("plan"));
+        return "menu/plan";
+    }
+
+
 
     /**
      * 删除授课教案
@@ -45,7 +60,7 @@ public class PlanController {
      * @return
      */
     @ResponseBody
-    @RequestMapping("/delete")
+    @RequestMapping("/admin/plan/delete")
     public AjaxReturn delete(Long id) {
         planService.deletePlan(id);
         return AjaxReturn.success();
@@ -56,7 +71,7 @@ public class PlanController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/upload", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/plan/upload", method = RequestMethod.POST)
     public AjaxReturn upload(@RequestParam("file")MultipartFile file) {
         Attach attach = attachService.uploadFile(file);
         Plan plan = new Plan();

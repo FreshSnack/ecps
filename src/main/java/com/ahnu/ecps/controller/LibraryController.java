@@ -4,6 +4,7 @@ import com.ahnu.ecps.domain.Attach;
 import com.ahnu.ecps.domain.Library;
 import com.ahnu.ecps.service.IAttachService;
 import com.ahnu.ecps.service.ILibraryService;
+import com.ahnu.ecps.service.IPageViewService;
 import com.ahnu.ecps.utils.AjaxReturn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +21,6 @@ import org.springframework.web.multipart.MultipartFile;
  * @date 2019-08-11
  */
 @Controller
-@RequestMapping("/admin/library")
 public class LibraryController {
 
     @Autowired
@@ -29,12 +29,26 @@ public class LibraryController {
     @Autowired
     private ILibraryService libraryService;
 
+    @Autowired
+    private IPageViewService pageViewService;
+
+    /**
+     * 试题库
+     */
+    @RequestMapping("/library")
+    public String library(Model model) {
+        model.addAttribute("menu_code", "library");
+        model.addAttribute("library_count", pageViewService.getVisitCount("library"));
+        model.addAttribute("doc_list", libraryService.listLibrary());
+        return "menu/library";
+    }
+
     /**
      * 试题库
      * @return
      */
-    @RequestMapping
-    public String library(Model model) {
+    @RequestMapping("/admin/library")
+    public String adminLibrary(Model model) {
         model.addAttribute("doc_list", libraryService.listLibrary());
         return "admin/library";
     }
@@ -45,7 +59,7 @@ public class LibraryController {
      * @return
      */
     @ResponseBody
-    @RequestMapping("/delete")
+    @RequestMapping("/admin/library/delete")
     public AjaxReturn delete(Long id) {
         libraryService.deleteLibrary(id);
         return AjaxReturn.success();
@@ -56,7 +70,7 @@ public class LibraryController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/upload", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/library/upload", method = RequestMethod.POST)
     public AjaxReturn upload(@RequestParam("file")MultipartFile file) {
         Attach attach = attachService.uploadFile(file);
         Library library = new Library();

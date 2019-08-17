@@ -3,6 +3,7 @@ package com.ahnu.ecps.controller;
 import com.ahnu.ecps.domain.Attach;
 import com.ahnu.ecps.domain.Ware;
 import com.ahnu.ecps.service.IAttachService;
+import com.ahnu.ecps.service.IPageViewService;
 import com.ahnu.ecps.service.IWareService;
 import com.ahnu.ecps.utils.AjaxReturn;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,6 @@ import org.springframework.web.multipart.MultipartFile;
  * @date 2019-08-11
  */
 @Controller
-@RequestMapping("/admin/ware")
 public class WareController {
 
     @Autowired
@@ -29,12 +29,26 @@ public class WareController {
     @Autowired
     private IWareService wareService;
 
+    @Autowired
+    private IPageViewService pageViewService;
+
+    /**
+     * 教学课件
+     */
+    @RequestMapping("/ware")
+    public String ware(Model model) {
+        model.addAttribute("menu_code", "ware");
+        model.addAttribute("ware_count", pageViewService.getVisitCount("ware"));
+        model.addAttribute("doc_list", wareService.listWare());
+        return "menu/ware";
+    }
+
     /**
      * 教学课件
      * @return
      */
-    @RequestMapping
-    public String ware(Model model) {
+    @RequestMapping("/admin/ware")
+    public String adminWare(Model model) {
         model.addAttribute("doc_list", wareService.listWare());
         return "admin/ware";
     }
@@ -45,7 +59,7 @@ public class WareController {
      * @return
      */
     @ResponseBody
-    @RequestMapping("/delete")
+    @RequestMapping("/admin/ware/delete")
     public AjaxReturn delete(Long id) {
         wareService.deleteWare(id);
         return AjaxReturn.success();
@@ -56,7 +70,7 @@ public class WareController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/upload", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/ware/upload", method = RequestMethod.POST)
     public AjaxReturn upload(@RequestParam("file")MultipartFile file) {
         Attach attach = attachService.uploadFile(file);
         Ware ware = new Ware();

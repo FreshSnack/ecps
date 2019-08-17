@@ -23,25 +23,11 @@
                     浏览次数：<span th:text="${team_count}"/>
                 </div>
                 <div class="nr">
-                    <div class="card">
-                        <a href="https://m.weibo.cn/u/1223178222" target="_blank">
-                            <img src="/image/team/hg1.jpg"/>
+                    <div class="card" th:each="team:${team_list}">
+                        <a th:href="${team.link}==null?'#':${team.link}" th:target="${team.link}==null?'_self':'_blank'">
+                            <img th:src="@{/download?id={id}(id=${team.attach.id})}"/>
                         </a>
-                    </div>
-                    <div class="card">
-                        <a href="https://m.weibo.cn/u/1223178222" target="_blank">
-                            <img src="/image/team/hg2.jpg"/>
-                        </a>
-                    </div>
-                    <div class="card">
-                        <a href="https://m.weibo.cn/u/1223178222" target="_blank">
-                            <img src="/image/team/hg3.jpg"/>
-                        </a>
-                    </div>
-                    <div class="card">
-                        <a href="https://m.weibo.cn/u/1223178222" target="_blank">
-                            <img src="/image/team/hg4.jpg"/>
-                        </a>
+                        <p th:text="${team.name}" style="text-align: center"></p>
                     </div>
                 </div>
                 <div style="clear: both"></div>

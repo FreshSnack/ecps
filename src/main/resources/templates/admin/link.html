@@ -44,9 +44,6 @@
     parent.upload.render({
         elem: $("#upload"), //绑定元素
         url: '/admin/link/upload/', //上传接口
-        before: function () {
-            parent.layer.load(2);
-        },
         done: function(ar){
             //上传完毕回调
             if(ar.code != 0) {

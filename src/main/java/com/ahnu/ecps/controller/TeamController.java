@@ -3,6 +3,7 @@ package com.ahnu.ecps.controller;
 import com.ahnu.ecps.domain.Attach;
 import com.ahnu.ecps.domain.Team;
 import com.ahnu.ecps.service.IAttachService;
+import com.ahnu.ecps.service.IPageViewService;
 import com.ahnu.ecps.service.ITeamService;
 import com.ahnu.ecps.utils.AjaxReturn;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +29,26 @@ public class TeamController {
     @Autowired
     private ITeamService teamService;
 
+    @Autowired
+    private IPageViewService pageViewService;
+
+    /**
+     * 教学团队
+     */
+    @RequestMapping("/team")
+    public String team(Model model) {
+        model.addAttribute("menu_code", "team");
+        model.addAttribute("team_count", pageViewService.getVisitCount("team"));
+        model.addAttribute("team_list", teamService.listTeam());
+        return "menu/team";
+    }
+
     /**
      * 教学团队
      * @return
      */
     @RequestMapping("/admin/team")
-    public String team(Model model) {
+    public String adminTeam(Model model) {
         model.addAttribute("pic_list", teamService.listTeam());
         return "admin/team";
     }

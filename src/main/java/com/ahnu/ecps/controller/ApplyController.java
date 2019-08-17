@@ -4,6 +4,7 @@ import com.ahnu.ecps.domain.Apply;
 import com.ahnu.ecps.domain.Attach;
 import com.ahnu.ecps.service.IApplyService;
 import com.ahnu.ecps.service.IAttachService;
+import com.ahnu.ecps.service.IPageViewService;
 import com.ahnu.ecps.utils.AjaxReturn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +21,6 @@ import org.springframework.web.multipart.MultipartFile;
  * @date 2019-08-11
  */
 @Controller
-@RequestMapping("/admin/apply")
 public class ApplyController {
 
     @Autowired
@@ -29,12 +29,26 @@ public class ApplyController {
     @Autowired
     private IApplyService applyService;
 
+    @Autowired
+    private IPageViewService pageViewService;
+
+    /**
+     * 申报书
+     */
+    @RequestMapping("/apply")
+    public String apply(Model model) {
+        model.addAttribute("menu_code", "apply");
+        model.addAttribute("apply_count", pageViewService.getVisitCount("apply"));
+        model.addAttribute("apply_list", applyService.listApply());
+        return "menu/apply";
+    }
+
     /**
      * 申报书
      * @return
      */
-    @RequestMapping
-    public String apply(Model model) {
+    @RequestMapping("/admin/apply")
+    public String adminApply(Model model) {
         model.addAttribute("doc_list", applyService.listApply());
         return "admin/apply";
     }
@@ -45,7 +59,7 @@ public class ApplyController {
      * @return
      */
     @ResponseBody
-    @RequestMapping("/delete")
+    @RequestMapping("/admin/apply/delete")
     public AjaxReturn delete(Long id) {
         applyService.deleteApply(id);
         return AjaxReturn.success();
@@ -56,7 +70,7 @@ public class ApplyController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/upload", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/apply/upload", method = RequestMethod.POST)
     public AjaxReturn upload(@RequestParam("file")MultipartFile file) {
         Attach attach = attachService.uploadFile(file);
         Apply apply = new Apply();

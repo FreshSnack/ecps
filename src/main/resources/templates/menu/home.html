@@ -58,7 +58,10 @@
                     <div class="content">
                         <div id="msg" th:fragment="message">
                             <ul th:each="msg:${msg_list}">
-                                <li>[<span th:text="${#dates.format(msg.createTime,'MM-dd')}"/>] <span th:text="${msg.content}" th:title="${msg.content}"/></li>
+                                <li th:each="knowledge:${knowledge_list}">
+                                    <span class="news_meta" th:text="'[' + ${#dates.format(msg.createTime,'MM-dd')} + ']'"></span>
+                                    <span class="news_title" th:text="${msg.content}" th:title="${msg.content}"></span>
+                                </li>
                             </ul>
                         </div>
                     </div>

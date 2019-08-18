@@ -2,6 +2,7 @@ package com.ahnu.ecps.service;
 
 import com.ahnu.ecps.domain.Library;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -28,4 +29,6 @@ public interface ILibraryService {
      * @return
      */
     List<Library> listLibrary();
+
+    Date getLastDate();
 }

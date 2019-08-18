@@ -17,6 +17,7 @@ body {
     width: 100%;
     position: relative;
     height: 176px;
+    min-width: 1000px;
 }
 
 .header_line {
@@ -124,17 +125,19 @@ body {
 .menu .nav a {
     height: 33px;
     display: block;
-    padding: 0 17px;
+    padding: 0 25px;
     text-decoration: none;
     text-align: center;
-    line-height: 28px;
+    line-height: 33px;
     outline: none;
     z-index: 35;
     position: relative;
     float: left;
     color: #2E2D3C;
-    font-size: 14px;
-    font-family: "Microsoft Yahei";
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    /*font-family: "Microsoft Yahei";*/
 }
 
 .menu .nav a:hover {
@@ -148,7 +151,7 @@ body {
 
 .content {
     width: 1000px;
-    margin: 10px auto 60px;
+    margin: 15px auto 40px;
 }
 
 .footer {
@@ -158,6 +161,7 @@ body {
     clear: both;
     position: relative;
     display: none;
+    min-width: 1000px;
 }
 
 .footer .container {
@@ -194,3 +198,6 @@ body {
     color: #9fbae5;
 }
 
+.panel li span {
+    font-size: 15px!important;
+}

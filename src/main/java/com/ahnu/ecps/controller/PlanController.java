@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Date;
+
 /**
  * 授课教案处理器
  * @author mxding
@@ -47,8 +49,11 @@ public class PlanController {
      */
     @RequestMapping("/plan")
     public String plan(Model model) {
+        model.addAttribute("lastDate", planService.getLastDate());
+        model.addAttribute("pv_count", pageViewService.getVisitCount("home"));
         model.addAttribute("menu_code", "plan");
         model.addAttribute("plan_count", pageViewService.getVisitCount("plan"));
+        model.addAttribute("plan_list", planService.listPlan());
         return "menu/plan";
     }
 
@@ -76,6 +81,7 @@ public class PlanController {
         Attach attach = attachService.uploadFile(file);
         Plan plan = new Plan();
         plan.setAttach(attach);
+        plan.setCreateTime(new Date());
         planService.addPlan(plan);
         return AjaxReturn.success();
     }

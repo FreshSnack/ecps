@@ -2,6 +2,7 @@ package com.ahnu.ecps.utils;
 
 import java.io.File;
 import java.util.UUID;
+import java.util.regex.Matcher;
 
 /**
  * 字符串工具类
@@ -61,7 +62,7 @@ public class StringUtils {
      * @return
      */
     public static String getFilePath(String filePath) {
-        return filePath.replaceAll("\\\\|/", File.separator);
+        return filePath.replaceAll("\\\\|/", Matcher.quoteReplacement(File.separator));
     }
 
 }

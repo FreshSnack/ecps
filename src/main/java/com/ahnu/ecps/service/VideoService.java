@@ -1,13 +1,16 @@
 package com.ahnu.ecps.service;
 
 import com.ahnu.ecps.dao.VideoRepository;
-import com.ahnu.ecps.domain.Apply;
 import com.ahnu.ecps.domain.Video;
+import com.ahnu.ecps.utils.SetUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -56,5 +59,18 @@ public class VideoService implements IVideoService {
     @Transactional
     public void save(Video video) {
         videoRepository.save(video);
+    }
+
+    @Override
+    public Date getLastDate() {
+        Sort sort = new Sort(Sort.Direction.DESC, "createTime");
+        Page<Video> page = videoRepository.findAll(PageRequest.of(0 , 1, sort));
+        if(page != null) {
+            List<Video> content = page.getContent();
+            if(!SetUtils.isNullList(content)) {
+                return content.get(0).getCreateTime();
+            }
+        }
+        return new Date();
     }
 }

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>安徽师范大学精品课程-科普园地列表</title>
+    <link rel="stylesheet" href="/css/admin.css"/>
+    <link rel="stylesheet" href="/css/index.css"/>
+    <link rel="stylesheet" href="/css/main.css"/>
+    <link rel="stylesheet" href="/lib/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/css/iconfont/iconfont.css"/>
+    <script src="/css/iconfont/iconfont.js"></script>
+</head>
+<body>
+<div th:replace="common/header::header"></div>
+<div th:replace="common/menu::menu"></div>
+<div class="content">
+    <div class="position">
+        当前位置：
+        <a href="/">首页</a>
+        <span>></span>
+        <a href="#">科普园地列表</a>
+    </div>
+    <div class="apply">
+        <div class="bt">科普园地</div>
+        <div class="bar">
+            <!--发布人：胡春生&nbsp;&nbsp;&nbsp;&nbsp;
+            发布日期：<span th:text="${#dates.format(lastPublishTime,'yyyy-MM-dd')}"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+            -->浏览次数：<span th:text="${knowledge_count}"/>
+        </div>
+        <div class="nr">
+            <table class="table">
+                <colgroup>
+                    <col/>
+                    <col width="150px"/>
+                    <col width="200px"/>
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>标题</th>
+                        <th>发布人</th>
+                        <th align="center">发布时间</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="knowledge:${knowledge_list}">
+                        <td><a th:title="${knowledge.title}" th:text="${knowledge.title}" th:href="@{/knowledge?id={id}(id=${knowledge.id})}"></a></td>
+                        <td th:text="${knowledge.publishUsername}"></td>
+                        <td align="center" th:text="${#dates.format(knowledge.publishTime,'yyyy-MM-dd HH:mm:ss')}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div th:replace="common/footer::footer"></div>
+<script src="/lib/jquery.js"></script>
+<script src="/js/index.js"></script>
+<script src="/lib/layui/layui.js"></script>
+<script>
+    addVisitCount('knowledge');
+</script>
+</body>
+</html>

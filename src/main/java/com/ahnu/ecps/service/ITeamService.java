@@ -2,6 +2,7 @@ package com.ahnu.ecps.service;
 
 import com.ahnu.ecps.domain.Team;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -35,4 +36,6 @@ public interface ITeamService {
      * @return
      */
     List<Team> listTeam();
+
+    Date getLastDate();
 }

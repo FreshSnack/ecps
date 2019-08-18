@@ -1,8 +1,8 @@
 package com.ahnu.ecps.service;
 
 import com.ahnu.ecps.domain.Knowledge;
-import com.ahnu.ecps.domain.Teaching;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -36,4 +36,12 @@ public interface IKnowledgeService {
      * @return
      */
     List<Knowledge> listKnowledge();
+
+    List<Knowledge> listTopKnowledge(int top);
+
+    /**
+     * 最后发布日期
+     * @return
+     */
+    Date getLastPublishDate();
 }

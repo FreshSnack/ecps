@@ -2,6 +2,7 @@ package com.ahnu.ecps.service;
 
 import com.ahnu.ecps.domain.Teaching;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -35,4 +36,17 @@ public interface ITeachingService {
      * @return
      */
     List<Teaching> listTeaching();
+
+    /**
+     * 获取前几个
+     * @param top
+     * @return
+     */
+    List<Teaching> listTopTeaching(int top);
+
+    /**
+     * 最后发布日期
+     * @return
+     */
+    Date getLastPublishDate();
 }

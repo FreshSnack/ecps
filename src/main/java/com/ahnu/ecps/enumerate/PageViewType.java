@@ -17,7 +17,11 @@ public enum PageViewType {
     WARE("attach/ware", "教学课件"),
     VIDEO("video", "教学视频"),
     LIBRARY("library", "试题库"),
-    FEEDBACK("feedback", "教学反馈");
+    FEEDBACK("feedback", "教学反馈"),
+    INTRODUCE("introduce", "课程简介"),
+    TEACHING("teaching", "教学活动"),
+    KNOWLEDGE("knowledge", "科普园地"),
+    MESSAGE("message", "访客留言");
 
     /**
      * 代码

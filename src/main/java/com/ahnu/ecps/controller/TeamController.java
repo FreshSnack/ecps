@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Date;
+
 /**
  * 教学团队处理器
  * @author mxding
@@ -37,6 +39,8 @@ public class TeamController {
      */
     @RequestMapping("/team")
     public String team(Model model) {
+        model.addAttribute("lastDate", teamService.getLastDate());
+        model.addAttribute("pv_count", pageViewService.getVisitCount("home"));
         model.addAttribute("menu_code", "team");
         model.addAttribute("team_count", pageViewService.getVisitCount("team"));
         model.addAttribute("team_list", teamService.listTeam());
@@ -97,6 +101,7 @@ public class TeamController {
         Attach attach = attachService.uploadFile(file);
         Team team = new Team();
         team.setAttach(attach);
+        team.setCreateTime(new Date());
         teamService.saveTeam(team);
         return AjaxReturn.success();
     }

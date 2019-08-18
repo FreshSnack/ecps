@@ -29,7 +29,7 @@ html, body { margin: 0px; }
 .caption .more {
     float: right;
     line-height: 24px;
-    font-size: 14px;
+    font-size: 14px!important;
     color: #7F8490;
     margin-top: 4px;
 }
@@ -41,6 +41,7 @@ html, body { margin: 0px; }
     height: 100%;
     border: 1px solid #cdcdcd;
     margin-top: 30px;
+    /*font-family: 宋体,'Microsoft Yahei';*/
 }
 
 .panel .content p {
@@ -48,9 +49,21 @@ html, body { margin: 0px; }
     margin-left: 10px;
     margin-right: 10px;
     line-height: 25px;
-    font-family: 宋体;
 }
 
+.panel .content li {
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis
+}
+
+.panel .content li a {
+    cursor: pointer;
+}
+
+.panel .content li a:hover {
+    color: #1b478e;
+}
 
 .teaching_action {
     width: 310px;
@@ -95,7 +108,7 @@ html, body { margin: 0px; }
     margin-left: 30px;
     float: left;
     line-height: 25px;
-    font-family: "Microsoft Yahei";
+    /*font-family: "Microsoft Yahei";*/
 }
 
 .guest_book .content ul {
@@ -144,12 +157,14 @@ html, body { margin: 0px; }
 .link {
     clear: both;
     margin-top: 20px;
-    height: 130px;
+    /*height: 130px;*/
 }
 
 .link img {
     width: 300px;
     height: 45px;
+    margin-right: 26px;
+    margin-bottom: 30px;
 }
 
 /*申报书*/
@@ -214,7 +229,7 @@ html, body { margin: 0px; }
 }
 
 .video .nr {
-    text-align: center;
+    /*text-align: center;*/
 }
 
 /*.video .play {
@@ -230,11 +245,11 @@ html, body { margin: 0px; }
 
 .video .nr {
     padding-top: 20px;
-    background-color: #b2b2b2;
+    /*background-color: #b2b2b2;*/
 }
 
 .video .nr video {
-    margin-bottom: 20px;
+    /*margin-bottom: 20px;*/
 }
 
 .library .nr .layui-row .layui-card {
@@ -261,13 +276,28 @@ html, body { margin: 0px; }
     /*text-align: center;*/
 }
 
-.ware .nr a {
-    text-decoration: underline;
-    color: blue;
-}
-
 .ware iframe {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 30px;
+}
+
+.Box {
+    overflow: hidden;
+}
+
+#BoxUl > ul > li:nth-child(n+5) {display: none}
+
+.info .content {overflow: hidden}
+
+.table td a {
+    cursor: pointer;
+}
+.table td a:hover {
+    color: #1b478e;
+}
+
+.content .bt {
+    /*padding-left: 100px;
+    padding-right: 100px;*/
 }

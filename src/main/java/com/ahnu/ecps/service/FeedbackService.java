@@ -1,11 +1,16 @@
 package com.ahnu.ecps.service;
 
 import com.ahnu.ecps.dao.FeedbackRepository;
+import com.ahnu.ecps.domain.Apply;
 import com.ahnu.ecps.domain.Feedback;
+import com.ahnu.ecps.utils.SetUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -38,5 +43,18 @@ public class FeedbackService implements IFeedbackService {
     public List<Feedback> listFeedback() {
         Sort sort = new Sort(Sort.Direction.ASC, "sort");
         return feedbackRepository.findAll(sort);
+    }
+
+    @Override
+    public Date getLastDate() {
+        Sort sort = new Sort(Sort.Direction.DESC, "createTime");
+        Page<Feedback> page = feedbackRepository.findAll(PageRequest.of(0 , 1, sort));
+        if(page != null) {
+            List<Feedback> content = page.getContent();
+            if(!SetUtils.isNullList(content)) {
+                return content.get(0).getCreateTime();
+            }
+        }
+        return new Date();
     }
 }

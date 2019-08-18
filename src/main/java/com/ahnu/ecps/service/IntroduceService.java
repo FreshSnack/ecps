@@ -8,6 +8,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -29,6 +30,7 @@ public class IntroduceService implements IIntroduceService {
         if(SetUtils.isNullList(introduceList)) {
             introduce = new Introduce();
             introduce.setContent("");
+            introduce.setPublishTime(new Date());
             introduceRepository.save(introduce);
         } else {
             introduce = introduceList.get(0);
@@ -41,6 +43,7 @@ public class IntroduceService implements IIntroduceService {
     public void saveIntroduce(String content) {
         Introduce introduce = getIntroduce();
         introduce.setContent(content);
+        introduce.setPublishTime(new Date());
         introduceRepository.save(introduce);
     }
 }

@@ -23,6 +23,8 @@
             <div class="ware">
                 <div class="bt">教学课件</div>
                 <div class="bar">
+                    发布人：胡春生&nbsp;&nbsp;&nbsp;&nbsp;
+                    发布日期：<span th:text="${#dates.format(lastDate,'yyyy-MM-dd')}"></span>&nbsp;&nbsp;&nbsp;&nbsp;
                     浏览次数：<span th:text="${ware_count}"/>
                 </div>
                 <div class="nr">
@@ -30,12 +32,11 @@
                         <li th:each="doc:${doc_list}">
                             <a href="#">
                                 <div class="mask">
-                                    <svg class="icon" aria-hidden="true" th:onclick="preview([[${doc.attach.id}]], [[${doc.attach.fileName}]])">
+                                    <svg class="icon" aria-hidden="true">
                                         <use xlink:href="#icon-PPT"></use>
                                     </svg>
                                     <span class="operation doc">
                                         <i class="iconfont" title="下载" th:onclick="download([[${doc.attach.id}]])">&#xe623;</i>
-                                        <i class="iconfont" title="删除" th:onclick="deleteDoc([[${doc.id}]], [[${doc.attach.fileName}]])">&#xe62f;</i>
                                     </span>
                                 </div>
                                 <p th:text="${doc.attach.fileName}" th:title="${doc.attach.fileName}"></p>

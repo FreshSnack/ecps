@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>安徽师范大学精品课程-科普园地详情</title>
+        <link rel="stylesheet" href="/css/admin.css"/>
+        <link rel="stylesheet" href="/css/index.css"/>
+        <link rel="stylesheet" href="/css/main.css"/>
+        <link rel="stylesheet" href="/lib/layui/css/layui.css"/>
+        <link rel="stylesheet" href="/css/iconfont/iconfont.css"/>
+        <script src="/css/iconfont/iconfont.js"></script>
+    </head>
+    <body>
+        <div th:replace="common/header::header"></div>
+        <div th:replace="common/menu::menu"></div>
+        <div class="content">
+            <div class="position">
+                当前位置：
+                <a href="/">首页</a>
+                <span>></span>
+                <a href="/knowledgeList">科普园地列表</a>
+                <span>></span>
+                <a href="#">科普园地详情</a>
+            </div>
+            <div class="knowledge">
+                <div class="bt" th:text="${knowledge.title}"></div>
+                <div class="bar">
+                    发布人：<span th:text="${knowledge.publishUsername}"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    发布日期：<span th:text="${#dates.format(knowledge.publishTime,'yyyy-MM-dd')}"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    浏览次数：<span th:text="${knowledge_count}"/>
+                </div>
+                <div class="nr">
+                    <p th:utext="${knowledge.content}"></p>
+                </div>
+            </div>
+        </div>
+        <div th:replace="common/footer::footer"></div>
+        <script src="/lib/jquery.js"></script>
+        <script src="/js/index.js"></script>
+        <script src="/lib/layui/layui.js"></script>
+        <script th:inline="javascript">
+            addVisitCount('knowledge_' + [[${knowledge.id}]]);
+        </script>
+    </body>
+</html>

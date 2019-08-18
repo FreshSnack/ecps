@@ -4,8 +4,10 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * 课程简介
@@ -29,4 +31,12 @@ public class Introduce {
      */
     @Column(name = "CONTENT", columnDefinition = "clob")
     private String content;
+
+    /**
+     * 发布时间
+     */
+    @Column(name = "PUBLISH_TIME")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date publishTime;
 }

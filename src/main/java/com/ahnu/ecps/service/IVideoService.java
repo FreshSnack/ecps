@@ -2,6 +2,7 @@ package com.ahnu.ecps.service;
 
 import com.ahnu.ecps.domain.Video;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -41,4 +42,6 @@ public interface IVideoService {
      * @param video
      */
     void save(Video video);
+
+    Date getLastDate();
 }

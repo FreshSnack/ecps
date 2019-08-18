@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Date;
+
 /**
  * 教学课件处理器
  * @author mxding
@@ -37,6 +39,8 @@ public class WareController {
      */
     @RequestMapping("/ware")
     public String ware(Model model) {
+        model.addAttribute("lastDate", wareService.getLastDate());
+        model.addAttribute("pv_count", pageViewService.getVisitCount("home"));
         model.addAttribute("menu_code", "ware");
         model.addAttribute("ware_count", pageViewService.getVisitCount("ware"));
         model.addAttribute("doc_list", wareService.listWare());
@@ -75,6 +79,7 @@ public class WareController {
         Attach attach = attachService.uploadFile(file);
         Ware ware = new Ware();
         ware.setAttach(attach);
+        ware.setCreateTime(new Date());
         wareService.addWare(ware);
         return AjaxReturn.success();
     }

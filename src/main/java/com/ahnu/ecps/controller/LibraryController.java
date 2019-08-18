@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Date;
+
 /**
  * 试题库处理器
  * @author mxding
@@ -37,7 +39,9 @@ public class LibraryController {
      */
     @RequestMapping("/library")
     public String library(Model model) {
+        model.addAttribute("lastDate", libraryService.getLastDate());
         model.addAttribute("menu_code", "library");
+        model.addAttribute("pv_count", pageViewService.getVisitCount("home"));
         model.addAttribute("library_count", pageViewService.getVisitCount("library"));
         model.addAttribute("doc_list", libraryService.listLibrary());
         return "menu/library";
@@ -75,6 +79,7 @@ public class LibraryController {
         Attach attach = attachService.uploadFile(file);
         Library library = new Library();
         library.setAttach(attach);
+        library.setCreateTime(new Date());
         libraryService.addLibrary(library);
         return AjaxReturn.success();
     }

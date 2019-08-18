@@ -21,7 +21,7 @@ $(function () {
      * @returns {number}
      */
     function getContentMinHeight() {
-        return $(window).height() - $(".header").outerHeight() - $(".menu").outerHeight() - $(".footer").outerHeight() - 70;
+        return $(window).height() - $(".header").outerHeight() - $(".menu").outerHeight() - $(".footer").outerHeight() - 55;
     }
 
     layui.use('layer', function () { window.layer = layui.layer; });
@@ -86,6 +86,6 @@ function preview(id, filename) {
         type: 1,
         skin: 'layui-layer-rim', //加上边框
         area: [$(parent.document).width()*0.8 + 'px', ($(parent.document).height() - 100) + 'px'], //宽高
-        content: '<iframe src="pdfjs/web/viewer.html?file=/download?id%3D' + id + '" width=100% height=100% frameborder="0"></iframe>'
+        content: '<iframe src="pdfjs/web/viewer.html?file=/download?id%3D' + id + '" width=100% height=99.6% frameborder="0"></iframe>'
     });
 }

@@ -1065,7 +1065,6 @@ layer.tab = function(options){
 
 //相册层
 layer.photos = function(options, loop, key){
-  debugger
   var dict = {};
   options = options || {};
   if(!options.photos) return;

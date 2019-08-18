@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Date;
+
 /**
  * 教学反馈处理器
  * @author mxding
@@ -37,7 +39,9 @@ public class FeedbackController {
      */
     @RequestMapping("/feedback")
     public String feedback(Model model) {
+        model.addAttribute("lastDate", feedbackService.getLastDate());
         model.addAttribute("menu_code", "feedback");
+        model.addAttribute("pv_count", pageViewService.getVisitCount("home"));
         model.addAttribute("feedback_count", pageViewService.getVisitCount("feedback"));
         model.addAttribute("doc_list", feedbackService.listFeedback());
         return "menu/feedback";
@@ -75,6 +79,7 @@ public class FeedbackController {
         Attach attach = attachService.uploadFile(file);
         Feedback feedback = new Feedback();
         feedback.setAttach(attach);
+        feedback.setCreateTime(new Date());
         feedbackService.addFeedback(feedback);
         return AjaxReturn.success();
     }

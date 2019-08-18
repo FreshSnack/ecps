@@ -43,7 +43,7 @@ public class PageViewService implements IPageViewService {
         }
         PageView pageView = pageViewRepository.findByCode(code);
         if(pageView == null) {
-            return 0L;
+            return 1L;
         }
         return pageView.getVisitCount();
     }

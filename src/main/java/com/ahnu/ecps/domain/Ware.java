@@ -6,6 +6,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * 教学课件
@@ -36,4 +37,11 @@ public class Ware {
      */
     @Column(name = "SORT")
     private Long sort;
+
+    /**
+     * 创建时间
+     */
+    @Column(name = "CREATE_TIME", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createTime;
 }

@@ -13,14 +13,14 @@
             <a href="#none" id="upload"><i class="iconfont">&#xe667;</i>上传视频</a>
         </li>
         <li>
-            <a href="#none" onclick=edit()><i class="iconfont">&#xe710;</i>编辑</a>
+            <a href="#none" onclick=edit()><i class="iconfont">&#xe64b;</i>编辑</a>
         </li>
         <li>
-            <a href="#none" class="clear" onclick=deleteVideo()><i class="iconfont">&#xe710;</i>删除</a>
+            <a href="#none" class="clear" onclick=deleteVideo()><i class="iconfont">&#xe61f;</i>删除</a>
         </li>
     </ul>
 </div>
-<div class="content">
+<div class="content admin">
     <ul class="video">
         <li th:each="video:${video_list}">
             <video th:src="@{/download?id={id}(id=${video.attach.id})}" controls>

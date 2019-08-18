@@ -1,6 +1,7 @@
 package com.ahnu.ecps.controller;
 
 import com.ahnu.ecps.service.IMessageService;
+import com.ahnu.ecps.service.IPageViewService;
 import com.ahnu.ecps.utils.AjaxReturn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,9 @@ public class MessageController {
     @Autowired
     private IMessageService messageService;
 
+    @Autowired
+    private IPageViewService pageViewService;
+
     /**
      * 访客留言
      * @return
@@ -26,6 +30,15 @@ public class MessageController {
     @RequestMapping("/message")
     public String message() {
         return "index/message";
+    }
+
+    @RequestMapping("/messageList")
+    public String teachingList(Model model) {
+        model.addAttribute("menu_code", "home");
+        model.addAttribute("pv_count", pageViewService.getVisitCount("home"));
+        model.addAttribute("message_count", pageViewService.getVisitCount("message"));
+        model.addAttribute("message_list", messageService.getMessageList());
+        return "menu/messageList";
     }
 
     /**

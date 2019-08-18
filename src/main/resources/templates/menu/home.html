@@ -16,54 +16,49 @@
                 <div class="panel course_introduction">
                     <div class="caption">
                         <p>课程简介</p>
-                        <a class="more" href="/admin" target="_blank">More&nbsp;>></a>
+                        <a class="more" href="/introduce" target="_self">More&nbsp;>></a>
                     </div>
                     <div class="content">
-                        <p>
-                            &nbsp;&nbsp;《地理学》课程是我校地理科学专业的专业基础课程，已经在地理科学专业开设了半个多世纪，并且...
-                        </p>
+                        <p th:utext="${introduce.content}"></p>
                     </div>
                 </div>
                 <div class="panel teaching_action">
                     <div class="caption">
                         <p>教学活动</p>
-                        <a class="more" href="/admin" target="_blank">More&nbsp;>></a>
+                        <a class="more" href="/teachingList" target="_self">More&nbsp;>></a>
                     </div>
                     <div class="content">
                         <ul>
-                            <li>[2019-06-13]&nbsp;<a>某某活动1</a></li>
-                            <li>[2019-06-13]&nbsp;<a>某某活动2</a></li>
-                            <li>[2019-06-13]&nbsp;<a>某某活动3</a></li>
-                            <li>[2019-06-13]&nbsp;<a>某某活动4</a></li>
-                            <li>[2019-06-13]&nbsp;<a>某某活动5</a></li>
-                            <li>[2019-06-13]&nbsp;<a>某某活动6</a></li>
-                            <li>[2019-06-13]&nbsp;<a>某某活动7</a></li>
+                            <li th:each="teaching:${teaching_list}">
+                                <span class="news_meta" th:text="'[' + ${#dates.format(teaching.publishTime,'MM-dd')} + ']'"></span>
+                                <span class="news_title"><a th:text="${teaching.title}" th:title="${teaching.title}" th:href="@{/teaching?id={id}(id=${teaching.id})}"></a></span>
+                            </li>
                         </ul>
                     </div>
                 </div>
                 <div class="panel science_knowledge">
                     <div class="caption">
                         <p>科普园地</p>
-                        <a class="more" href="/admin" target="_blank">More&nbsp;>></a>
+                        <a class="more" href="/knowledgeList" target="_self">More&nbsp;>></a>
                     </div>
                     <div class="content">
                         <ul>
-                            <li>[2019-06-13]&nbsp;<a>科学园地1</a></li>
-                            <li>[2019-06-13]&nbsp;<a>科学园地2</a></li>
-                            <li>[2019-06-13]&nbsp;<a>科学园地3</a></li>
-                            <li>[2019-06-13]&nbsp;<a>科学园地4</a></li>
+                            <li th:each="knowledge:${knowledge_list}">
+                                <span class="news_meta" th:text="'[' + ${#dates.format(knowledge.publishTime,'MM-dd')} + ']'"></span>
+                                <span class="news_title"><a th:text="${knowledge.title}" th:title="${knowledge.title}" th:href="@{/knowledge?id={id}(id=${knowledge.id})}"></a></span>
+                            </li>
                         </ul>
                     </div>
                 </div>
                 <div class="panel guest_book">
                     <div class="caption">
                         <p>访客留言</p>
-                        <a class="more" href="/admin" target="_blank">More&nbsp;>></a>
+                        <a class="more" href="/messageList" target="_self">More&nbsp;>></a>
                     </div>
                     <div class="content">
                         <div id="msg" th:fragment="message">
                             <ul th:each="msg:${msg_list}">
-                                <li>[<span th:text="${#dates.format(msg.createTime,'yyyy-MM-dd')}"/>] <span th:text="${msg.content}"/></li>
+                                <li>[<span th:text="${#dates.format(msg.createTime,'MM-dd')}"/>] <span th:text="${msg.content}" th:title="${msg.content}"/></li>
                             </ul>
                         </div>
                     </div>
@@ -78,22 +73,13 @@
                         <!--<span class="btnl btn" id="btnl"></span>
                         <span class="btnr btn" id="btnr"></span>-->
                         <div class="conbox" id="BoxUl">
-                            <ul >
-                                <li class="cur"><img src="../../image/home/pic_01.jpg"/></li>
-                                <li><img src="../../image/home/pic_02.jpg"/></li>
-                                <li><img src="../../image/home/pic_03.jpg"/></li>
-                                <li><img src="../../image/home/pic_04.jpg"/></li>
-                                <li><img src="../../image/home/pic_05.jpg"/></li>
-                                <li><img src="../../image/home/pic_06.jpg"/></li>
+                            <ul>
+                                <!--<li class="cur"><img src="../../image/home/pic_01.jpg"/></li>-->
+                                <li th:each="pic:${pic_list}"><img th:src="@{/download?id={id}(id=${pic.attach.id})}"></li>
                             </ul>
                         </div>
                         <p class="BoxSwitch" id="BoxSwitch">
-                            <span class="cur"></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
+                            <span th:each="pic:${pic_list}"></span>
                         </p>
                     </div>
                 </div>
@@ -103,9 +89,7 @@
                     <span>友情链接</span>
                 </div>
                 <div class="image">
-                    <a href="http://tourism.ahnu.edu.cn/" target="_blank"><img src="../../image/home/link_asd.jpg"/></a>
-                    <a href="http://geoscience.lzu.edu.cn/" target="_blank" style="margin-right: 30px"><img src="../../image/home/link_ld.png"/></a>
-                    <a href="http://sgos.nju.edu.cn/" target="_blank"><img src="../../image/home/link_nd.png"/></a>
+                    <a th:each="link:${link_list}" th:href="${link.url}" target="_blank"><img th:src="@{/download?id={id}(id=${link.attach.id})}"></a>
                 </div>
             </div>
         </div>
@@ -115,14 +99,17 @@
         <script src="/lib/lunbo/Lunbo.js"></script>
         <script src="/lib/layui/layui.js"></script>
         <script>
-            LbMove('BoxUl', 'btnl', 'btnr', 'BoxSwitch', true, 'left', true, 255, 1000, 5000, 4);
-            layui.use('layer', function () {
-                layui.layer.photos({
-                    photos: '#BoxUl',
-                    anim: 5
+            $(function () {
+                LbMove('BoxUl', 'btnl', 'btnr', 'BoxSwitch', true, 'left', true, 255, 1000, 5000, 4);
+                $("#BoxUl > ul > li:nth-child(n+5)").show();
+                layui.use('layer', function () {
+                    layui.layer.photos({
+                        photos: '#BoxUl',
+                        anim: 5
+                    });
                 });
+                addVisitCount('home');
             });
-            addVisitCount('home');
 
             /**
              *  异步刷新消息

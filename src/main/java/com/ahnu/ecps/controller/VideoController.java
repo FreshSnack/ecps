@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Date;
+
 /**
  * 教学视频处理器
  * @author mxding
@@ -38,6 +40,8 @@ public class VideoController {
      */
     @RequestMapping("/video")
     public String video(Model model) {
+        model.addAttribute("lastDate", videoService.getLastDate());
+        model.addAttribute("pv_count", pageViewService.getVisitCount("home"));
         model.addAttribute("menu_code", "video");
         model.addAttribute("video_count", pageViewService.getVisitCount("video"));
         model.addAttribute("video_list", videoService.listVideo());
@@ -86,6 +90,7 @@ public class VideoController {
         Attach attach = attachService.uploadFile(file);
         Video video = new Video();
         video.setAttach(attach);
+        video.setCreateTime(new Date());
         videoService.addVideo(video);
         return AjaxReturn.success();
     }

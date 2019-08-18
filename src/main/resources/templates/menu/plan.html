@@ -23,10 +23,9 @@
             <div class="plan">
                 <div class="bt">授课教案</div>
                 <div class="bar">
-                    发布人：程春云&nbsp;&nbsp;&nbsp;&nbsp;
-                    发布日期：2019-07-27&nbsp;&nbsp;&nbsp;&nbsp;
-                    浏览次数：<span th:text="${plan_count}"/>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="/download?id=13">下载</a>
+                    发布人：胡春生&nbsp;&nbsp;&nbsp;&nbsp;
+                    发布日期：<span th:text="${#dates.format(lastDate,'yyyy-MM-dd')}"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    浏览次数：<span th:text="${plan_count}"/>
                 </div>
                 <div class="nr">
                     <ul class="pictures doc">

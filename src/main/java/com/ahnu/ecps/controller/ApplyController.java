@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Date;
+
 /**
  * 申报书处理器
  * @author mxding
@@ -37,7 +39,9 @@ public class ApplyController {
      */
     @RequestMapping("/apply")
     public String apply(Model model) {
+        model.addAttribute("lastDate", applyService.getLastDate());
         model.addAttribute("menu_code", "apply");
+        model.addAttribute("pv_count", pageViewService.getVisitCount("home"));
         model.addAttribute("apply_count", pageViewService.getVisitCount("apply"));
         model.addAttribute("apply_list", applyService.listApply());
         return "menu/apply";
@@ -75,6 +79,7 @@ public class ApplyController {
         Attach attach = attachService.uploadFile(file);
         Apply apply = new Apply();
         apply.setAttach(attach);
+        apply.setCreateTime(new Date());
         applyService.addApply(apply);
         return AjaxReturn.success();
     }

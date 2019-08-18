@@ -2,6 +2,7 @@ package com.ahnu.ecps.service;
 
 import com.ahnu.ecps.domain.Ware;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -28,4 +29,6 @@ public interface IWareService {
      * @return
      */
     List<Ware> listWare();
+
+    Date getLastDate();
 }

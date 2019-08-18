@@ -3,6 +3,8 @@ package com.ahnu.ecps.service;
 import com.ahnu.ecps.dao.KnowledgeRepository;
 import com.ahnu.ecps.domain.Knowledge;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,4 +48,22 @@ public class KnowledgeService implements IKnowledgeService {
         Sort sort = new Sort(Sort.Direction.DESC, "publishTime");
         return knowledgeRepository.findAll(sort);
     }
+
+    @Override
+    public List<Knowledge> listTopKnowledge(int top) {
+        // 按创建时间倒序
+        Sort sort = new Sort(Sort.Direction.DESC, "publishTime");
+        Page<Knowledge> page = knowledgeRepository.findAll(PageRequest.of(0 , top, sort));
+        return page.getContent();
+    }
+
+    @Override
+    public Date getLastPublishDate() {
+        List<Knowledge> listTopKnowledge = listTopKnowledge(1);
+        if(listTopKnowledge != null && listTopKnowledge.size() > 0) {
+            return listTopKnowledge.get(0).getPublishTime();
+        }
+        return new Date();
+    }
+
 }

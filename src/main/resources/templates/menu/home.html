@@ -104,7 +104,7 @@
         <script>
             $(function () {
                 LbMove('BoxUl', 'btnl', 'btnr', 'BoxSwitch', true, 'left', true, 255, 1000, 5000, 4);
-                $("#BoxUl > ul > li:nth-child(n+5)").show();
+
                 layui.use('layer', function () {
                     layui.layer.photos({
                         photos: '#BoxUl',
@@ -113,6 +113,8 @@
                 });
                 addVisitCount('home');
             });
+
+            window.onload = function (ev) { $("#BoxUl > ul > li").css("display", "block"); };
 
             /**
              *  异步刷新消息

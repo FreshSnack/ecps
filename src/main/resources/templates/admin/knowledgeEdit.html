@@ -6,9 +6,22 @@
     <link rel="stylesheet" href="/lib/layui/css/layui.css"/>
     <link rel="stylesheet" href="/lib/rich/ui/trumbowyg.css"/>
     <style type="text/css">
-        .layui-form-label {width: 60px;}
-        .layui-input-block {width: 600px;margin-left: 100px}
-        .layui-form {margin-top: 20px;}
+        .layui-form-label {
+            width: 60px;
+        }
+
+        .layui-input-block {
+            width: 600px;
+            margin-left: 100px
+        }
+
+        .layui-form {
+            margin-top: 20px;
+        }
+
+        .trumbowyg-modal-box label input[type=file] {
+            padding: 0px;
+        }
     </style>
 </head>
 <body>
@@ -17,19 +30,23 @@
     <div class="layui-form-item">
         <label class="layui-form-label">标题</label>
         <div class="layui-input-block">
-            <input type="text" name="title" autocomplete="off" lay-verify="required" placeholder="请输入标题" class="layui-input" th:value="${knowledge}==null?'':${knowledge.title}">
+            <input type="text" name="title" autocomplete="off" lay-verify="required" placeholder="请输入标题"
+                   class="layui-input" th:value="${knowledge}==null?'':${knowledge.title}">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">发布人</label>
         <div class="layui-input-block">
-            <input type="text" name="publishUsername" autocomplete="off" lay-verify="required" placeholder="请输入发布人" class="layui-input" th:value="${knowledge}==null?'':${knowledge.publishUsername}">
+            <input type="text" name="publishUsername" autocomplete="off" lay-verify="required" placeholder="请输入发布人"
+                   class="layui-input" th:value="${knowledge}==null?'':${knowledge.publishUsername}">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">发布时间</label>
         <div class="layui-input-block">
-            <input type="text" id="publishTime" name="publishTime" autocomplete="off" lay-verify="required" placeholder="请选择发布时间" class="layui-input" th:value="${knowledge}==null?'':${#dates.format(knowledge.publishTime,'yyyy-MM-dd HH:mm:ss')}">
+            <input type="text" id="publishTime" name="publishTime" autocomplete="off" lay-verify="required"
+                   placeholder="请选择发布时间" class="layui-input"
+                   th:value="${knowledge}==null?'':${#dates.format(knowledge.publishTime,'yyyy-MM-dd HH:mm:ss')}">
         </div>
     </div>
     <div class="layui-form-item">
@@ -47,6 +64,7 @@
 <script src="/lib/jquery.js"></script>
 <script src="/lib/layui/layui.js"></script>
 <script src="/lib/rich/trumbowyg.js"></script>
+<script src="/lib/rich/trumbowyg.upload.js"></script>
 <script th:inline="javascript">
     var editor = $('#content').trumbowyg({
         fullscreenable: false,
@@ -54,10 +72,29 @@
         btns: [
             ['viewHTML'],
             ['strong', 'em'],
+            ['insertImage'],
+            ['upload'],
             ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
             ['unorderedList', 'orderedList'],
             ['fullscreen']
-        ]
+        ],
+        plugins: {
+            upload: {
+                // Some upload plugin options, see details below
+                serverPath: "/upload",
+                success: function (data, trumbowyg, $modal, values) {
+                    if (data.code == 1) {
+                        parent.layer.alert(data.msg || 'unknow error');
+                        return;
+                    }
+                    var attachId = data.data;
+                    var url = window.location.origin + "/download?id=" + attachId;
+                    trumbowyg.execCmd('insertImage', url, false, true);
+                    trumbowyg.closeModal()
+
+                }
+            }
+        }
     });
     editor.html([[${knowledge==null?'':knowledge.content}]]);
     layui.use(['form', 'laydate'], function () {

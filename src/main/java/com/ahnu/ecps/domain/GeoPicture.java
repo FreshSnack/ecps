@@ -25,6 +25,12 @@ public class GeoPicture {
     private Long id;
 
     /**
+     * 姓名
+     */
+    @Column(name = "NAME")
+    private String name;
+
+    /**
      * 附件
      */
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)

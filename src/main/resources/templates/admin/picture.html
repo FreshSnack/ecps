@@ -5,6 +5,11 @@
     <title>地貌图片</title>
     <link rel="stylesheet" href="/css/admin.css"/>
     <link rel="stylesheet" href="/css/iconfont/iconfont.css"/>
+    <style type="text/css">
+        ul.pictures p {
+            margin: auto;
+        }
+    </style>
 </head>
 <body>
 
@@ -27,6 +32,7 @@
                         <i class="iconfont" title="删除" th:onclick="deletePic([[${pic.id}]], [[${pic.attach.fileName}]])">&#xe62f;</i>
                     </span>
                 </div>
+                <p th:text="${pic.name}==null?${pic.attach.fileName}:${pic.name}"></p>
             </a>
         </li>
     </ul>

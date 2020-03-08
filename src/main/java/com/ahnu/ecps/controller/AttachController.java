@@ -1,17 +1,22 @@
 package com.ahnu.ecps.controller;
 
 import com.ahnu.ecps.domain.Attach;
+import com.ahnu.ecps.exception.BusinessException;
 import com.ahnu.ecps.service.IAttachService;
+import com.ahnu.ecps.utils.AjaxReturn;
 import com.ahnu.ecps.utils.StringUtils;
 import lombok.Cleanup;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.support.StandardMultipartHttpServletRequest;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.util.List;
 
 /**
  * 附件控制器
@@ -67,5 +72,22 @@ public class AttachController {
         Long downs = attach.getDowns() == null ? 0L : attach.getDowns();
         attach.setDowns(downs + 1);
         attachService.saveAttach(attach);
+    }
+
+    /**
+     * 通用上传图片
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/upload", method = RequestMethod.POST)
+    public AjaxReturn upload(HttpServletRequest request) {
+        StandardMultipartHttpServletRequest multipartRequest = (StandardMultipartHttpServletRequest) request;
+        List<MultipartFile> multipartFiles = multipartRequest.getFiles("fileToUpload");
+        if(multipartFiles == null || multipartFiles.size() == 0) {
+            throw new BusinessException("上传文件为空");
+        }
+        MultipartFile firstFile = multipartFiles.get(0);
+        Attach attach = attachService.uploadFile(firstFile);
+        return AjaxReturn.success(attach.getId());
     }
 }
